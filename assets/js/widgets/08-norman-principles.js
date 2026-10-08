@@ -296,11 +296,12 @@ function initThermostatSimulation() {
 // ESTAÇÃO 3: AUDITORIA DOS ABISMOS & ESTÚDIO DE REDESIGN INTERATIVO
 // ===================================================================
 const normanPrinciplesList = [
-  { id: 'signifier', label: 'Affordance & Signifiers', desc: 'Pistas perceptíveis visuais de onde e como interagir' },
-  { id: 'mapping', label: 'Mapeamento Natural (Mapping)', desc: 'Correspondência espacial direta entre comando físico e efeito real' },
-  { id: 'feedback', label: 'Feedback Imediato', desc: 'Retorno sensorial imediato sobre o estado e processamento da ação' },
-  { id: 'constraints', label: 'Restrições & Poka-Yoke (Constraints)', desc: 'Travas lógicas e físicas para prevenção de erros e acidentes' },
-  { id: 'mental_model', label: 'Modelo Mental & Consistência', desc: 'Conceitualização conceitual coerente com as expectativas do usuário' }
+  { id: 'discoverability', label: 'Descobrabilidade (Discoverability)', desc: 'Facilidade para determinar quais ações e recursos são possíveis no sistema geral' },
+  { id: 'constraints', label: 'Restrições & Poka-Yoke (Constraints)', desc: 'Barreiras físicas, lógicas e semânticas que impedem erros, deslizes e ações destrutivas' },
+  { id: 'mental_model', label: 'Modelo Conceitual & Consistência', desc: 'Coerência entre o modelo mental do usuário e o modelo projetado pelo sistema' },
+  { id: 'signifier', label: 'Significantes (Signifiers) & Affordance', desc: 'Sinais perceptíveis que comunicam onde e como tocar/interagir fisicamente' },
+  { id: 'feedback', label: 'Feedback Imediato & Sensorial', desc: 'Retorno perceptível imediato (< 100ms) sobre o processamento e o estado da ação' },
+  { id: 'mapping', label: 'Mapeamento Natural (Natural Mapping)', desc: 'Correspondência analógica/espacial direta entre comandos e resultados no mundo real' }
 ];
 
 const auditFlawsData = [
@@ -309,16 +310,36 @@ const auditFlawsData = [
     moduleKey: 'ventilation',
     title: 'Incidente A: Dificuldade de Acionamento da Ventilação',
     shortTitle: 'Incidente A &bull; Ventilação Oculta',
-    operatorReport: 'Operadores recém-chegados não conseguem ligar o exaustor de ventilação central. Afirmam que olham para o painel e acham que a função não foi implementada ou que a tela quebrou, pois não há nenhum botão visível na área de ventilação.',
+    operatorReport: 'Operadores recém-chegados não conseguem ligar o exaustor de ventilação central. Afirmam que olham para o painel e acham que a função não foi implementada ou que a tela quebrou, pois há apenas um texto cinza estático no local.',
     quote: '«Fiquei 10 minutos procurando onde clicar... pensei que aquele texto cinza era só uma legenda estática!»',
     correctPrinciple: 'signifier',
     correctAction: 'action-signifier-button',
     actionOptions: [
-      { id: 'action-signifier-button', text: 'Transformar o texto plano em um botão evidente com elevação 3D, ícone indicativo (🌀), cor de destaque e cursor pointer ao passar o mouse.' },
-      { id: 'action-signifier-text', text: 'Manter como texto cinza simples, mas trocar a frase por: "Por favor toque aqui para ligar o ar".' },
-      { id: 'action-signifier-manual', text: 'Inserir link para download de um manual de 40 páginas ensinando onde tocar na tela.' }
+      {
+        id: 'action-signifier-button',
+        text: 'Transformar o elemento em um botão industrial táctil evidente, com bordas nítidas, elevação sutil, ícone indicativo (🌀) e estado ativo/inativo claro.',
+        isCorrect: true
+      },
+      {
+        id: 'action-signifier-hover-tooltip',
+        text: 'Adicionar uma caixa flutuante (tooltip de ajuda) que só surge quando o operador repousa o cursor do mouse sobre o texto cinza.',
+        isCorrect: false,
+        distractorFeedback: 'Falha comum em interfaces industriais: terminais de comando operam por toque direto (touchscreen) e NÃO possuem ponteiro de mouse nem evento "hover". O tooltip permanecerá invisível e o Abismo de Execução continuará aberto.'
+      },
+      {
+        id: 'action-signifier-footer-note',
+        text: 'Manter o texto cinza plano, mas adicionar uma nota explicativa de instrução no rodapé: "Atenção: toque na legenda para ligar o ar".',
+        isCorrect: false,
+        distractorFeedback: 'Depender de leitura de instruções de rodapé para comandos rotineiros viola a percepção imediata. Usuários sob pressão não leem manuais ou legendas; o próprio elemento deve portar o significante evidente de sua função.'
+      },
+      {
+        id: 'action-signifier-font-only',
+        text: 'Apenas aumentar a fonte do texto cinza em 4 pixels, sem adicionar borda contrastante, fundo clicável ou ícone funcional.',
+        isCorrect: false,
+        distractorFeedback: 'Aumentar a tipografia melhora a legibilidade do rótulo, mas NÃO cria significante de interatividade. O operador continuará interpretando o texto como uma legenda passiva, sem perceber que é acionável.'
+      }
     ],
-    principleExplanation: 'Sem um **Signifier (Significante)** perceptível ou affordance explícita, o usuário é jogado no Abismo de Execução — ele quer agir, mas não enxerga a pista visual de onde o toque produz efeito.',
+    principleExplanation: 'Sem um **Signifier (Significante)** perceptível ou affordance explícita, o usuário é lançado no Abismo de Execução — ele tem a intenção de agir, mas não enxerga a pista visual de onde o toque físico produz efeito.',
     resolved: false
   },
   {
@@ -331,11 +352,31 @@ const auditFlawsData = [
     correctPrinciple: 'mapping',
     correctAction: 'action-mapping-align',
     actionOptions: [
-      { id: 'action-mapping-align', text: 'Readequar o Mapeamento Natural: seta para cima [▲] deve recolher a persiana (subir) e seta para baixo [▼] deve fechá-la (descer).' },
-      { id: 'action-mapping-invert-labels', text: 'Manter a lógica invertida e adicionar uma etiqueta em letras miúdas: "Atenção: botões operam no modo inverso".' },
-      { id: 'action-mapping-speed', text: 'Reduzir a velocidade do motor da persiana para que o operador tenha tempo de soltar o botão se errar.' }
+      {
+        id: 'action-mapping-align',
+        text: 'Restabelecer o Mapeamento Natural: seta superior [▲] para recolher/subir e seta inferior [▼] para fechar/descer, acompanhada de indicador analógico vertical do nível da lâmina.',
+        isCorrect: true
+      },
+      {
+        id: 'action-mapping-warning-label',
+        text: 'Manter a fiação invertida e colar um aviso amarelo de alerta: "Atenção: botões operam no sentido oposto".',
+        isCorrect: false,
+        distractorFeedback: 'Avisos textuais de "modo invertido" fracassam inevitavelmente diante de reflexos cognitivos humanos. Sob estresse ou pressa, o operador invariavelmente apertará a seta [▲] esperando que o objeto suba.'
+      },
+      {
+        id: 'action-mapping-confirm-modal',
+        text: 'Exibir uma janela de confirmação a cada clique: "Você clicou na seta para cima. Confirma que deseja descer a persiana?".',
+        isCorrect: false,
+        distractorFeedback: 'Adicionar pop-ups de confirmação a cada ajuste mecânico cria fadiga de alertas extrema para tarefas rotineiras, sem resolver a causa-raiz da dissonância espacial.'
+      },
+      {
+        id: 'action-mapping-slow-motor',
+        text: 'Reduzir a velocidade do motor em 85% para que o operador tenha tempo de soltar o botão antes que a persiana atinja a bancada.',
+        isCorrect: false,
+        distractorFeedback: 'Trabalhar em torno do hardware não resolve o abismo de usabilidade. Torna a rotina de trabalho exasperantemente lenta para todos os operadores e preserva a frustração cognitiva.'
+      }
     ],
-    principleExplanation: 'O **Mapeamento Natural (Mapping)** aproveita analogias espaciais e culturais (cima = subir, baixo = descer). Inverter as coordenadas aumenta a carga cognitiva e induz a erros mecânicos inevitáveis.',
+    principleExplanation: 'O **Mapeamento Natural (Mapping)** aproveita analogias espaciais e culturais universais (cima = subir, baixo = descer). Inverter as coordenadas aumenta a carga cognitiva e induz a erros mecânicos inevitáveis.',
     resolved: false
   },
   {
@@ -346,13 +387,33 @@ const auditFlawsData = [
     operatorReport: 'Ao ajustar a iluminação e clicar em "Salvar Preferências", a interface congela por 4 segundos sem nenhum som, animação ou mudança de cor. Usuários clicam repetidamente até travar a CPU do terminal.',
     quote: '«Eu cliquei em salvar e a tela não fez nada. Achei que o clique não tinha pego e apertei cinco vezes seguidas!»',
     correctPrinciple: 'feedback',
-    correctAction: 'action-feedback-toast',
+    correctAction: 'action-feedback-multimodal',
     actionOptions: [
-      { id: 'action-feedback-toast', text: 'Implementar Feedback Imediato (< 100ms): mostrar spinner de salvamento no próprio botão e exibir confirmação visual em toast verde com som suave.' },
-      { id: 'action-feedback-wait', text: 'Colocar um aviso estático na tela dizendo: "O servidor é lento mesmo, aguarde com calma sem clicar novamente".' },
-      { id: 'action-feedback-sound-only', text: 'Tocar um alarme estridente de sirene de 10 segundos para cada clique efetuado.' }
+      {
+        id: 'action-feedback-multimodal',
+        text: 'Implementar Feedback Imediato (< 50ms): estado "Salvando..." com micro-spinner no botão e confirmação suave (toast verde com horário e nível salvo).',
+        isCorrect: true
+      },
+      {
+        id: 'action-feedback-siren',
+        text: 'Acionar uma sirene de alarme sonoro em alto volume na sala e fazer a tela inteira piscar em vermelho a cada salvamento rotineiro.',
+        isCorrect: false,
+        distractorFeedback: 'Feedback sonoro estridente e alarmista para uma tarefa ordinária causa estresse desnecessário e poluição sensorial. O feedback deve ser proporcional à relevância da ação executada.'
+      },
+      {
+        id: 'action-feedback-wait-notice',
+        text: 'Inserir um aviso estático permanente: "O sistema é lento; aguarde 10 segundos sem tocar na tela após qualquer alteração".',
+        isCorrect: false,
+        distractorFeedback: 'Avisos estáticos permanentes não comunicam o estado atual do sistema após uma ação pontual. O operador continuará sem saber se o toque específico foi processado ou ignorado (Abismo de Avaliação).'
+      },
+      {
+        id: 'action-feedback-lock-cursor',
+        text: 'Apenas congelar o ponteiro do cursor durante os 4 segundos, sem alterar texto do botão, exibir barras de carregamento ou mensagens.',
+        isCorrect: false,
+        distractorFeedback: 'Congelar o cursor silenciosamente é interpretado pelo usuário como pane geral ou travamento da máquina, incentivando ainda mais toques compulsivos e reinicializações forçadas do terminal.'
+      }
     ],
-    principleExplanation: 'O **Feedback Imediato** fecha o Abismo de Avaliação. Don Norman pontua que o usuário precisa de confirmação perceptível instantânea de que sua ação foi registrada pelo sistema, evitando repetições compulsivas.',
+    principleExplanation: 'O **Feedback Imediato** fecha o Abismo de Avaliação. Don Norman pontua que o usuário necessita de confirmação perceptível instantânea (< 100ms) de que sua ação foi registrada pelo sistema, prevenindo a repetição compulsiva de comandos.',
     resolved: false
   },
   {
@@ -363,16 +424,46 @@ const auditFlawsData = [
     operatorReport: 'Durante uma ronda noturna, um operador foi acionar o botão de luz e encostou a manga do jaleco no botão vermelho vizinho de "Reset Geral da Planta", paralisando os reatores da fábrica inteira sem qualquer confirmação.',
     quote: '«Foi um desastre... o botão de desligar a fábrica inteira ficava colado nas luzes, sem tampa, trava ou aviso!»',
     correctPrinciple: 'constraints',
-    correctAction: 'action-constraints-pokayoke',
+    correctAction: 'action-constraints-pokayoke-cover',
     actionOptions: [
-      { id: 'action-constraints-pokayoke', text: 'Aplicar Restrições Poka-Yoke: segregar o comando crítico em área de segurança isolada com trava e exigir confirmação explícita em duas etapas.' },
-      { id: 'action-constraints-color', text: 'Apenas pintar o botão com um vermelho fluorescente e aumentar o tamanho da fonte no mesmo local.' },
-      { id: 'action-constraints-fine', text: 'Criar uma norma administrativa aplicando advertência disciplinar aos operadores que esbarrarem no botão.' }
+      {
+        id: 'action-constraints-pokayoke-cover',
+        text: 'Aplicar Restrição Poka-Yoke Física e Lógica: isolar o comando crítico sob tampa basculante de segurança e exigir confirmação em duas etapas deliberadas (destravar tampa + confirmação armada).',
+        isCorrect: true
+      },
+      {
+        id: 'action-constraints-neon-label',
+        text: 'Apenas pintar o botão com vermelho fluorescente e aumentar a legenda para "PERIGO: NÃO ESBARRE" mantendo-o na mesma área comum.',
+        isCorrect: false,
+        distractorFeedback: 'Cores vivas e textos chamativos não previnem deslizes motores (slips)! O operador esbarrou a manga do jaleco sem olhar para o botão; nenhuma pista visual evita um esbarrão físico involuntário se não houver barreira física (constraint).'
+      },
+      {
+        id: 'action-constraints-hr-penalty',
+        text: 'Criar norma administrativa de RH aplicando suspensão de 3 dias ao operador que esbarrar acidentalmente no botão de reset.',
+        isCorrect: false,
+        distractorFeedback: '"Culpar o operador" é a antítese da Filosofia de Don Norman e do Design Centrado no Usuário. Se a interface permite que um esbarrão corriqueiro cause uma catástrofe industrial, a falha é 100% de engenharia de IHC e falta de Poka-Yoke.'
+      },
+      {
+        id: 'action-constraints-lockout-all',
+        text: 'Bloquear todo o terminal com senha de 20 dígitos para qualquer comando, inclusive para ajustar a temperatura ou acender a luz da sala.',
+        isCorrect: false,
+        distractorFeedback: 'Isso impõe restrições draconianas sobre operações seguras e rotineiras, inviabilizando o fluxo de trabalho da fábrica, em vez de isolar estritamente o comando de alto risco.'
+      }
     ],
-    principleExplanation: 'As **Restrições (Constraints) e Poka-Yoke** protegem o usuário e o sistema contra deslizes (slips) e enganos (mistakes). Ações destrutivas nunca devem compartilhar a mesma proximidade gestual de ações rotineiras nem prescindir de confirmações seguras.',
+    principleExplanation: 'As **Restrições (Constraints) e Poka-Yoke** protegem o usuário e o sistema contra deslizes (slips) e enganos (mistakes). Ações destrutivas e irreversíveis nunca devem compartilhar a mesma proximidade gestual de ações rotineiras nem prescindir de barreiras físicas e confirmações seguras.',
     resolved: false
   }
 ];
+
+// Helper para embaralhamento (Fisher-Yates)
+function shuffleArray(arr) {
+  const result = [...arr];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
 
 function initAuditRedesignStudio() {
   const previewScreen = document.getElementById('audit-preview-screen');
@@ -389,6 +480,40 @@ function initAuditRedesignStudio() {
   let activeFlawIndex = 0;
   let lastDiagnosticFeedback = null;
 
+  // Estado dinâmico do simulador industrial
+  const simState = {
+    ventilation: {
+      isOn: false,
+      temp: 84,
+      userTappedFlat: false
+    },
+    blinds: {
+      aperturePercent: 50,
+      statusMsg: null,
+      isWarning: false
+    },
+    lighting: {
+      currentLux: 500,
+      repeatedClicks: 0,
+      isProcessing: false,
+      feedbackToast: null
+    },
+    reset: {
+      coverOpen: false,
+      alarmTriggered: false
+    }
+  };
+
+  // Embaralha as opções em cada inicialização para eliminar ordenação trivial
+  function scrambleAllFlawOptions() {
+    auditFlawsData.forEach(flaw => {
+      flaw.shuffledPrinciples = shuffleArray(normanPrinciplesList);
+      flaw.shuffledActions = shuffleArray(flaw.actionOptions);
+    });
+  }
+
+  scrambleAllFlawOptions();
+
   // Renderiza a interface de teste em tempo real no topo
   function renderPreviewScreen() {
     const fVent = auditFlawsData[0].resolved;
@@ -402,7 +527,7 @@ function initAuditRedesignStudio() {
     previewScreen.innerHTML = `
       <div class="audit-preview-header">
         <div style="display:flex; align-items:center; gap:0.6rem;">
-          <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'}; box-shadow:0 0 6px ${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'};"></span>
+          <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'}; box-shadow:0 0 8px ${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'};"></span>
           <span style="font-weight:700; font-size:0.85rem; color:var(--text-primary);">Terminal Touchscreen &bull; Central Predial Smart Facility v2.0</span>
         </div>
         <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; font-weight:700; color:${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'};">
@@ -420,23 +545,29 @@ function initAuditRedesignStudio() {
                 ${fVent ? '✓ Signifier Ativo' : '⚡ Sem Signifier'}
               </span>
             </div>
-            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Exaustor de Ventilação Central</div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.4rem;">Exaustor de Ventilação Central</div>
+            <div style="font-size:0.74rem; font-family:'JetBrains Mono', monospace; color:${fVent ? 'var(--accent-emerald)' : 'var(--accent-rose)'}; margin-bottom:0.5rem;">
+              ${fVent 
+                ? (simState.ventilation.isOn ? '❄️ Temp: 21°C (Refrigeração Ativa)' : '🌡️ Temp: 26°C (Estável)') 
+                : `🔥 Temp Sala: ${simState.ventilation.temp}°C (Sobreaquecimento)`}
+            </div>
           </div>
 
-          <div style="margin-top:0.5rem;" id="mock-vent-control-area">
+          <div style="margin-top:0.4rem;" id="mock-vent-control-area">
             ${fVent ? `
-              <button class="btn btn-primary" id="mock-btn-vent" style="padding:0.45rem 0.85rem; font-size:0.8rem; width:100%; display:flex; align-items:center; justify-content:center; gap:0.5rem; box-shadow:0 2px 4px rgba(0,0,0,0.15); cursor:pointer;">
-                <span>🌀</span> <span>Ventilação: <strong>LIGADA</strong> (1.200 RPM)</span>
+              <button class="btn ${simState.ventilation.isOn ? 'btn-primary' : 'btn-outline'} mock-tactile-btn" id="mock-btn-vent" style="padding:0.45rem 0.85rem; font-size:0.8rem; width:100%; display:flex; align-items:center; justify-content:center; gap:0.5rem; cursor:pointer;">
+                <span class="${simState.ventilation.isOn ? 'spinning-fan' : ''}">🌀</span>
+                <span>Exaustor: <strong>${simState.ventilation.isOn ? 'LIGADO (1.800 RPM)' : 'DESLIGADO (0 RPM)'}</strong></span>
               </button>
               <div style="font-size:0.7rem; color:var(--accent-emerald); margin-top:0.35rem; text-align:center;">
-                Affordance e significante explícitos e evidentes!
+                ✓ Affordance e Signifier táteis evidentes! Clique para alternar.
               </div>
             ` : `
-              <div id="mock-flat-text-vent" style="padding:0.45rem; background:rgba(148,163,184,0.08); border:1px dashed #cbd5e1; border-radius:var(--radius-sm); color:#64748b; font-size:0.78rem; text-align:center; cursor:pointer;" title="Clique para testar">
-                ligar ventilacao central (parece texto plano, sem botão!)
+              <div id="mock-flat-text-vent" style="padding:0.5rem; background:rgba(148,163,184,0.08); border:1px dashed #cbd5e1; border-radius:var(--radius-sm); color:#64748b; font-size:0.78rem; text-align:center; cursor:pointer;" title="Clique para testar">
+                exaustor de emergência (parece texto plano, sem botão!)
               </div>
-              <div id="mock-vent-hint" style="font-size:0.7rem; color:var(--accent-rose); margin-top:0.35rem; text-align:center; display:none;">
-                ⚠️ Texto plano! Usuários não percebem que é clicável.
+              <div id="mock-vent-hint" style="font-size:0.7rem; color:var(--accent-rose); margin-top:0.35rem; text-align:center; ${simState.ventilation.userTappedFlat ? 'display:block;' : 'display:none;'}">
+                ⚠️ Toque efetuado, mas o usuário não teve certeza se era clicável. O motor continua parado!
               </div>
             `}
           </div>
@@ -451,17 +582,23 @@ function initAuditRedesignStudio() {
                 ${fBlinds ? '✓ Mapeamento OK' : '⚡ Mapeamento Invertido'}
               </span>
             </div>
-            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Persianas Motorizadas</div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.35rem;">Persianas Motorizadas</div>
+            
+            <!-- Janela gráfica com lâminas simuladas -->
+            <div class="mock-window-frame">
+              <div class="mock-blind-slats" style="height:${100 - simState.blinds.aperturePercent}%;"></div>
+              <span class="mock-window-indicator">Abertura: ${simState.blinds.aperturePercent}%</span>
+            </div>
           </div>
 
-          <div style="margin-top:0.5rem;">
+          <div style="margin-top:0.4rem;">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.4rem;">
               ${fBlinds ? `
-                <button class="btn btn-outline" id="mock-blind-up-btn" style="padding:0.35rem; font-size:0.75rem; border-color:var(--border-color);">
-                  ▲ Subir (Abre)
+                <button class="btn btn-outline" id="mock-blind-up-btn" style="padding:0.35rem; font-size:0.75rem;">
+                  ▲ Subir (+25%)
                 </button>
-                <button class="btn btn-outline" id="mock-blind-down-btn" style="padding:0.35rem; font-size:0.75rem; border-color:var(--border-color);">
-                  ▼ Descer (Fecha)
+                <button class="btn btn-outline" id="mock-blind-down-btn" style="padding:0.35rem; font-size:0.75rem;">
+                  ▼ Descer (-25%)
                 </button>
               ` : `
                 <button class="btn btn-outline" id="mock-blind-up-btn" style="padding:0.35rem; font-size:0.75rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">
@@ -472,8 +609,8 @@ function initAuditRedesignStudio() {
                 </button>
               `}
             </div>
-            <div id="mock-blind-status" style="font-size:0.7rem; color:${fBlinds ? 'var(--text-secondary)' : 'var(--accent-rose)'}; margin-top:0.35rem; text-align:center;">
-              ${fBlinds ? 'Posição atual: 75% Aberta (Mapeamento correto)' : 'Atenção: Ao clicar ▲, persiana fecha contra o piso!'}
+            <div id="mock-blind-status" style="font-size:0.7rem; color:${simState.blinds.isWarning ? 'var(--accent-rose)' : (fBlinds ? 'var(--text-secondary)' : 'var(--accent-rose)')}; margin-top:0.35rem; text-align:center; min-height:2.2em; line-height:1.25;">
+              ${simState.blinds.statusMsg || (fBlinds ? 'Posição calibrada. Mapeamento analógico em conformidade.' : 'Atenção: Teste clicar em ▲ para ver a reação física.')}
             </div>
           </div>
         </div>
@@ -487,15 +624,21 @@ function initAuditRedesignStudio() {
                 ${fLight ? '✓ Feedback Imediato' : '⚡ Sem Feedback'}
               </span>
             </div>
-            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Salvar Nível de Luz (650 lux)</div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.35rem;">Ajuste de Luz: ${simState.lighting.currentLux} lx</div>
+            
+            <div style="display:flex; gap:0.3rem; margin-bottom:0.4rem;">
+              <button class="btn btn-sm btn-outline mock-lux-btn" data-lux="250" style="flex:1; padding:0.2rem 0.3rem; font-size:0.7rem; ${simState.lighting.currentLux === 250 ? 'border-color:var(--primary); font-weight:700;' : ''}">250 lx</button>
+              <button class="btn btn-sm btn-outline mock-lux-btn" data-lux="500" style="flex:1; padding:0.2rem 0.3rem; font-size:0.7rem; ${simState.lighting.currentLux === 500 ? 'border-color:var(--primary); font-weight:700;' : ''}">500 lx</button>
+              <button class="btn btn-sm btn-outline mock-lux-btn" data-lux="750" style="flex:1; padding:0.2rem 0.3rem; font-size:0.7rem; ${simState.lighting.currentLux === 750 ? 'border-color:var(--primary); font-weight:700;' : ''}">750 lx</button>
+            </div>
           </div>
 
-          <div style="margin-top:0.5rem;">
+          <div style="margin-top:0.4rem;">
             <button class="btn btn-outline" id="mock-light-save-btn" style="width:100%; padding:0.4rem; font-size:0.75rem; ${fLight ? 'border-color:var(--accent-emerald); color:var(--accent-emerald);' : ''}">
-              ${fLight ? '💾 Salvar Preferências' : 'Salvar Preferências (Mudo)'}
+              ${fLight ? '💾 Salvar Parâmetros' : 'Salvar Preferências (Mudo)'}
             </button>
-            <div id="mock-light-feedback" style="font-size:0.7rem; color:${fLight ? 'var(--accent-emerald)' : 'var(--text-muted)'}; margin-top:0.35rem; text-align:center;">
-              ${fLight ? 'Feedback imediato ativo (< 50ms) com confirmação' : 'Clique para testar o congelamento sem feedback'}
+            <div id="mock-light-feedback" style="font-size:0.7rem; color:${fLight ? 'var(--accent-emerald)' : 'var(--text-muted)'}; margin-top:0.35rem; text-align:center; min-height:2.2em; line-height:1.25;">
+              ${simState.lighting.feedbackToast || (fLight ? 'Feedback imediato ativo (< 50ms) com confirmação DALI.' : 'Clique repetidamente para testar a inércia do botão.')}
             </div>
           </div>
         </div>
@@ -509,21 +652,52 @@ function initAuditRedesignStudio() {
                 ${fReset ? '✓ Restrição Poka-Yoke' : '⚡ Ação Desprotegida'}
               </span>
             </div>
-            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Reset da Planta Industrial</div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.4rem;">Reset Geral da Planta</div>
           </div>
 
-          <div style="margin-top:0.5rem;" id="mock-reset-container">
+          <div style="margin-top:0.4rem;" id="mock-reset-container">
             ${fReset ? `
-              <div style="background:rgba(16,185,129,0.08); border:1px solid var(--accent-emerald); border-radius:var(--radius-sm); padding:0.4rem 0.6rem; font-size:0.75rem; text-align:center; color:var(--text-primary);">
-                🔒 <strong>Trava Poka-Yoke Ativa:</strong> Ação destrutiva isolada e protegida com dupla confirmação.
+              <div class="mock-safety-box ${simState.reset.coverOpen ? 'unlocked' : ''}">
+                ${simState.reset.coverOpen ? `
+                  <div style="font-size:0.72rem; color:var(--accent-rose); font-weight:700; margin-bottom:0.3rem;">
+                    ⚠️ Tampa Aberta: Comando Desbloqueado
+                  </div>
+                  <button class="btn btn-sm" id="mock-guarded-confirm" style="width:100%; background:var(--accent-rose); color:#fff; font-size:0.72rem; font-weight:700; border:none; padding:0.35rem;">
+                    Confirmar Reset (2ª Etapa Deliberada)
+                  </button>
+                  <button class="btn btn-sm btn-outline" id="mock-close-cover" style="width:100%; font-size:0.7rem; margin-top:0.25rem; padding:0.2rem;">
+                    🔒 Fechar e Travar Tampa
+                  </button>
+                ` : `
+                  <div style="font-size:0.72rem; color:var(--accent-amber); font-weight:700; margin-bottom:0.3rem;">
+                    🔒 Tampa Basculante Poka-Yoke (Travada)
+                  </div>
+                  <button class="btn btn-sm btn-outline" id="mock-open-cover" style="width:100%; font-size:0.72rem; padding:0.3rem; border-color:var(--accent-amber); color:var(--accent-amber);">
+                    Levantar Tampa de Proteção &rarr;
+                  </button>
+                `}
+              </div>
+              <div style="font-size:0.7rem; color:var(--accent-emerald); margin-top:0.35rem; text-align:center;">
+                Ação destrutiva isolada por barreira física e confirmação em 2 passos.
               </div>
             ` : `
-              <button class="btn" id="mock-reset-danger-btn" style="width:100%; background:var(--accent-rose); color:#fff; padding:0.4rem; font-size:0.75rem; font-weight:700; border:none; border-radius:var(--radius-sm); cursor:pointer;">
-                💥 RESET GERAL DA FÁBRICA
-              </button>
-              <div style="font-size:0.7rem; color:var(--accent-rose); margin-top:0.35rem; text-align:center;">
-                Perigo: Colado a botões comuns e sem confirmação!
+              <div style="display:flex; gap:0.3rem; align-items:center; margin-bottom:0.3rem;">
+                <button class="btn btn-outline" style="flex:1; padding:0.3rem; font-size:0.7rem;">💡 Luzes</button>
+                <button class="btn" id="mock-reset-danger-btn" style="flex:1.4; background:var(--accent-rose); color:#fff; padding:0.35rem; font-size:0.72rem; font-weight:700; border:none; border-radius:var(--radius-sm); cursor:pointer;">
+                  💥 RESET PLANTA
+                </button>
               </div>
+              <div style="font-size:0.7rem; color:var(--accent-rose); text-align:center;">
+                Perigo crítico: Colado aos botões comuns, sem barreira ou confirmação!
+              </div>
+              ${simState.reset.alarmTriggered ? `
+                <div class="mock-alarm-banner">
+                  🚨 PARADA DE EMERGÊNCIA DISPARADA POR ESBARRÃO! Prejuízo de R$ 45.000 em lote descartado.
+                  <button id="mock-alarm-dismiss" class="btn btn-sm" style="display:block; width:100%; margin-top:0.3rem; padding:0.2rem; font-size:0.7rem; background:#fff; color:#9f1239; border:none; font-weight:700;">
+                    Restabelecer Sistema Operacional
+                  </button>
+                </div>
+              ` : ''}
             `}
           </div>
         </div>
@@ -535,69 +709,142 @@ function initAuditRedesignStudio() {
 
   // Comportamentos interativos dentro da própria interface simulada sob teste
   function attachMockupEvents() {
+    // MÓDULO 1: Ventilação
     const flatVent = document.getElementById('mock-flat-text-vent');
     const ventHint = document.getElementById('mock-vent-hint');
-    if (flatVent && ventHint) {
+    if (flatVent) {
       flatVent.addEventListener('click', () => {
-        ventHint.style.display = 'block';
+        simState.ventilation.temp = Math.min(92, simState.ventilation.temp + 2);
+        simState.ventilation.userTappedFlat = true;
+        if (ventHint) ventHint.style.display = 'block';
+        renderPreviewScreen();
       });
     }
 
+    const btnVent = document.getElementById('mock-btn-vent');
+    if (btnVent) {
+      btnVent.addEventListener('click', () => {
+        simState.ventilation.isOn = !simState.ventilation.isOn;
+        renderPreviewScreen();
+      });
+    }
+
+    // MÓDULO 2: Persianas
     const blindUp = document.getElementById('mock-blind-up-btn');
     const blindDown = document.getElementById('mock-blind-down-btn');
-    const blindStatus = document.getElementById('mock-blind-status');
     const fBlinds = auditFlawsData[1].resolved;
 
-    if (blindUp && blindStatus) {
+    if (blindUp) {
       blindUp.addEventListener('click', () => {
         if (!fBlinds) {
-          blindStatus.innerHTML = '<span style="color:var(--accent-rose); font-weight:700;">⚠️ Erro! Você apertou ▲ mas a persiana DESCEU e bateu na bancada!</span>';
+          simState.blinds.aperturePercent = 0;
+          simState.blinds.isWarning = true;
+          simState.blinds.statusMsg = '💥 COLISÃO! Você clicou [▲] esperando subir, mas a persiana DESCEU contra a bancada devido ao Mapeamento Invertido!';
         } else {
-          blindStatus.innerHTML = '<span style="color:var(--accent-emerald);">▲ Persiana recolhida para CIMA (Abertura 100%).</span>';
+          simState.blinds.aperturePercent = Math.min(100, simState.blinds.aperturePercent + 25);
+          simState.blinds.isWarning = false;
+          simState.blinds.statusMsg = `✓ [▲] Persiana recolhendo para cima (${simState.blinds.aperturePercent}% aberta). Mapeamento Natural perfeito!`;
         }
+        renderPreviewScreen();
       });
     }
 
-    if (blindDown && blindStatus) {
+    if (blindDown) {
       blindDown.addEventListener('click', () => {
         if (!fBlinds) {
-          blindStatus.innerHTML = '<span style="color:var(--accent-rose); font-weight:700;">⚠️ Erro! Você apertou ▼ mas a persiana SUBIU! Mapeamento invertido!</span>';
+          simState.blinds.aperturePercent = 100;
+          simState.blinds.isWarning = true;
+          simState.blinds.statusMsg = '⚠️ Persiana subiu ao clicar [▼]. Mapeamento invertido!';
         } else {
-          blindStatus.innerHTML = '<span style="color:var(--accent-emerald);">▼ Persiana fechada para BAIXO (Abertura 0%).</span>';
+          simState.blinds.aperturePercent = Math.max(0, simState.blinds.aperturePercent - 25);
+          simState.blinds.isWarning = false;
+          simState.blinds.statusMsg = `✓ [▼] Persiana descendo suavemente (${simState.blinds.aperturePercent}% aberta).`;
         }
+        renderPreviewScreen();
       });
     }
 
+    // MÓDULO 3: Iluminação
+    const luxBtns = document.querySelectorAll('.mock-lux-btn');
+    luxBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        simState.lighting.currentLux = parseInt(btn.getAttribute('data-lux'), 10);
+        renderPreviewScreen();
+      });
+    });
+
     const lightBtn = document.getElementById('mock-light-save-btn');
-    const lightFeedback = document.getElementById('mock-light-feedback');
     const fLight = auditFlawsData[2].resolved;
 
-    if (lightBtn && lightFeedback) {
+    if (lightBtn) {
       lightBtn.addEventListener('click', () => {
         if (!fLight) {
+          simState.lighting.repeatedClicks++;
           lightBtn.disabled = true;
-          lightFeedback.innerHTML = '<span style="color:var(--accent-rose); font-weight:700;">⏳ Silêncio total... (4s sem resposta! Usuário acha que travou)</span>';
+          const count = simState.lighting.repeatedClicks;
+          simState.lighting.feedbackToast = `<span style="color:var(--accent-rose); font-weight:700;">⏳ Silêncio total... (${count}º clique). Sem resposta, o operador acha que o terminal travou!</span>`;
+          renderPreviewScreen();
+
           setTimeout(() => {
-            lightBtn.disabled = false;
-            lightFeedback.innerHTML = '<span style="color:var(--text-secondary);">Fim do congelamento. Nenhum aviso foi mostrado.</span>';
+            if (lightBtn) lightBtn.disabled = false;
+            simState.lighting.feedbackToast = '<span style="color:var(--text-secondary);">Fim do congelamento. Nenhum retorno foi exibido.</span>';
+            renderPreviewScreen();
           }, 3500);
         } else {
-          lightBtn.innerHTML = '⏳ Salvando...';
+          lightBtn.innerHTML = '⏳ Gravando na rede DALI...';
+          lightBtn.disabled = true;
           setTimeout(() => {
             lightBtn.innerHTML = '✓ Salvo!';
-            lightFeedback.innerHTML = '<span style="color:var(--accent-emerald); font-weight:700;">Toast exibido: "Preferências salvas com sucesso (200 OK)!"</span>';
+            simState.lighting.feedbackToast = `<span style="color:var(--accent-emerald); font-weight:700;">✓ Feedback imediato (< 50ms): Configuração de ${simState.lighting.currentLux} lx salva com sucesso!</span>`;
+            renderPreviewScreen();
             setTimeout(() => {
-              lightBtn.innerHTML = '💾 Salvar Preferências';
-            }, 1800);
+              simState.lighting.feedbackToast = null;
+              renderPreviewScreen();
+            }, 2500);
           }, 250);
         }
       });
     }
 
+    // MÓDULO 4: Reset da Planta
     const dangerResetBtn = document.getElementById('mock-reset-danger-btn');
     if (dangerResetBtn) {
       dangerResetBtn.addEventListener('click', () => {
-        alert('🚨 INCIDENTE CRÍTICO! A fábrica inteira foi desligada acidentalmente sem pedir confirmação! Violação gravíssima de Restrições.');
+        simState.reset.alarmTriggered = true;
+        renderPreviewScreen();
+      });
+    }
+
+    const alarmDismissBtn = document.getElementById('mock-alarm-dismiss');
+    if (alarmDismissBtn) {
+      alarmDismissBtn.addEventListener('click', () => {
+        simState.reset.alarmTriggered = false;
+        renderPreviewScreen();
+      });
+    }
+
+    const openCoverBtn = document.getElementById('mock-open-cover');
+    if (openCoverBtn) {
+      openCoverBtn.addEventListener('click', () => {
+        simState.reset.coverOpen = true;
+        renderPreviewScreen();
+      });
+    }
+
+    const closeCoverBtn = document.getElementById('mock-close-cover');
+    if (closeCoverBtn) {
+      closeCoverBtn.addEventListener('click', () => {
+        simState.reset.coverOpen = false;
+        renderPreviewScreen();
+      });
+    }
+
+    const guardedConfirmBtn = document.getElementById('mock-guarded-confirm');
+    if (guardedConfirmBtn) {
+      guardedConfirmBtn.addEventListener('click', () => {
+        alert('🛡️ Ação Segura: Parada industrial deliberada executada com sucesso após desbloqueio Poka-Yoke e 2ª confirmação. Nenhum esbarrão acidental é possível!');
+        simState.reset.coverOpen = false;
+        renderPreviewScreen();
       });
     }
   }
@@ -651,13 +898,20 @@ function initAuditRedesignStudio() {
         revertBtn.addEventListener('click', () => {
           flaw.resolved = false;
           lastDiagnosticFeedback = null;
+          // Re-embaralha as opções desta falha para novo treino
+          flaw.shuffledPrinciples = shuffleArray(normanPrinciplesList);
+          flaw.shuffledActions = shuffleArray(flaw.actionOptions);
           updateEverything();
         });
       }
       return;
     }
 
-    // Formulário de diagnóstico interativo
+    // Garante opções embaralhadas
+    if (!flaw.shuffledPrinciples) flaw.shuffledPrinciples = shuffleArray(normanPrinciplesList);
+    if (!flaw.shuffledActions) flaw.shuffledActions = shuffleArray(flaw.actionOptions);
+
+    // Formulário de diagnóstico interativo com opções embaralhadas
     solverPanel.innerHTML = `
       <div>
         <div style="font-size:0.82rem; font-weight:700; color:var(--primary); text-transform:uppercase; margin-bottom:0.25rem;">
@@ -667,7 +921,7 @@ function initAuditRedesignStudio() {
           Passo 1: Qual Princípio de Don Norman foi violado nesta falha?
         </h4>
         <div id="principle-radio-group">
-          ${normanPrinciplesList.map(p => `
+          ${flaw.shuffledPrinciples.map(p => `
             <label class="audit-option-label" for="p-${p.id}">
               <input type="radio" name="selected-principle" id="p-${p.id}" value="${p.id}">
               <div>
@@ -684,7 +938,7 @@ function initAuditRedesignStudio() {
           Passo 2: Qual a ação de redesign recomendada para solucionar o problema?
         </h4>
         <div id="action-radio-group">
-          ${flaw.actionOptions.map(act => `
+          ${flaw.shuffledActions.map(act => `
             <label class="audit-option-label" for="act-${act.id}">
               <input type="radio" name="selected-action" id="act-${act.id}" value="${act.id}">
               <div style="line-height:1.4;">${act.text}</div>
@@ -745,14 +999,20 @@ function initAuditRedesignStudio() {
       const selectedPrincipleObj = normanPrinciplesList.find(p => p.id === chosenPrinciple);
       feedbackBox.innerHTML = `
         <div class="audit-eval-feedback error">
-          <strong>❌ Princípio Incorreto:</strong> Você selecionou <em>"${selectedPrincipleObj?.label}"</em>. 
-          Releia o relato do operador: o problema central não é ${selectedPrincipleObj?.desc.toLowerCase()}. O que realmente está faltando na interface para que o usuário consiga agir ou entender o estado?
+          <strong>❌ Diagnóstico Teórico Incorreto:</strong> Você selecionou <em>"${selectedPrincipleObj?.label}"</em>.<br>
+          Reexamine o relato do operador: o problema central não é ${selectedPrincipleObj?.desc.toLowerCase()}. Analise se a falha raiz decorre da identificação do comando (Significante), correspondência espacial (Mapeamento), resposta do sistema (Feedback) ou prevenção de acidentes críticos (Restrições).
         </div>
       `;
     } else {
+      // Princípio correto, mas ação com distrator prático
+      const selectedActionObj = flaw.actionOptions.find(a => a.id === chosenAction);
+      const distractorText = selectedActionObj?.distractorFeedback || 'A ação proposta não atende aos critérios fundamentais de Design Centrado no Usuário.';
       feedbackBox.innerHTML = `
         <div class="audit-eval-feedback error">
-          <strong>⚠️ Princípio Correto, mas Ação Inadequada:</strong> Você acertou que a causa raiz é <em>"${normanPrinciplesList.find(p => p.id === chosenPrinciple)?.label}"</em>, mas a ação proposta não segue as boas práticas de IHC. Escolha uma intervenção que realmente resolva o abismo cognitivo na interface.
+          <strong>⚠️ Princípio Correto, mas Intervenção Falha:</strong> Você acertou que a violação teórica é de <em>"${normanPrinciplesList.find(p => p.id === chosenPrinciple)?.label}"</em>, porém a ação de redesign escolhida contém uma armadilha prática de IHC:<br>
+          <div style="margin-top:0.4rem; padding:0.45rem 0.65rem; background:rgba(0,0,0,0.06); border-radius:4px; font-size:0.84rem; line-height:1.4;">
+            ${distractorText}
+          </div>
         </div>
       `;
     }
@@ -797,8 +1057,21 @@ function initAuditRedesignStudio() {
   if (resetAllBtn) {
     resetAllBtn.addEventListener('click', () => {
       auditFlawsData.forEach(f => f.resolved = false);
+      scrambleAllFlawOptions();
       activeFlawIndex = 0;
       lastDiagnosticFeedback = null;
+      // Reseta estado do simulador
+      simState.ventilation.isOn = false;
+      simState.ventilation.temp = 84;
+      simState.ventilation.userTappedFlat = false;
+      simState.blinds.aperturePercent = 50;
+      simState.blinds.statusMsg = null;
+      simState.blinds.isWarning = false;
+      simState.lighting.currentLux = 500;
+      simState.lighting.repeatedClicks = 0;
+      simState.lighting.feedbackToast = null;
+      simState.reset.coverOpen = false;
+      simState.reset.alarmTriggered = false;
       updateEverything();
     });
   }
@@ -806,6 +1079,7 @@ function initAuditRedesignStudio() {
   // Inicialização
   updateEverything();
 }
+
 
 // ===================================================================
 // ESTAÇÃO 4: LABORATÓRIO DE AFFORDANCE PERCEPTÍVEL
