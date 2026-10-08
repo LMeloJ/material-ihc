@@ -469,9 +469,421 @@ function initAuditRedesignStudio() {
   renderList();
 }
 
+// ===================================================================
+// ESTAÇÃO 4: LABORATÓRIO DE AFFORDANCE PERCEPTÍVEL
+// ===================================================================
+function initAffordanceLab() {
+  const modeSelect = document.getElementById('affordance-mode-select');
+  const targetBoxes = document.querySelectorAll('.affordance-target-box');
+  const feedbackConsole = document.getElementById('affordance-lab-console');
+  const resetBtn = document.getElementById('affordance-reset-btn');
+
+  if (!targetBoxes.length) return;
+
+  let clicksLog = [];
+
+  function updateMode(mode) {
+    const isFlat = mode === 'flat';
+    targetBoxes.forEach(box => {
+      const type = box.getAttribute('data-type');
+      const actionEl = box.querySelector('.affordance-actionable');
+      if (!actionEl) return;
+
+      if (isFlat) {
+        actionEl.className = 'affordance-actionable btn-affordance-flat';
+        actionEl.style.boxShadow = 'none';
+        actionEl.style.cursor = 'default';
+      } else {
+        if (type === 'zero') {
+          actionEl.className = 'affordance-actionable btn-affordance-zero';
+        } else if (type === 'modern') {
+          actionEl.className = 'affordance-actionable btn-affordance-rich';
+        } else if (type === 'skeuo') {
+          actionEl.className = 'affordance-actionable btn btn-primary';
+          actionEl.style.boxShadow = '0 6px 0 #312e81, 0 8px 12px rgba(0,0,0,0.2)';
+        } else {
+          actionEl.className = 'affordance-actionable btn btn-outline';
+        }
+      }
+    });
+
+    if (feedbackConsole) {
+      feedbackConsole.innerHTML = isFlat 
+        ? `<span style="color:var(--accent-rose);">[Modo Flat Extremo Ativo]</span> Todos os elementos perderam relevo, sombras e pistas de cursor. Clique nos cartões para avaliar a dificuldade de saber o que é acionável!`
+        : `<span style="color:var(--accent-emerald);">[Modo Affordance Diferenciada Ativo]</span> Elementos utilizam pistas visuais perceptíveis de profundidade e cursor.`;
+    }
+  }
+
+  targetBoxes.forEach(box => {
+    box.addEventListener('click', (e) => {
+      const type = box.getAttribute('data-type');
+      const label = box.getAttribute('data-label') || type;
+      clicksLog.push(label);
+
+      let diagnosis = '';
+      if (type === 'zero') {
+        diagnosis = `⚠️ <strong>Texto Plano:</strong> Parece um rótulo estático. Usuários reais raramente tentam clicar aqui sem instruções explícitas (Gibson, 1979).`;
+      } else if (type === 'flat') {
+        diagnosis = `ℹ️ <strong>Retângulo Chapado:</strong> Ausência de profundidade ou cursor específico cria dúvida ("será que é apenas um banner?").`;
+      } else if (type === 'modern') {
+        diagnosis = `✓ <strong>Affordance Moderna (Sombra + Elevação + Pointer):</strong> O cérebro decodifica o elemento instantaneamente como um botão tridimensional acionável.`;
+      } else if (type === 'skeuo') {
+        diagnosis = `✨ <strong>Affordance Tátil Evidente:</strong> Inspiração física imediata. A borda rebaixada comunica o gesto mecânico de compressão física.`;
+      }
+
+      if (feedbackConsole) {
+        feedbackConsole.innerHTML = `
+          <div><strong>Ação registrada:</strong> Clique no elemento <em>"${label}"</em></div>
+          <div style="margin-top:0.35rem;">${diagnosis}</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.35rem;">Total de interações no teste: ${clicksLog.length}</div>
+        `;
+      }
+    });
+  });
+
+  if (modeSelect) {
+    modeSelect.addEventListener('change', () => {
+      updateMode(modeSelect.value);
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      clicksLog = [];
+      if (modeSelect) modeSelect.value = 'rich';
+      updateMode('rich');
+    });
+  }
+}
+
+// ===================================================================
+// ESTAÇÃO 5: O SIMULADOR DA PORTA DE NORMAN & SIGNIFICADORES
+// ===================================================================
+function initNormanDoorLab() {
+  const hardwareSelect = document.getElementById('door-hardware-select');
+  const signTextSelect = document.getElementById('door-sign-select');
+  const pullBtn = document.getElementById('door-pull-action-btn');
+  const pushBtn = document.getElementById('door-push-action-btn');
+  const doorLeaf = document.getElementById('door-leaf-element');
+  const hardwareMount = document.getElementById('door-hardware-mount');
+  const signMount = document.getElementById('door-sign-mount');
+  const resultMessage = document.getElementById('door-lab-message');
+
+  if (!doorLeaf || !pullBtn || !pushBtn) return;
+
+  function renderDoorHardware() {
+    const hw = hardwareSelect ? hardwareSelect.value : 'pull-handle';
+    const sign = signTextSelect ? signTextSelect.value : 'none';
+
+    // Hardware
+    if (hardwareMount) {
+      if (hw === 'pull-handle') {
+        hardwareMount.innerHTML = `<div class="door-hardware-handle" title="Maçaneta de Puxar"></div>`;
+      } else if (hw === 'push-plate') {
+        hardwareMount.innerHTML = `<div class="door-hardware-plate"><span>PLACA</span></div>`;
+      } else if (hw === 'push-bar') {
+        hardwareMount.innerHTML = `<div style="width:100%; height:14px; background:#475569; border:2px solid #1e293b; border-radius:3px;" title="Barra Antipânico"></div>`;
+      } else {
+        hardwareMount.innerHTML = `<div style="width:14px; height:14px; border-radius:50%; background:#475569;"></div>`;
+      }
+    }
+
+    // Texto de Sinalização
+    if (signMount) {
+      if (sign === 'empurre') {
+        signMount.innerHTML = `<span style="background:#0f172a; color:#38bdf8; padding:2px 6px; font-size:9px; font-weight:800; border-radius:2px; letter-spacing:0.05em;">EMPURRE</span>`;
+      } else if (sign === 'puxe') {
+        signMount.innerHTML = `<span style="background:#0f172a; color:#f43f5e; padding:2px 6px; font-size:9px; font-weight:800; border-radius:2px; letter-spacing:0.05em;">PUXE</span>`;
+      } else {
+        signMount.innerHTML = '';
+      }
+    }
+
+    // Reseta estado da porta
+    doorLeaf.classList.remove('open-success', 'bump-error');
+  }
+
+  pullBtn.addEventListener('click', () => {
+    doorLeaf.classList.remove('open-success', 'bump-error');
+    void doorLeaf.offsetWidth; // trigger reflow
+
+    // A física real desta porta comercial é que ela SÓ ABRE EMPURRANDO!
+    doorLeaf.classList.add('bump-error');
+
+    const hw = hardwareSelect ? hardwareSelect.value : 'pull-handle';
+    const sign = signTextSelect ? signTextSelect.value : 'none';
+
+    if (hw === 'pull-handle') {
+      resultMessage.innerHTML = `
+        <div style="color:var(--accent-rose); font-weight:700;">💥 BATEU NA PORTA! (A Clássica Porta de Norman)</div>
+        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-secondary);">
+          Você puxou a maçaneta porque a forma dela fornece o significador de agarrar e puxar. Porém a porta só abre empurrando! Você cometeu um erro não por falta de inteligência, mas porque o design da maçaneta mentiu para você.
+        </p>
+      `;
+    } else {
+      resultMessage.innerHTML = `
+        <div style="color:var(--accent-rose); font-weight:700;">⛔ Ação Incompatível!</div>
+        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-secondary);">
+          Esta porta não possui articulação de puxar para este sentido de tráfego. Ela só se move empurrando.
+        </p>
+      `;
+    }
+  });
+
+  pushBtn.addEventListener('click', () => {
+    doorLeaf.classList.remove('open-success', 'bump-error');
+    void doorLeaf.offsetWidth;
+
+    doorLeaf.classList.add('open-success');
+
+    const hw = hardwareSelect ? hardwareSelect.value : 'pull-handle';
+    const sign = signTextSelect ? signTextSelect.value : 'none';
+
+    if (hw === 'push-plate' || hw === 'push-bar') {
+      resultMessage.innerHTML = `
+        <div style="color:var(--accent-emerald); font-weight:700;">✓ PORTA ABERTA COM SUCESSO!</div>
+        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-secondary);">
+          <strong>Significador Conforme Perfeito:</strong> Uma placa plana ou barra horizontal impossibilita fisicamente o ato de puxar. O usuário empurra instintivamente sem hesitação nem necessidade de placas explicativas.
+        </p>
+      `;
+    } else {
+      resultMessage.innerHTML = `
+        <div style="color:var(--accent-amber); font-weight:700;">✓ Porta Abriu (Mas com Carga Cognitiva)</div>
+        <p style="margin:0.25rem 0 0; font-size:0.85rem; color:var(--text-secondary);">
+          A porta abriu porque você empurrou, mas note como ter uma maçaneta de puxar instalada causou um segundo de dúvida antes de agir.
+        </p>
+      `;
+    }
+  });
+
+  if (hardwareSelect) hardwareSelect.addEventListener('change', renderDoorHardware);
+  if (signTextSelect) signTextSelect.addEventListener('change', renderDoorHardware);
+
+  renderDoorHardware();
+}
+
+// ===================================================================
+// ESTAÇÃO 6: SIMULADOR DE LATÊNCIA E FEEDBACK (CHECKOUT)
+// ===================================================================
+function initFeedbackLatencyLab() {
+  const modeSelect = document.getElementById('feedback-mode-select');
+  const payBtn = document.getElementById('feedback-pay-btn');
+  const logEl = document.getElementById('feedback-live-console');
+  const counterEl = document.getElementById('feedback-clicks-counter');
+  const chargesEl = document.getElementById('feedback-charges-counter');
+  const resetBtn = document.getElementById('feedback-reset-btn');
+
+  if (!payBtn || !logEl) return;
+
+  let clicksDuringProcessing = 0;
+  let completedCharges = 0;
+  let isProcessing = false;
+
+  function log(msg, color) {
+    const time = new Date().toLocaleTimeString();
+    const line = `<div style="color:${color || '#38bdf8'}; margin-bottom:2px;">[${time}] ${msg}</div>`;
+    logEl.innerHTML = line + logEl.innerHTML;
+  }
+
+  payBtn.addEventListener('click', () => {
+    const mode = modeSelect ? modeSelect.value : 'bad';
+    clicksDuringProcessing++;
+    if (counterEl) counterEl.innerText = clicksDuringProcessing;
+
+    if (mode === 'bad') {
+      // MODO RUIM: Sem feedback imediato e sem desabilitar o botão
+      log(`⚠️ Clique no botão detectado (Tentativa #${clicksDuringProcessing}).`, '#facc15');
+
+      // Cada clique gera uma transação concorrente sem proteção
+      setTimeout(() => {
+        completedCharges++;
+        if (chargesEl) chargesEl.innerText = completedCharges;
+        log(`💥 Cobrança #${completedCharges} de R$ 1.500 debitada com sucesso no cartão!`, '#f43f5e');
+
+        if (completedCharges > 1) {
+          log(`🚨 FALHA DE IHC: Usuário clicou repetidamente devido ao silêncio da interface. Cobranças duplicadas geradas: R$ ${completedCharges * 1500},00!`, '#fb7185');
+        }
+      }, 3500);
+
+    } else {
+      // MODO BOM: Feedback imediato em camadas (< 50ms)
+      if (isProcessing) return; // Restrição impede múltiplos cliques
+      isProcessing = true;
+
+      payBtn.disabled = true;
+      payBtn.innerHTML = `
+        <span style="display:inline-block; animation:spin 1s linear infinite;">⏳</span>
+        Processando pagamento via Banco Central...
+      `;
+      payBtn.style.opacity = '0.75';
+
+      log(`✓ [0ms] Clique registrado: Botão desabilitado instantaneamente para evitar duplicidade.`, '#34d399');
+      log(`⏱️ [300ms] Transmitindo dados criptografados...`, '#38bdf8');
+
+      setTimeout(() => {
+        completedCharges++;
+        if (chargesEl) chargesEl.innerText = completedCharges;
+        payBtn.innerHTML = `✓ Pagamento de R$ 1.500 Confirmado!`;
+        payBtn.style.background = 'var(--accent-emerald)';
+        payBtn.style.borderColor = 'var(--accent-emerald)';
+        payBtn.style.color = '#fff';
+        payBtn.style.opacity = '1';
+
+        log(`🎉 [1200ms] Transação Pix concluída com sucesso! Recibo gerado.`, '#34d399');
+        log(`📊 Abismo de Avaliação superado: Usuário soube com precisão de 100% o estado do sistema.`, '#a7f3d0');
+      }, 1200);
+    }
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      clicksDuringProcessing = 0;
+      completedCharges = 0;
+      isProcessing = false;
+      if (counterEl) counterEl.innerText = '0';
+      if (chargesEl) chargesEl.innerText = '0';
+      payBtn.disabled = false;
+      payBtn.innerHTML = `Finalizar Pagamento de R$ 1.500,00`;
+      payBtn.style.background = '';
+      payBtn.style.borderColor = '';
+      payBtn.style.color = '';
+      payBtn.style.opacity = '';
+      logEl.innerHTML = `<div style="color:#94a3b8;">Sistema pronto. Escolha o modo de feedback e faça o teste de clique.</div>`;
+    });
+  }
+}
+
+// ===================================================================
+// ESTAÇÃO 7: RESTRIÇÕES POKA-YOKE (PREVENÇÃO ATIVA DE ERROS)
+// ===================================================================
+function initConstraintsPokaYokeLab() {
+  const modeToggle = document.getElementById('constraints-mode-toggle');
+  const departureDateInput = document.getElementById('const-date-depart');
+  const returnDateInput = document.getElementById('const-date-return');
+  const passengersInput = document.getElementById('const-passengers');
+  const docInput = document.getElementById('const-cpf');
+  const submitBtn = document.getElementById('const-submit-btn');
+  const resultConsole = document.getElementById('const-result-console');
+
+  if (!departureDateInput || !returnDateInput || !submitBtn) return;
+
+  function isPokaYoke() {
+    return modeToggle && modeToggle.checked;
+  }
+
+  function applyModeRestrictions() {
+    const active = isPokaYoke();
+
+    if (active) {
+      // Bloqueia datas de volta anteriores à data de ida
+      if (departureDateInput.value) {
+        returnDateInput.min = departureDateInput.value;
+        if (returnDateInput.value && returnDateInput.value < departureDateInput.value) {
+          returnDateInput.value = departureDateInput.value;
+        }
+      }
+      passengersInput.min = "1";
+      passengersInput.max = "9";
+      if (parseInt(passengersInput.value, 10) < 1) passengersInput.value = "1";
+      if (parseInt(passengersInput.value, 10) > 9) passengersInput.value = "9";
+    } else {
+      returnDateInput.removeAttribute('min');
+      passengersInput.removeAttribute('min');
+      passengersInput.removeAttribute('max');
+    }
+
+    if (resultConsole) {
+      resultConsole.innerHTML = active
+        ? `<span style="color:var(--accent-emerald);">[Modo Poka-Yoke Ativo]</span> Restrições físicas, temporais e sintáticas ativadas. O formulário impede fisicamente a entrada de estados impossíveis.`
+        : `<span style="color:var(--accent-rose);">[Modo Sem Restrições Ativo]</span> Qualquer dado é aceito nos campos. Erros só são validados depois que o usuário submete.`;
+    }
+  }
+
+  if (modeToggle) {
+    modeToggle.addEventListener('change', applyModeRestrictions);
+  }
+
+  if (departureDateInput) {
+    departureDateInput.addEventListener('change', () => {
+      if (isPokaYoke() && departureDateInput.value) {
+        returnDateInput.min = departureDateInput.value;
+        if (returnDateInput.value && returnDateInput.value < departureDateInput.value) {
+          returnDateInput.value = departureDateInput.value;
+        }
+      }
+    });
+  }
+
+  // Máscara e restrição sintática de CPF no modo Poka-Yoke
+  if (docInput) {
+    docInput.addEventListener('input', (e) => {
+      if (!isPokaYoke()) return;
+      let val = docInput.value.replace(/\D/g, '').slice(0, 11);
+      if (val.length > 9) {
+        val = val.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      } else if (val.length > 6) {
+        val = val.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+      } else if (val.length > 3) {
+        val = val.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+      }
+      docInput.value = val;
+    });
+  }
+
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const active = isPokaYoke();
+    const depart = departureDateInput.value;
+    const ret = returnDateInput.value;
+    const pass = parseInt(passengersInput.value, 10);
+    const doc = docInput.value.trim();
+
+    if (!active) {
+      // Avaliação no modo sem restrições
+      let errors = [];
+      if (depart && ret && ret < depart) {
+        errors.push(`Data de retorno (${ret}) é anterior à data de partida (${depart})!`);
+      }
+      if (isNaN(pass) || pass <= 0 || pass > 100) {
+        errors.push(`Quantidade de passageiros (${passengersInput.value}) é biologicamente ou operacionalmente inválida!`);
+      }
+      if (doc.length > 0 && !/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(doc) && !/^\d{11}$/.test(doc)) {
+        errors.push(`Documento (${doc}) não respeita a estrutura esperada de dígitos.`);
+      }
+
+      if (errors.length > 0) {
+        resultConsole.innerHTML = `
+          <div style="color:var(--accent-rose); font-weight:700;">💥 ${errors.length} ERROS GRAVES DETECTADOS APÓS SUBMISSÃO:</div>
+          <ul style="margin:0.5rem 0 0 1rem; color:var(--text-secondary); font-size:0.85rem;">
+            ${errors.map(err => `<li>${err}</li>`).join('')}
+          </ul>
+          <p style="margin:0.5rem 0 0; font-size:0.8rem; color:var(--accent-rose);">
+            <strong>Diagnóstico de IHC:</strong> A interface transferiu para o usuário todo o fardo da validação, permitindo que ele cometesse o erro para então repreendê-lo.
+          </p>
+        `;
+        return;
+      }
+    }
+
+    resultConsole.innerHTML = `
+      <div style="color:var(--accent-emerald); font-weight:700;">✓ Passagem Emitida com Sucesso!</div>
+      <p style="margin:0.35rem 0 0; font-size:0.85rem; color:var(--text-secondary);">
+        Todos os parâmetros atenderam às restrições semânticas e lógicas do sistema. Nenhuma falha de submissão foi provocada.
+      </p>
+    `;
+  });
+
+  applyModeRestrictions();
+}
+
 // Inicialização Global dos Widgets de Norman
 document.addEventListener('DOMContentLoaded', () => {
   initStoveReactionGame();
   initThermostatSimulation();
   initAuditRedesignStudio();
+  initAffordanceLab();
+  initNormanDoorLab();
+  initFeedbackLatencyLab();
+  initConstraintsPokaYokeLab();
 });
+

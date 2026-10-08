@@ -378,6 +378,18 @@
                   </div>
                 </div>
               </div>
+
+              <!-- CTA LABORATÓRIO 01 -->
+              <div class="principle-lab-cta">
+                <div class="principle-lab-cta-content">
+                  <span class="principle-lab-tag">🔬 Laboratório Interativo 01</span>
+                  <h4 class="principle-lab-title">O Teste de Percepção de Affordance: Onde é Clicável?</h4>
+                  <p class="principle-lab-desc">Teste como relevo, borda, sombra e cursor pointer afetam a taxa de descoberta imediata segundo a teoria ecológica de Gibson.</p>
+                </div>
+                <button class="btn btn-primary" data-open-modal="modal-lab-affordance">
+                  🔬 Abrir Laboratório de Affordance
+                </button>
+              </div>
             </div>
 
             <!-- ABA 2: SIGNIFIERS -->
@@ -409,6 +421,18 @@
                     [Placa plana de metal com texto gravado: "EMPURRE" &rarr; Signifier Perfeito!]
                   </div>
                 </div>
+              </div>
+
+              <!-- CTA LABORATÓRIO 02 -->
+              <div class="principle-lab-cta">
+                <div class="principle-lab-cta-content">
+                  <span class="principle-lab-tag">🚪 Laboratório Interativo 02</span>
+                  <h4 class="principle-lab-title">O Simulador da Porta de Norman & Significadores</h4>
+                  <p class="principle-lab-desc">Experimente em primeira pessoa a frustração de uma maçaneta de puxar instalada em porta de empurrar e configure significantes perfeitos.</p>
+                </div>
+                <button class="btn btn-primary" data-open-modal="modal-lab-signifiers">
+                  🚪 Abrir Simulador da Porta
+                </button>
               </div>
             </div>
 
@@ -442,6 +466,18 @@
                   </div>
                 </div>
               </div>
+
+              <!-- CTA LABORATÓRIO 03 -->
+              <div class="principle-lab-cta">
+                <div class="principle-lab-cta-content">
+                  <span class="principle-lab-tag">🎮 Laboratório Interativo 03</span>
+                  <h4 class="principle-lab-title">Desafio de Reação sob Pressão: O Fogão de Norman</h4>
+                  <p class="principle-lab-desc">Cronometre seu tempo de resposta em milissegundos e compare a sobrecarga cognitiva do mapeamento linear versus o mapeamento natural 2x2.</p>
+                </div>
+                <button class="btn btn-primary" data-open-modal="modal-lab-fogao">
+                  🎮 Abrir Desafio do Fogão
+                </button>
+              </div>
             </div>
 
             <!-- ABA 4: FEEDBACK -->
@@ -473,6 +509,18 @@
                     <span>✓</span><strong>Botão desabilitado com indicador visual: evita clique duplo.</strong>
                   </div>
                 </div>
+              </div>
+
+              <!-- CTA LABORATÓRIO 04 -->
+              <div class="principle-lab-cta">
+                <div class="principle-lab-cta-content">
+                  <span class="principle-lab-tag">⚡ Laboratório Interativo 04</span>
+                  <h4 class="principle-lab-title">Simulador de Latência & Feedback: O Dilema da Compra Duplicada</h4>
+                  <p class="principle-lab-desc">Veja os perigos do silêncio de resposta e teste a aplicação das regras de tempo de Nielsen (0.1s, 1.0s, 10s) para fechar o Abismo de Avaliação.</p>
+                </div>
+                <button class="btn btn-primary" data-open-modal="modal-lab-feedback">
+                  ⚡ Abrir Simulador de Feedback
+                </button>
               </div>
             </div>
 
@@ -506,6 +554,18 @@
                   </div>
                 </div>
               </div>
+
+              <!-- CTA LABORATÓRIO 05 -->
+              <div class="principle-lab-cta">
+                <div class="principle-lab-cta-content">
+                  <span class="principle-lab-tag">🛡️ Laboratório Interativo 05</span>
+                  <h4 class="principle-lab-title">Restrições Poka-Yoke: Prevenção Ativa de Erros</h4>
+                  <p class="principle-lab-desc">Compare formulários frágeis que provocam erros com interfaces blindadas por restrições lógicas e semânticas que tornam o erro impossível.</p>
+                </div>
+                <button class="btn btn-primary" data-open-modal="modal-lab-restricoes">
+                  🛡️ Abrir Laboratório Poka-Yoke
+                </button>
+              </div>
             </div>
 
             <!-- ABA 6: MODELO CONCEITUAL -->
@@ -538,157 +598,119 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- SEÇÃO 3: EXPERIMENTOS PRÁTICOS DINÂMICOS -->
-        <h2>3. Laboratórios Práticos Avançados de IxD</h2>
-        <p>
-          Para fixar os conceitos na prática, participe das <strong>três estações experimentais interativas</strong> abaixo. Cada estação desafia você a vivenciar e resolver um dos problemas clássicos documentados por Donald Norman:
-        </p>
-
-        <!-- ESTAÇÃO 1: DESAFIO DE REAÇÃO COGNITIVA DO FOGÃO -->
-        <div class="interactive-sandbox" id="estacao-fogao">
-          <div class="sandbox-header">
-            <div class="sandbox-title-wrap">
-              <span class="sandbox-badge">Estação 01 &bull; Mapeamento</span>
-              <h3 class="sandbox-title">Desafio de Reação sob Pressão: O Fogão de Norman</h3>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-              <input type="checkbox" id="stove-game-mapping-mode" style="cursor:pointer;">
-              <label for="stove-game-mapping-mode" style="font-size:0.85rem; font-weight:600; cursor:pointer;">Ativar Mapeamento Natural (2x2)</label>
-            </div>
-          </div>
-          <div class="sandbox-body">
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
-              <strong>O Desafio:</strong> Uma emergência ocorre na cozinha! Uma panela começa a queimar ou transbordar em uma das bocas. Seu objetivo é identificar e acionar o botão correto no menor tempo possível ($ms$). Compare seu desempenho no <strong>Mapeamento Arbitrário (Linear)</strong> versus no <strong>Mapeamento Natural (Espacial 2x2)</strong>!
-            </p>
-
-            <!-- Faixa de Missão e Cronômetro -->
-            <div class="mission-banner">
-              <div class="mission-text" id="stove-mission-text">
-                Clique em <strong>"Iniciar Desafio de Reação"</strong> para começar a primeira rodada sob pressão.
-              </div>
-              <div style="display:flex; align-items:center; gap:0.75rem;">
-                <div class="reaction-timer-display" id="stove-reaction-timer">0ms</div>
-                <button class="btn btn-primary" id="stove-start-challenge-btn" style="padding:0.4rem 0.9rem; font-size:0.85rem;">
-                  Iniciar Desafio de Reação
+              <!-- CTA LABORATÓRIO 06 -->
+              <div class="principle-lab-cta">
+                <div class="principle-lab-cta-content">
+                  <span class="principle-lab-tag">❄️ Laboratório Interativo 06</span>
+                  <h4 class="principle-lab-title">O Paradoxo do Termostato de Norman: Acelerador vs Válvula</h4>
+                  <p class="principle-lab-desc">Analise o descompasso entre o modelo mental ingênuo do usuário e o funcionamento físico do maquinário, eliminando a ilusão de aceleração.</p>
+                </div>
+                <button class="btn btn-primary" data-open-modal="modal-lab-termostato">
+                  ❄️ Abrir Laboratório do Termostato
                 </button>
               </div>
             </div>
-
-            <div class="stovetop-grid">
-              <!-- Visualização das Bocas -->
-              <div>
-                <div class="widget-label">Bocas do Fogão (Disposição Espacial Real):</div>
-                <div class="stove-burners">
-                  <div class="burner" id="game-burner-tl">Sup-Esq</div>
-                  <div class="burner" id="game-burner-tr">Sup-Dir</div>
-                  <div class="burner" id="game-burner-bl">Inf-Esq</div>
-                  <div class="burner" id="game-burner-br">Inf-Dir</div>
-                </div>
-              </div>
-
-              <!-- Controles Físicos do Usuário -->
-              <div>
-                <div class="widget-label">Painel de Controles (Clique no Botão que Desliga a Boca em Chamas):</div>
-                <div id="game-knobs-container" style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
-                  <button class="btn btn-outline game-stove-knob" data-knob="0">Controle 1</button>
-                  <button class="btn btn-outline game-stove-knob" data-knob="1">Controle 2</button>
-                  <button class="btn btn-outline game-stove-knob" data-knob="2">Controle 3</button>
-                  <button class="btn btn-outline game-stove-knob" data-knob="3">Controle 4</button>
-                </div>
-
-                <div style="font-size:0.8rem; color:var(--text-muted);">
-                  <em>Dica:</em> No modo arbitrário (padrão de fábrica ruim), o Controle 1 aciona a boca Inferior-Direita! Observe o tempo gasto para calcular mentalmente a correspondência.
-                </div>
-              </div>
-            </div>
-
-            <!-- Relatório Comparativo de Carga Cognitiva -->
-            <div id="stove-game-report" style="margin-top:1.25rem;"></div>
           </div>
         </div>
 
-        <!-- ESTAÇÃO 2: O PARADOXO DO TERMOSTATO -->
-        <div class="interactive-sandbox" id="estacao-termostato">
-          <div class="sandbox-header">
-            <div class="sandbox-title-wrap">
-              <span class="sandbox-badge">Estação 02 &bull; Modelo Conceitual</span>
-              <h3 class="sandbox-title">O Paradoxo do Termostato de Norman: A Ilusão do Acelerador</h3>
+        <!-- SEÇÃO 3: GALERIA CONSOLIDADA DE LABORATÓRIOS -->
+        <h2>3. Central de Demonstrações & Laboratórios Práticos</h2>
+        <p>
+          Para proporcionar uma experiência de aprendizagem imersiva e focada, cada um dos <strong>seis princípios fundamentais de Norman</strong> conta com uma estação prática interativa dedicada. Você pode acioná-las diretamente através dos botões nas abas de cada princípio acima ou iniciar qualquer uma delas a partir da galeria abaixo:
+        </p>
+
+        <!-- GRID HUB DOS 6 LABORATÓRIOS -->
+        <div class="labs-hub-grid">
+          <!-- CARD LAB 01 -->
+          <div class="lab-hub-card">
+            <div>
+              <span class="badge" style="background:var(--primary-light); color:var(--primary); margin-bottom:0.5rem; display:inline-block;">Princípio 01</span>
+              <h4 style="margin:0 0 0.4rem; color:var(--text-primary);">🔬 Affordance Perceptível</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 1rem;">
+                Teste a facilidade de identificação de elementos acionáveis comparando texto puro, retângulos chapados e botões com pistas de relevo e elevação física.
+              </p>
             </div>
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-              <label for="thermostat-mode-select" style="font-size:0.8rem; font-weight:600;">Design do Controle:</label>
-              <select id="thermostat-mode-select" class="widget-select" style="padding:0.25rem 0.5rem; font-size:0.8rem;">
-                <option value="bad">Design A: Escala Arbitrária de 1 a 10 (Falho)</option>
-                <option value="good">Design B: Temperatura Alvo em °C (Redesign de IHC)</option>
-              </select>
-            </div>
+            <button class="btn btn-outline" data-open-modal="modal-lab-affordance" style="width:100%;">
+              Abrir Laboratório 01 &rarr;
+            </button>
           </div>
-          <div class="sandbox-body">
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
-              <strong>O Mito Cognitivo:</strong> Quando uma sala ou geladeira está quente, a maioria das pessoas gira o termostato para o nível máximo ("10"), acreditando que a máquina vai resfriar <em>mais depressa</em>. Interaja com os controles abaixo e observe o status real do compressor mecânico:
-            </p>
 
-            <div class="thermostat-dual-grid">
-              <!-- Painel do Usuário -->
-              <div class="thermostat-control-box">
-                <h4 style="margin:0 0 0.75rem; font-size:1rem; color:var(--text-primary);">Controle do Usuário</h4>
-
-                <!-- Controles do Design A (Falho) -->
-                <div id="thermostat-bad-controls">
-                  <label class="widget-label" for="thermostat-dial-slider">
-                    Seletor de Potência: Nível <span id="thermostat-dial-display" style="font-weight:800; color:var(--primary);">5</span> / 10
-                  </label>
-                  <input type="range" id="thermostat-dial-slider" min="1" max="10" value="5" style="width:100%; cursor:pointer;">
-                  <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
-                    <span>1 (Mínimo)</span>
-                    <span>5 (Médio)</span>
-                    <span>10 (Máximo)</span>
-                  </div>
-                </div>
-
-                <!-- Controles do Design B (Redesign) -->
-                <div id="thermostat-good-controls" style="display:none;">
-                  <label class="widget-label" for="thermostat-celsius-input">Temperatura Desejada Exata (°C):</label>
-                  <input type="number" id="thermostat-celsius-input" class="widget-input" value="4" min="-5" max="18" step="1">
-                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
-                    O sistema ajusta o tempo de acionamento necessário para atingir o valor definido.
-                  </div>
-                </div>
-
-                <!-- Quadro de Diagnóstico do Modelo Mental -->
-                <div id="thermostat-mental-model-explanation" style="margin-top:1.25rem; padding:0.85rem; background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.88rem;"></div>
-              </div>
-
-              <!-- Estado Real da Máquina -->
-              <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between;">
-                <div>
-                  <h4 style="margin:0 0 0.5rem; font-size:1rem; color:var(--text-primary);">Estado Físico da Máquina (Termodinâmica Real)</h4>
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-                    <span style="font-size:0.85rem; color:var(--text-muted);">Temperatura Atual:</span>
-                    <span id="thermostat-current-temp" style="font-family:'JetBrains Mono', monospace; font-size:1.5rem; font-weight:800; color:var(--accent-rose);">24.0°C</span>
-                  </div>
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                    <span style="font-size:0.85rem; color:var(--text-muted);">Meta de Desligamento:</span>
-                    <span id="thermostat-target-temp" style="font-family:'JetBrains Mono', monospace; font-size:1.1rem; font-weight:700; color:var(--primary);">4.0°C</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="widget-label">Status Mecânico do Compressor:</div>
-                  <div id="thermostat-compressor-pill" class="compressor-status-pill compressor-on">
-                    ⚡ Compressor LIGADO (Potência fixa constante: 100%)
-                  </div>
-                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">
-                    <em>Fato da Engenharia:</em> Não existe "velocidade 10". A máquina resfria exatamente 0.5°C por minuto em qualquer nível.
-                  </div>
-                </div>
-              </div>
+          <!-- CARD LAB 02 -->
+          <div class="lab-hub-card">
+            <div>
+              <span class="badge" style="background:var(--accent-purple-light); color:var(--accent-purple); margin-bottom:0.5rem; display:inline-block;">Princípio 02</span>
+              <h4 style="margin:0 0 0.4rem; color:var(--text-primary);">🚪 A Porta de Norman & Significadores</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 1rem;">
+                Simule em primeira pessoa a frustração de uma porta de empurrar com maçaneta de puxar e aprenda a eliminar falsos significantes.
+              </p>
             </div>
+            <button class="btn btn-outline" data-open-modal="modal-lab-signifiers" style="width:100%;">
+              Abrir Laboratório 02 &rarr;
+            </button>
+          </div>
+
+          <!-- CARD LAB 03 -->
+          <div class="lab-hub-card">
+            <div>
+              <span class="badge" style="background:var(--accent-sky-light); color:var(--accent-sky); margin-bottom:0.5rem; display:inline-block;">Princípio 03</span>
+              <h4 style="margin:0 0 0.4rem; color:var(--text-primary);">🎮 Mapeamento: O Fogão de Norman</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 1rem;">
+                Enfrente um teste de reflexos sob pressão medido em milissegundos comparando o mapeamento linear arbitrário contra o mapeamento espacial 2x2.
+              </p>
+            </div>
+            <button class="btn btn-outline" data-open-modal="modal-lab-fogao" style="width:100%;">
+              Abrir Laboratório 03 &rarr;
+            </button>
+          </div>
+
+          <!-- CARD LAB 04 -->
+          <div class="lab-hub-card">
+            <div>
+              <span class="badge" style="background:var(--accent-amber-light); color:var(--accent-amber); margin-bottom:0.5rem; display:inline-block;">Princípio 04</span>
+              <h4 style="margin:0 0 0.4rem; color:var(--text-primary);">⚡ Feedback & O Dilema do Clique Duplo</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 1rem;">
+                Vivencie como a falta de resposta imediata leva a cobranças financeiras duplicadas e aplique os limiares de tempo de resposta de Jakob Nielsen.
+              </p>
+            </div>
+            <button class="btn btn-outline" data-open-modal="modal-lab-feedback" style="width:100%;">
+              Abrir Laboratório 04 &rarr;
+            </button>
+          </div>
+
+          <!-- CARD LAB 05 -->
+          <div class="lab-hub-card">
+            <div>
+              <span class="badge" style="background:var(--accent-rose-light); color:var(--accent-rose); margin-bottom:0.5rem; display:inline-block;">Princípio 05</span>
+              <h4 style="margin:0 0 0.4rem; color:var(--text-primary);">🛡️ Restrições Poka-Yoke</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 1rem;">
+                Compare formulários vulneráveis que geram erros pós-envio com mecanismos de restrições lógicas e semânticas que tornam o erro impossível.
+              </p>
+            </div>
+            <button class="btn btn-outline" data-open-modal="modal-lab-restricoes" style="width:100%;">
+              Abrir Laboratório 05 &rarr;
+            </button>
+          </div>
+
+          <!-- CARD LAB 06 -->
+          <div class="lab-hub-card">
+            <div>
+              <span class="badge" style="background:var(--accent-emerald-light); color:var(--accent-emerald); margin-bottom:0.5rem; display:inline-block;">Princípio 06</span>
+              <h4 style="margin:0 0 0.4rem; color:var(--text-primary);">❄️ O Paradoxo do Termostato</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0 0 1rem;">
+                Explore o conflito entre o modelo mental ingênuo de "acelerador" e a física real do compressor de relé, descobrindo o valor do modelo conceitual.
+              </p>
+            </div>
+            <button class="btn btn-outline" data-open-modal="modal-lab-termostato" style="width:100%;">
+              Abrir Laboratório 06 &rarr;
+            </button>
           </div>
         </div>
+
+        <h3 style="margin-top:2.5rem;">Desafio Capstone Integrador: Consultoria de Usabilidade</h3>
+        <p>
+          Após testar os princípios individualmente, coloque à prova sua capacidade analítica de identificar múltiplos abismos de Norman em uma única interface sob teste e aplique o redesign para alcançar 100% de usabilidade:
+        </p>
 
         <!-- ESTAÇÃO 3: ESTÚDIO DE AUDITORIA & REDESIGN DOS ABISMOS -->
         <div class="interactive-sandbox" id="estacao-auditoria">
@@ -786,13 +808,408 @@
         <ul class="toc-nav">
           <li><a href="#1-as-5-dimensoes-do-interaction-design-ixd" class="toc-link">1. As 5 Dimensões de IxD</a></li>
           <li><a href="#2-os-principios-fundamentais-de-donald-norman" class="toc-link">2. Princípios de Norman & Abismos</a></li>
-          <li><a href="#estacao-fogao" class="toc-link">3.1 Desafio: Fogão & Reação</a></li>
-          <li><a href="#estacao-termostato" class="toc-link">3.2 Desafio: Paradoxo do Termostato</a></li>
-          <li><a href="#estacao-auditoria" class="toc-link">3.3 Desafio: Auditoria & Redesign</a></li>
+          <li><a href="#estacao-auditoria" class="toc-link">3. Central de Laboratórios & Capstone</a></li>
         </ul>
       </aside>
     </div>
   </main>
+
+  <!-- ===================================================================
+       MODAIS DOS 6 LABORATÓRIOS PRÁTICOS DOS PRINCÍPIOS DE NORMAN
+       =================================================================== -->
+
+  <!-- MODAL 01: AFFORDANCE -->
+  <div class="modal-backdrop" id="modal-lab-affordance" role="dialog" aria-modal="true" aria-labelledby="modal-affordance-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="sandbox-badge">Princípio 01 &bull; Affordance</span>
+          <h3 class="modal-title" id="modal-affordance-title">O Teste de Percepção de Affordance</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+          <p style="margin:0; font-size:0.9rem; color:var(--text-secondary); max-width:600px;">
+            <strong>Teoria de Gibson (1979) aplicada a IHC:</strong> No mundo físico, affordance é a possibilidade real de ação que o objeto oferece à biomecânica. No software, Norman define como <em>affordances percebidas</em>. Teste como a presença de pistas visuais de relevo orienta o usuário:
+          </p>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <label for="affordance-mode-select" style="font-size:0.8rem; font-weight:600;">Estilo da Interface:</label>
+            <select id="affordance-mode-select" class="widget-select" style="padding:0.25rem 0.5rem; font-size:0.8rem;">
+              <option value="rich">Affordance Rica (Sombras, Relevo, Pointer)</option>
+              <option value="flat">Flat Design Extremo (Sem profundidade / Sem pistas)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="widget-label">Clique nos quatro componentes abaixo para testar sua capacidade de descoberta instintiva:</div>
+        <div class="affordance-test-bench">
+          <div class="affordance-target-box" data-type="zero" data-label="Texto Puro">
+            <span class="affordance-actionable btn-affordance-zero" tabindex="0">Continuar Navegação</span>
+            <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.6rem;">Elemento A: Sem Relevo / Sem Borda</div>
+          </div>
+          <div class="affordance-target-box" data-type="flat" data-label="Retângulo Chapado">
+            <div class="affordance-actionable btn-affordance-flat" tabindex="0">Continuar Navegação</div>
+            <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.6rem;">Elemento B: Retângulo sem Sombra</div>
+          </div>
+          <div class="affordance-target-box" data-type="modern" data-label="Botão Moderno com Elevação">
+            <button class="affordance-actionable btn-affordance-rich">Continuar Navegação</button>
+            <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.6rem;">Elemento C: Sombra + Hover + Pointer</div>
+          </div>
+          <div class="affordance-target-box" data-type="skeuo" data-label="Botão com Profundidade 3D">
+            <button class="affordance-actionable btn btn-primary" style="box-shadow: 0 6px 0 #312e81, 0 8px 12px rgba(0,0,0,0.2);">Continuar Navegação</button>
+            <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.6rem;">Elemento D: Compressão Física / 3D</div>
+          </div>
+        </div>
+
+        <div class="widget-label">Painel de Diagnóstico Cognitivo em Tempo Real:</div>
+        <div id="affordance-lab-console" style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:0.85rem; font-size:0.88rem; min-height:80px;">
+          Clique em qualquer um dos componentes acima para registrar o diagnóstico e a análise da percepção ecológica.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="affordance-reset-btn">Reiniciar Teste</button>
+        <button class="btn btn-primary" data-close-modal>Concluir e Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 02: SIGNIFIERS -->
+  <div class="modal-backdrop" id="modal-lab-signifiers" role="dialog" aria-modal="true" aria-labelledby="modal-signifiers-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="sandbox-badge">Princípio 02 &bull; Significadores</span>
+          <h3 class="modal-title" id="modal-signifiers-title">O Simulador da Porta de Norman</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+          <strong>O Paradoxo da Porta Comercial:</strong> Esta porta de saída possui um fecho mecânico que <strong>apenas abre empurrando</strong>. Observe o que acontece quando o designer instala um hardware com significador falso de puxar versus quando instala um significador conforme (Norman, 1988/2013).
+        </p>
+
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-bottom:1.25rem;">
+          <div style="flex:1; min-width:200px;">
+            <label class="widget-label" for="door-hardware-select">Tipo de Hardware Instalado:</label>
+            <select id="door-hardware-select" class="widget-select">
+              <option value="pull-handle">Maçaneta Vertical de Puxar (Alça Cilíndrica)</option>
+              <option value="push-plate">Placa Lisa de Metal (Push Plate)</option>
+              <option value="push-bar">Barra Antipânico Horizontal</option>
+            </select>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <label class="widget-label" for="door-sign-select">Placa Auxiliar de Texto:</label>
+            <select id="door-sign-select" class="widget-select">
+              <option value="none">Sem placa de texto (Apenas pista física)</option>
+              <option value="empurre">Placa Escrita: "EMPURRE"</option>
+              <option value="puxe">Placa Enganosa: "PUXE"</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="door-simulation-stage">
+          <div class="door-frame">
+            <div class="door-leaf" id="door-leaf-element">
+              <div id="door-sign-mount" style="position:absolute; top:28px; right:12px;"></div>
+              <div id="door-hardware-mount" style="display:flex; justify-content:flex-end;"></div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
+            <button class="btn btn-outline" id="door-pull-action-btn" style="padding:0.6rem 1.25rem;">
+              🖐️ Tentar Puxar (Pull)
+            </button>
+            <button class="btn btn-primary" id="door-push-action-btn" style="padding:0.6rem 1.25rem;">
+              ✋ Tentar Empurrar (Push)
+            </button>
+          </div>
+        </div>
+
+        <div id="door-lab-message" style="margin-top:1.25rem; padding:0.85rem; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.88rem;">
+          Escolha uma ação física (Puxar ou Empurrar) para interagir com a porta.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close-modal>Concluir e Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 03: MAPEAMENTO (FOGÃO) -->
+  <div class="modal-backdrop" id="modal-lab-fogao" role="dialog" aria-modal="true" aria-labelledby="modal-fogao-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="sandbox-badge">Princípio 03 &bull; Mapeamento</span>
+          <h3 class="modal-title" id="modal-fogao-title">Desafio de Reação sob Pressão: O Fogão de Norman</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <p style="margin:0; font-size:0.9rem; color:var(--text-secondary); max-width:550px;">
+            Uma emergência ocorre na cozinha! Desligue a boca em chamas no menor tempo possível ($ms$). Compare o <strong>Mapeamento Arbitrário (Linear)</strong> contra o <strong>Mapeamento Natural (Espacial 2x2)</strong>:
+          </p>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="checkbox" id="stove-game-mapping-mode" style="cursor:pointer;">
+            <label for="stove-game-mapping-mode" style="font-size:0.85rem; font-weight:600; cursor:pointer;">Ativar Mapeamento Natural (2x2)</label>
+          </div>
+        </div>
+
+        <div class="mission-banner">
+          <div class="mission-text" id="stove-mission-text">
+            Clique em <strong>"Iniciar Desafio de Reação"</strong> para começar a rodada sob pressão.
+          </div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <div class="reaction-timer-display" id="stove-reaction-timer">0ms</div>
+            <button class="btn btn-primary" id="stove-start-challenge-btn" style="padding:0.4rem 0.9rem; font-size:0.85rem;">
+              Iniciar Desafio de Reação
+            </button>
+          </div>
+        </div>
+
+        <div class="stovetop-grid" style="margin-top:1rem;">
+          <div>
+            <div class="widget-label">Bocas do Fogão (Disposição Espacial Real):</div>
+            <div class="stove-burners">
+              <div class="burner" id="game-burner-tl">Sup-Esq</div>
+              <div class="burner" id="game-burner-tr">Sup-Dir</div>
+              <div class="burner" id="game-burner-bl">Inf-Esq</div>
+              <div class="burner" id="game-burner-br">Inf-Dir</div>
+            </div>
+          </div>
+          <div>
+            <div class="widget-label">Painel de Controles (Clique no Botão que Desliga a Boca):</div>
+            <div id="game-knobs-container" style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
+              <button class="btn btn-outline game-stove-knob" data-knob="0">Controle 1</button>
+              <button class="btn btn-outline game-stove-knob" data-knob="1">Controle 2</button>
+              <button class="btn btn-outline game-stove-knob" data-knob="2">Controle 3</button>
+              <button class="btn btn-outline game-stove-knob" data-knob="3">Controle 4</button>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">
+              <em>Dica:</em> No modo arbitrário (linear comum), o botão 1 aciona a boca Inferior-Direita, exigindo cálculo mental.
+            </div>
+          </div>
+        </div>
+
+        <div id="stove-game-report" style="margin-top:1.25rem;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close-modal>Concluir e Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 04: FEEDBACK -->
+  <div class="modal-backdrop" id="modal-lab-feedback" role="dialog" aria-modal="true" aria-labelledby="modal-feedback-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="sandbox-badge">Princípio 04 &bull; Feedback</span>
+          <h3 class="modal-title" id="modal-feedback-title">Simulador de Latência & Feedback (O Dilema da Compra Duplicada)</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+          Quando o usuário submete uma ação crítica (como pagar uma fatura), o silêncio do sistema cria angústia imediata no Abismo de Avaliação (<em>"Será que clicou? Travou?"</em>). Teste os dois cenários:
+        </p>
+
+        <div style="margin-bottom:1.25rem;">
+          <label class="widget-label" for="feedback-mode-select">Modo de Design da Interface:</label>
+          <select id="feedback-mode-select" class="widget-select">
+            <option value="bad">Modo Silencioso Falho (Sem feedback, sem spinner, 3.5s de delay sem trava)</option>
+            <option value="good">Modo com Feedback em Camadas (Resposta instantânea &lt; 50ms, trava e progresso)</option>
+          </select>
+        </div>
+
+        <div class="feedback-checkout-box">
+          <div class="feedback-order-summary">
+            <span><strong>Fatura:</strong> Licença de Software Pro</span>
+            <span style="font-family:'JetBrains Mono', monospace; font-weight:800; color:var(--primary);">R$ 1.500,00</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:0.75rem;">
+            <span>Cliques registrados no botão: <strong id="feedback-clicks-counter" style="color:var(--accent-amber);">0</strong></span>
+            <span>Cobranças processadas: <strong id="feedback-charges-counter" style="color:var(--accent-rose);">0</strong></span>
+          </div>
+
+          <button class="btn btn-primary" id="feedback-pay-btn" style="width:100%; padding:0.75rem; font-size:0.95rem;">
+            Finalizar Pagamento de R$ 1.500,00
+          </button>
+
+          <div class="feedback-live-console" id="feedback-live-console">
+            <div style="color:#94a3b8;">Sistema pronto. Escolha o modo e faça o teste de clique.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem; margin-top:1.25rem; font-size:0.8rem;">
+          <div style="background:var(--bg-subtle); padding:0.6rem; border-radius:4px; border-left:3px solid var(--accent-emerald);">
+            <strong>0.1 segundo (Nielsen):</strong> Limite para sensação de causalidade direta imediata.
+          </div>
+          <div style="background:var(--bg-subtle); padding:0.6rem; border-radius:4px; border-left:3px solid var(--accent-amber);">
+            <strong>1.0 segundo (Nielsen):</strong> Fluxo de pensamento do usuário permanece ininterrupto.
+          </div>
+          <div style="background:var(--bg-subtle); padding:0.6rem; border-radius:4px; border-left:3px solid var(--accent-rose);">
+            <strong>&gt; 2.0 segundos:</strong> O usuário assume erro, clica novamente e duplica requisições.
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="feedback-reset-btn">Limpar Histórico</button>
+        <button class="btn btn-primary" data-close-modal>Concluir e Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 05: RESTRIÇÕES (POKA-YOKE) -->
+  <div class="modal-backdrop" id="modal-lab-restricoes" role="dialog" aria-modal="true" aria-labelledby="modal-restricoes-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="sandbox-badge">Princípio 05 &bull; Restrições</span>
+          <h3 class="modal-title" id="modal-restricoes-title">Restrições Poka-Yoke: Prevenção Ativa de Erros</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <p style="margin:0; font-size:0.9rem; color:var(--text-secondary); max-width:550px;">
+            Segundo Norman (2013), um bom design torna impossível cometer ações inválidas através de restrições físicas, lógicas e semânticas. Compare o comportamento:
+          </p>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="checkbox" id="constraints-mode-toggle" style="cursor:pointer;" checked>
+            <label for="constraints-mode-toggle" style="font-size:0.85rem; font-weight:600; cursor:pointer;">Ativar Restrições Poka-Yoke</label>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+          <div class="constraints-form-grid">
+            <div class="widget-form-group">
+              <label class="widget-label" for="const-date-depart">Data de Ida:</label>
+              <input type="date" id="const-date-depart" class="widget-input" value="2026-10-15">
+            </div>
+            <div class="widget-form-group">
+              <label class="widget-label" for="const-date-return">Data de Retorno:</label>
+              <input type="date" id="const-date-return" class="widget-input" value="2026-10-20">
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                No modo Poka-Yoke, datas anteriores à ida são fisicamente bloqueadas no calendário.
+              </div>
+            </div>
+            <div class="widget-form-group">
+              <label class="widget-label" for="const-passengers">Número de Passageiros:</label>
+              <input type="number" id="const-passengers" class="widget-input" value="2">
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                No modo Poka-Yoke, restringe estritamente entre 1 e 9.
+              </div>
+            </div>
+            <div class="widget-form-group">
+              <label class="widget-label" for="const-cpf">CPF do Passageiro Titular:</label>
+              <input type="text" id="const-cpf" class="widget-input" placeholder="000.000.000-00" value="123.456.789-00">
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                No modo Poka-Yoke, filtra caracteres inválidos e autoformata a máscara.
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <button class="btn btn-primary" id="const-submit-btn" style="width:100%;">
+              Emitir Bilhete de Embarque
+            </button>
+          </div>
+        </div>
+
+        <div id="const-result-console" style="margin-top:1rem; padding:0.85rem; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.88rem;">
+          Preencha ou altere os valores para testar o comportamento das restrições.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close-modal>Concluir e Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 06: MODELO CONCEITUAL (TERMOSTATO) -->
+  <div class="modal-backdrop" id="modal-lab-termostato" role="dialog" aria-modal="true" aria-labelledby="modal-termostato-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="sandbox-badge">Princípio 06 &bull; Modelo Conceitual</span>
+          <h3 class="modal-title" id="modal-termostato-title">O Paradoxo do Termostato de Norman</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal aria-label="Fechar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <p style="margin:0; font-size:0.9rem; color:var(--text-secondary); max-width:550px;">
+            A maioria das pessoas ajusta o termostato para "10" na ilusão de que a refrigeração será <em>mais veloz</em>. Compare o controle falho com o redesign baseado em Modelo Conceitual claro:
+          </p>
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <label for="thermostat-mode-select" style="font-size:0.8rem; font-weight:600;">Design do Controle:</label>
+            <select id="thermostat-mode-select" class="widget-select" style="padding:0.25rem 0.5rem; font-size:0.8rem;">
+              <option value="bad">Design A: Escala Arbitrária 1 a 10 (Falho)</option>
+              <option value="good">Design B: Temperatura Alvo em °C (Redesign)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="thermostat-dual-grid">
+          <div class="thermostat-control-box">
+            <h4 style="margin:0 0 0.75rem; font-size:1rem; color:var(--text-primary);">Controle do Usuário</h4>
+            <div id="thermostat-bad-controls">
+              <label class="widget-label" for="thermostat-dial-slider">
+                Seletor de Potência: Nível <span id="thermostat-dial-display" style="font-weight:800; color:var(--primary);">5</span> / 10
+              </label>
+              <input type="range" id="thermostat-dial-slider" min="1" max="10" value="5" style="width:100%; cursor:pointer;">
+              <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                <span>1 (Mínimo)</span>
+                <span>5 (Médio)</span>
+                <span>10 (Máximo)</span>
+              </div>
+            </div>
+
+            <div id="thermostat-good-controls" style="display:none;">
+              <label class="widget-label" for="thermostat-celsius-input">Temperatura Desejada Exata (°C):</label>
+              <input type="number" id="thermostat-celsius-input" class="widget-input" value="4" min="-5" max="18" step="1">
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                O sistema ajusta o tempo de acionamento necessário para atingir o valor definido.
+              </div>
+            </div>
+
+            <div id="thermostat-mental-model-explanation" style="margin-top:1.25rem; padding:0.85rem; background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.88rem;"></div>
+          </div>
+
+          <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h4 style="margin:0 0 0.5rem; font-size:1rem; color:var(--text-primary);">Estado Físico da Máquina (Termodinâmica Real)</h4>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <span style="font-size:0.85rem; color:var(--text-muted);">Temperatura Atual:</span>
+                <span id="thermostat-current-temp" style="font-family:'JetBrains Mono', monospace; font-size:1.5rem; font-weight:800; color:var(--accent-rose);">24.0°C</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <span style="font-size:0.85rem; color:var(--text-muted);">Meta de Desligamento:</span>
+                <span id="thermostat-target-temp" style="font-family:'JetBrains Mono', monospace; font-size:1.1rem; font-weight:700; color:var(--primary);">4.0°C</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="widget-label">Status Mecânico do Compressor:</div>
+              <div id="thermostat-compressor-pill" class="compressor-status-pill compressor-on">
+                ⚡ Compressor LIGADO (Potência fixa constante: 100%)
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">
+                <em>Fato da Engenharia:</em> Não existe "velocidade 10". A máquina resfria exatamente 0.5°C por minuto em qualquer nível.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-close-modal>Concluir e Fechar</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="footer-container">
@@ -805,3 +1222,4 @@
   <script src="../assets/js/widgets/08-norman-principles.js"></script>
 </body>
 </html>
+

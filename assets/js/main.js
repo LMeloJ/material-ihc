@@ -98,4 +98,55 @@
       }
     });
   });
+
+  // Gerenciamento global de Modais (.modal-backdrop)
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable) focusable.focus();
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('active');
+    if (!document.querySelector('.modal-backdrop.active')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+
+  document.addEventListener('click', (e) => {
+    const openTrigger = e.target.closest('[data-open-modal]');
+    if (openTrigger) {
+      e.preventDefault();
+      const targetId = openTrigger.getAttribute('data-open-modal');
+      openModal(targetId);
+      return;
+    }
+
+    const closeTrigger = e.target.closest('[data-close-modal]');
+    if (closeTrigger) {
+      e.preventDefault();
+      const modal = closeTrigger.closest('.modal-backdrop');
+      closeModal(modal);
+      return;
+    }
+
+    if (e.target.classList.contains('modal-backdrop')) {
+      closeModal(e.target);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const activeModal = document.querySelector('.modal-backdrop.active');
+      if (activeModal) closeModal(activeModal);
+    }
+  });
 })();
+
