@@ -30,6 +30,7 @@ let stoveGameStats = {
 function initStoveReactionGame() {
   const startBtn = document.getElementById('stove-start-challenge-btn');
   const missionTextEl = document.getElementById('stove-mission-text');
+  const missionBannerEl = missionTextEl ? missionTextEl.closest('.mission-banner') : null;
   const timerDisplay = document.getElementById('stove-reaction-timer');
   const mappingModeToggle = document.getElementById('stove-game-mapping-mode');
   const burners = {
@@ -63,6 +64,11 @@ function initStoveReactionGame() {
     const targetEl = burners[target.id];
     if (targetEl) {
       targetEl.classList.add('hot');
+    }
+
+    if (missionBannerEl) {
+      missionBannerEl.classList.remove('banner-success', 'banner-error');
+      missionBannerEl.classList.add('banner-emergency');
     }
 
     missionTextEl.innerHTML = `🚨 EMERGÊNCIA: A panela na boca <span style="color:var(--accent-rose); font-weight:800; text-decoration:underline;">[${target.name}]</span> está fervendo! Acione o controle correspondente AGORA!`;
@@ -100,8 +106,16 @@ function initStoveReactionGame() {
       if (!isCorrect) stoveGameStats[modeKey].errors++;
 
       if (isCorrect) {
+        if (missionBannerEl) {
+          missionBannerEl.classList.remove('banner-emergency', 'banner-error');
+          missionBannerEl.classList.add('banner-success');
+        }
         missionTextEl.innerHTML = `✓ <strong style="color:var(--accent-emerald);">Acerto em ${elapsed}ms!</strong> Você acionou corretamente o controle da boca ${activatedPos.name}.`;
       } else {
+        if (missionBannerEl) {
+          missionBannerEl.classList.remove('banner-emergency', 'banner-success');
+          missionBannerEl.classList.add('banner-error');
+        }
         missionTextEl.innerHTML = `💥 <strong style="color:var(--accent-rose);">ERRO COGNITIVO!</strong> Você clicou no controle que acionou a boca <em>${activatedPos.name}</em>, mas a emergência era na <em>${stoveCurrentMission.name}</em>!`;
       }
 
@@ -126,11 +140,15 @@ function initStoveReactionGame() {
           knobsContainer.style.gap = '0.5rem';
         }
       }
+      if (missionBannerEl) {
+        missionBannerEl.classList.remove('banner-emergency', 'banner-success', 'banner-error');
+      }
       if (missionTextEl) {
         missionTextEl.innerHTML = `Modo alterado para <strong>${natural ? 'Mapeamento Natural (2x2)' : 'Mapeamento Arbitrário (Linear)'}</strong>. Clique em 'Próxima Rodada' para testar seus reflexos!`;
       }
     });
   }
+
 }
 
 function updateStoveReport(reportEl) {
