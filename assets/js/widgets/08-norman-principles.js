@@ -789,6 +789,55 @@ function initConstraintsPokaYokeLab() {
     return modeToggle && modeToggle.checked;
   }
 
+  function validateFields() {
+    const active = isPokaYoke();
+    const depart = departureDateInput.value.trim();
+    const ret = returnDateInput.value.trim();
+    const pass = parseInt(passengersInput.value, 10);
+    const docDigits = docInput.value.replace(/\D/g, '');
+
+    if (!active) {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+      submitBtn.innerHTML = 'Emitir Bilhete de Embarque (Modo Sem Restrições)';
+      return;
+    }
+
+    // Validações no modo Poka-Yoke (bloqueio antecipado)
+    const isDepartValid = depart !== '';
+    const isRetValid = ret !== '' && (!depart || ret >= depart);
+    const isPassValid = !isNaN(pass) && pass >= 1 && pass <= 9;
+    const isDocValid = docDigits.length === 11;
+
+    const allValid = isDepartValid && isRetValid && isPassValid && isDocValid;
+
+    if (allValid) {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+      submitBtn.innerHTML = '✓ Emitir Bilhete de Embarque (Restrições Atendidas)';
+      if (resultConsole) {
+        resultConsole.innerHTML = `<span style="color:var(--accent-emerald);">✓ <strong>Todos os campos estão válidos:</strong> As restrições Poka-Yoke foram satisfeitas. O botão foi liberado para emissão segura.</span>`;
+      }
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.5';
+      submitBtn.style.cursor = 'not-allowed';
+      submitBtn.innerHTML = '🔒 Emitir Bilhete (Preencha todos os campos obrigatórios)';
+
+      const pendencias = [];
+      if (!isDepartValid) pendencias.push('Data de Ida');
+      if (!isRetValid) pendencias.push('Data de Retorno posterior');
+      if (!isPassValid) pendencias.push('Passageiros (1 a 9)');
+      if (!isDocValid) pendencias.push('CPF (11 dígitos)');
+
+      if (resultConsole) {
+        resultConsole.innerHTML = `<span style="color:var(--text-muted);">🔒 <strong>Restrição Ativa (Poka-Yoke):</strong> O botão permanece travado para evitar submissão prematura. Pendente: <em>${pendencias.join(', ')}</em>.</span>`;
+      }
+    }
+  }
+
   function applyModeRestrictions() {
     const active = isPokaYoke();
 
@@ -802,81 +851,102 @@ function initConstraintsPokaYokeLab() {
       }
       passengersInput.min = "1";
       passengersInput.max = "9";
-      if (parseInt(passengersInput.value, 10) < 1) passengersInput.value = "1";
-      if (parseInt(passengersInput.value, 10) > 9) passengersInput.value = "9";
+      if (passengersInput.value) {
+        const val = parseInt(passengersInput.value, 10);
+        if (val < 1) passengersInput.value = "1";
+        if (val > 9) passengersInput.value = "9";
+      }
     } else {
       returnDateInput.removeAttribute('min');
       passengersInput.removeAttribute('min');
       passengersInput.removeAttribute('max');
     }
 
-    if (resultConsole) {
-      resultConsole.innerHTML = active
-        ? `<span style="color:var(--accent-emerald);">[Modo Poka-Yoke Ativo]</span> Restrições físicas, temporais e sintáticas ativadas. O formulário impede fisicamente a entrada de estados impossíveis.`
-        : `<span style="color:var(--accent-rose);">[Modo Sem Restrições Ativo]</span> Qualquer dado é aceito nos campos. Erros só são validados depois que o usuário submete.`;
-    }
+    validateFields();
   }
 
   if (modeToggle) {
-    modeToggle.addEventListener('change', applyModeRestrictions);
+    modeToggle.addEventListener('change', () => {
+      applyModeRestrictions();
+      validateFields();
+    });
   }
 
-  if (departureDateInput) {
-    departureDateInput.addEventListener('change', () => {
+  ['input', 'change'].forEach(evt => {
+    departureDateInput.addEventListener(evt, () => {
       if (isPokaYoke() && departureDateInput.value) {
         returnDateInput.min = departureDateInput.value;
         if (returnDateInput.value && returnDateInput.value < departureDateInput.value) {
           returnDateInput.value = departureDateInput.value;
         }
       }
+      validateFields();
     });
-  }
+
+    returnDateInput.addEventListener(evt, validateFields);
+
+    passengersInput.addEventListener(evt, () => {
+      if (isPokaYoke() && passengersInput.value) {
+        const val = parseInt(passengersInput.value, 10);
+        if (val < 1) passengersInput.value = "1";
+        if (val > 9) passengersInput.value = "9";
+      }
+      validateFields();
+    });
+  });
 
   // Máscara e restrição sintática de CPF no modo Poka-Yoke
   if (docInput) {
-    docInput.addEventListener('input', (e) => {
-      if (!isPokaYoke()) return;
-      let val = docInput.value.replace(/\D/g, '').slice(0, 11);
-      if (val.length > 9) {
-        val = val.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-      } else if (val.length > 6) {
-        val = val.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
-      } else if (val.length > 3) {
-        val = val.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+    docInput.addEventListener('input', () => {
+      if (isPokaYoke()) {
+        let val = docInput.value.replace(/\D/g, '').slice(0, 11);
+        if (val.length > 9) {
+          val = val.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        } else if (val.length > 6) {
+          val = val.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+        } else if (val.length > 3) {
+          val = val.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+        }
+        docInput.value = val;
       }
-      docInput.value = val;
+      validateFields();
     });
   }
 
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const active = isPokaYoke();
-    const depart = departureDateInput.value;
-    const ret = returnDateInput.value;
+    const depart = departureDateInput.value.trim();
+    const ret = returnDateInput.value.trim();
     const pass = parseInt(passengersInput.value, 10);
     const doc = docInput.value.trim();
 
     if (!active) {
-      // Avaliação no modo sem restrições
+      // Avaliação no modo sem restrições (permite falhas absurdas)
       let errors = [];
-      if (depart && ret && ret < depart) {
+      if (!depart) {
+        errors.push("Data de partida não foi informada!");
+      }
+      if (!ret) {
+        errors.push("Data de retorno não foi informada!");
+      } else if (depart && ret < depart) {
         errors.push(`Data de retorno (${ret}) é anterior à data de partida (${depart})!`);
       }
       if (isNaN(pass) || pass <= 0 || pass > 100) {
-        errors.push(`Quantidade de passageiros (${passengersInput.value}) é biologicamente ou operacionalmente inválida!`);
+        errors.push(`Quantidade de passageiros (${passengersInput.value || 'vazio'}) é inválida!`);
       }
-      if (doc.length > 0 && !/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(doc) && !/^\d{11}$/.test(doc)) {
-        errors.push(`Documento (${doc}) não respeita a estrutura esperada de dígitos.`);
+      if (!doc || doc.replace(/\D/g, '').length !== 11) {
+        errors.push(`Documento (${doc || 'em branco'}) não possui 11 dígitos de CPF.`);
       }
 
       if (errors.length > 0) {
         resultConsole.innerHTML = `
-          <div style="color:var(--accent-rose); font-weight:700;">💥 ${errors.length} ERROS GRAVES DETECTADOS APÓS SUBMISSÃO:</div>
+          <div style="color:var(--accent-rose); font-weight:700;">💥 ${errors.length} ERROS DETECTADOS APÓS SUBMISSÃO:</div>
           <ul style="margin:0.5rem 0 0 1rem; color:var(--text-secondary); font-size:0.85rem;">
             ${errors.map(err => `<li>${err}</li>`).join('')}
           </ul>
           <p style="margin:0.5rem 0 0; font-size:0.8rem; color:var(--accent-rose);">
-            <strong>Diagnóstico de IHC:</strong> A interface transferiu para o usuário todo o fardo da validação, permitindo que ele cometesse o erro para então repreendê-lo.
+            <strong>Falha de IHC:</strong> A interface permitiu o clique mesmo incompleto, punindo o usuário após o esforço em vez de usar Poka-Yoke preventivo.
           </p>
         `;
         return;
@@ -886,13 +956,15 @@ function initConstraintsPokaYokeLab() {
     resultConsole.innerHTML = `
       <div style="color:var(--accent-emerald); font-weight:700;">✓ Passagem Emitida com Sucesso!</div>
       <p style="margin:0.35rem 0 0; font-size:0.85rem; color:var(--text-secondary);">
-        Todos os parâmetros atenderam às restrições semânticas e lógicas do sistema. Nenhuma falha de submissão foi provocada.
+        Parabéns! Todos os parâmetros atenderam às restrições semânticas e lógicas do sistema.
       </p>
     `;
   });
 
   applyModeRestrictions();
+  validateFields();
 }
+
 
 // Inicialização Global dos Widgets de Norman
 document.addEventListener('DOMContentLoaded', () => {

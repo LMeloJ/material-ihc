@@ -527,15 +527,30 @@
             <!-- ABA 5: RESTRIÇÕES -->
             <div class="tab-pane" id="tab-norman-constraints">
               <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
-                <h3 style="margin:0; color:var(--primary);">5. Restrições (Constraints de Prevenção de Erros)</h3>
+                <h3 style="margin:0; color:var(--primary);">5. Restrições (Constraints & o Princípio Poka-Yoke)</h3>
                 <span class="badge" style="background:var(--accent-rose-light); color:var(--accent-rose);">Prevenção de Falhas</span>
               </div>
               <p>
                 Mecanismos que limitam o conjunto de ações possíveis, guiando o usuário suavemente apenas para os caminhos válidos. Podem ser <strong>físicas</strong> (o plug que só encaixa de um lado), <strong>lógicas</strong> (opções desabilitadas até que uma condição prévia seja satisfeita), <strong>semânticas</strong> ou <strong>culturais</strong>.
               </p>
+
+              <!-- CAIXA DE CONCEITO: POKA-YOKE -->
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-rose); padding:0.75rem 1rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <div style="font-weight:700; color:var(--text-primary); margin-bottom:0.3rem;">
+                  Fundamentação Conceitual: O que é Poka-Yoke (ポカヨケ)?
+                </div>
+                <p style="margin:0 0 0.4rem; color:var(--text-secondary);">
+                  Criado pelo engenheiro industrial japonês <strong>Shigeo Shingo</strong> nos anos 1960 durante o desenvolvimento do Sistema Toyota de Produção, o termo <em>Poka-Yoke</em> significa literalmente <em>"à prova de erros inadvertidos"</em> (<em>poka</em> = distração/lapso bobo; <em>yoke</em> = prevenir/evitar).
+                </p>
+                <p style="margin:0; color:var(--text-secondary);">
+                  Donald Norman (2013) adotou esse conceito no Design de Interação para estabelecer uma premissa vital: <strong>o bom design não confia na atenção infalível do usuário</strong>. Em vez de permitir que o usuário cometa um erro para depois puni-lo com mensagens de erro agressivas, o sistema cria restrições lógicas e físicas que tornam a ação incorreta <em>impossível de ser realizada</em> (como manter o botão de envio desabilitado até que todos os campos obrigatórios estejam válidos).
+                </p>
+              </div>
+
               <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-rose); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
                 <strong>Pergunta de Auditoria do Projetista:</strong> <em>"A interface impede fisicamente ou logicamente que o usuário cometa entradas inválidas ou dispare ações prematuras?"</em>
               </div>
+
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
@@ -1074,9 +1089,9 @@
         <button class="modal-close-btn" data-close-modal aria-label="Fechar modal">&times;</button>
       </div>
       <div class="modal-body">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
           <p style="margin:0; font-size:0.9rem; color:var(--text-secondary); max-width:550px;">
-            Segundo Norman (2013), um bom design torna impossível cometer ações inválidas através de restrições físicas, lógicas e semânticas. Compare o comportamento:
+            Segundo Norman (2013), o design <strong>Poka-Yoke</strong> (à prova de erros inadvertidos) torna impossível cometer ações inválidas através de restrições físicas, lógicas e semânticas. Compare o comportamento:
           </p>
           <div style="display:flex; align-items:center; gap:0.5rem;">
             <input type="checkbox" id="constraints-mode-toggle" style="cursor:pointer;" checked>
@@ -1084,29 +1099,34 @@
           </div>
         </div>
 
+        <!-- EXPLICAÇÃO POKA-YOKE NO MODAL -->
+        <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-rose); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.84rem; margin-bottom:1rem;">
+          <strong>O que é Poka-Yoke (ポカヨケ)?</strong> Conceito concebido por Shigeo Shingo (Toyota) e introduzido em IHC por Don Norman. Significa criar restrições proativas no sistema que impedem que o erro nasça. <em>Exemplo prático:</em> quando ativado, o botão de emissão abaixo permanece travado e desabilitado até que todos os campos obrigatórios estejam preenchidos corretamente.
+        </div>
+
         <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
           <div class="constraints-form-grid">
             <div class="widget-form-group">
-              <label class="widget-label" for="const-date-depart">Data de Ida:</label>
-              <input type="date" id="const-date-depart" class="widget-input" value="2026-10-15">
+              <label class="widget-label" for="const-date-depart">Data de Ida: *</label>
+              <input type="date" id="const-date-depart" class="widget-input" value="">
             </div>
             <div class="widget-form-group">
-              <label class="widget-label" for="const-date-return">Data de Retorno:</label>
-              <input type="date" id="const-date-return" class="widget-input" value="2026-10-20">
+              <label class="widget-label" for="const-date-return">Data de Retorno: *</label>
+              <input type="date" id="const-date-return" class="widget-input" value="">
               <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
                 No modo Poka-Yoke, datas anteriores à ida são fisicamente bloqueadas no calendário.
               </div>
             </div>
             <div class="widget-form-group">
-              <label class="widget-label" for="const-passengers">Número de Passageiros:</label>
-              <input type="number" id="const-passengers" class="widget-input" value="2">
+              <label class="widget-label" for="const-passengers">Número de Passageiros: *</label>
+              <input type="number" id="const-passengers" class="widget-input" placeholder="Ex: 1" min="1" max="9" value="">
               <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
                 No modo Poka-Yoke, restringe estritamente entre 1 e 9.
               </div>
             </div>
             <div class="widget-form-group">
-              <label class="widget-label" for="const-cpf">CPF do Passageiro Titular:</label>
-              <input type="text" id="const-cpf" class="widget-input" placeholder="000.000.000-00" value="123.456.789-00">
+              <label class="widget-label" for="const-cpf">CPF do Passageiro Titular: *</label>
+              <input type="text" id="const-cpf" class="widget-input" placeholder="000.000.000-00" value="">
               <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
                 No modo Poka-Yoke, filtra caracteres inválidos e autoformata a máscara.
               </div>
@@ -1114,15 +1134,16 @@
           </div>
 
           <div style="margin-top:1rem;">
-            <button class="btn btn-primary" id="const-submit-btn" style="width:100%;">
-              Emitir Bilhete de Embarque
+            <button class="btn btn-primary" id="const-submit-btn" style="width:100%; opacity:0.5; cursor:not-allowed;" disabled>
+              🔒 Emitir Bilhete (Preencha todos os campos obrigatórios)
             </button>
           </div>
         </div>
 
         <div id="const-result-console" style="margin-top:1rem; padding:0.85rem; background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.88rem;">
-          Preencha ou altere os valores para testar o comportamento das restrições.
+          Preencha os campos para testar o comportamento das restrições.
         </div>
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" data-close-modal>Concluir e Fechar</button>
