@@ -48,7 +48,7 @@
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-full: 9999px;
-  --max-w: 1600px;
+  --max-w: 1240px;
   --nav-h: 70px;
 }
 
@@ -553,7 +553,8 @@ code, kbd, samp, pre {
 .article-content > p,
 .article-content > ul,
 .article-content > ol {
-  max-width: 860px;
+  width: 100%;
+  max-width: 100%;
   line-height: 1.8;
   color: var(--text-secondary);
   margin-bottom: 1.35rem;
@@ -564,7 +565,8 @@ code, kbd, samp, pre {
   font-size: 1.12rem;
   line-height: 1.85;
   color: var(--text-primary);
-  max-width: 880px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .article-content strong {
@@ -574,22 +576,34 @@ code, kbd, samp, pre {
 .article-content h2 {
   font-size: 1.85rem;
   margin: 3rem 0 1.15rem;
-  padding-bottom: 0.6rem;
+  padding-bottom: 0.65rem;
   border-bottom: 1px solid var(--border-color);
   letter-spacing: -0.02em;
-  max-width: 960px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .article-content h3 {
   font-size: 1.35rem;
   margin: 2.25rem 0 0.85rem;
   letter-spacing: -0.01em;
-  max-width: 960px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.page-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  width: 100%;
+  max-width: 100%;
+  line-height: 1.7;
 }
 
 .article-content ul, .article-content ol {
   margin: 1rem 0 1.5rem 1.75rem;
   color: var(--text-secondary);
+  width: 100%;
+  max-width: 100%;
 }
 
 .article-content li {
@@ -604,17 +618,20 @@ code, kbd, samp, pre {
   margin: 2rem 0;
   border-left: 4px solid;
   background: var(--bg-surface);
-  max-width: 1040px;
+  width: 100%;
+  max-width: 100%;
   box-shadow: var(--shadow-sm);
 }
 
 .callout p {
+  width: 100%;
   max-width: 100%;
   line-height: 1.75;
 }
 
 .callout ul, .callout ol {
   margin-left: 1.5rem;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -864,10 +881,10 @@ code, kbd, samp, pre {
     gap: 2rem;
   }
   .main-wrapper {
-    padding: 2.5rem 3rem 5rem;
+    padding: 2.5rem 2rem 5rem;
   }
   .nav-container {
-    padding: 0 3rem;
+    padding: 0 2rem;
   }
 }
 
