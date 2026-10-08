@@ -546,32 +546,45 @@ code, kbd, samp, pre {
 
 .article-content {
   font-size: 1.05rem;
-  line-height: 1.75;
+  line-height: 1.8;
   width: 100%;
 }
 
 .article-content > p,
 .article-content > ul,
 .article-content > ol {
-  max-width: 1300px;
+  max-width: 860px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.35rem;
 }
 
-.article-content h2,
-.article-content h3,
-.article-content h4 {
-  max-width: 1300px;
+.article-content > p:first-of-type,
+.lead-paragraph {
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+  max-width: 880px;
+}
+
+.article-content strong {
+  color: var(--text-primary);
 }
 
 .article-content h2 {
-  font-size: 1.7rem;
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.5rem;
+  font-size: 1.85rem;
+  margin: 3rem 0 1.15rem;
+  padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--border-color);
+  letter-spacing: -0.02em;
+  max-width: 960px;
 }
 
 .article-content h3 {
-  font-size: 1.3rem;
-  margin: 1.75rem 0 0.75rem;
+  font-size: 1.35rem;
+  margin: 2.25rem 0 0.85rem;
+  letter-spacing: -0.01em;
+  max-width: 960px;
 }
 
 .article-content ul, .article-content ol {
@@ -580,16 +593,33 @@ code, kbd, samp, pre {
 }
 
 .article-content li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.55rem;
+  line-height: 1.75;
 }
 
 /* Caixas de Destaque Didático / Literatura */
 .callout {
   border-radius: var(--radius-md);
-  padding: 1.25rem 1.5rem;
-  margin: 1.75rem 0;
+  padding: 1.35rem 1.6rem;
+  margin: 2rem 0;
   border-left: 4px solid;
   background: var(--bg-surface);
+  max-width: 1040px;
+  box-shadow: var(--shadow-sm);
+}
+
+.callout p {
+  max-width: 100%;
+  line-height: 1.75;
+}
+
+.callout ul, .callout ol {
+  margin-left: 1.5rem;
+  max-width: 100%;
+}
+
+.callout li {
+  margin-bottom: 0.4rem;
 }
 
 .callout-theory {
