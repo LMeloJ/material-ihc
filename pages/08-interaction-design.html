@@ -543,70 +543,194 @@
         </div>
 
         <!-- SEÇÃO 3: EXPERIMENTOS PRÁTICOS DINÂMICOS -->
-        <h2>3. Laboratórios Práticos Interativos</h2>
+        <h2>3. Laboratórios Práticos Avançados de IxD</h2>
         <p>
-          Experimente em primeira mão os princípios de mapeamento e signifiers através dos simuladores cognitivos a seguir:
+          Para fixar os conceitos na prática, participe das <strong>três estações experimentais interativas</strong> abaixo. Cada estação desafia você a vivenciar e resolver um dos problemas clássicos documentados por Donald Norman:
         </p>
 
-        <!-- WIDGET 08: Simuladores de Mapeamento e Portas de Norman -->
-        <div class="interactive-sandbox">
+        <!-- ESTAÇÃO 1: DESAFIO DE REAÇÃO COGNITIVA DO FOGÃO -->
+        <div class="interactive-sandbox" id="estacao-fogao">
           <div class="sandbox-header">
             <div class="sandbox-title-wrap">
-              <span class="sandbox-badge">Laboratório Cognitivo</span>
-              <h3 class="sandbox-title">Experimento de Mapeamento: O Clássico Fogão de 4 Bocas</h3>
+              <span class="sandbox-badge">Estação 01 &bull; Mapeamento</span>
+              <h3 class="sandbox-title">Desafio de Reação sob Pressão: O Fogão de Norman</h3>
             </div>
             <div style="display:flex; align-items:center; gap:0.5rem;">
-              <input type="checkbox" id="norman-mapping-mode" style="cursor:pointer;">
-              <label for="norman-mapping-mode" style="font-size:0.85rem; font-weight:600; cursor:pointer;">Ativar Mapeamento Natural</label>
+              <input type="checkbox" id="stove-game-mapping-mode" style="cursor:pointer;">
+              <label for="stove-game-mapping-mode" style="font-size:0.85rem; font-weight:600; cursor:pointer;">Ativar Mapeamento Natural (2x2)</label>
             </div>
           </div>
           <div class="sandbox-body">
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
-              Clique nos 4 botões de controle abaixo para acender as bocas. Observe o abismo cognitivo quando os controles estão em linha reta arbitrária comparado ao arranjo espacial 2x2!
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+              <strong>O Desafio:</strong> Uma emergência ocorre na cozinha! Uma panela começa a queimar ou transbordar em uma das bocas. Seu objetivo é identificar e acionar o botão correto no menor tempo possível ($ms$). Compare seu desempenho no <strong>Mapeamento Arbitrário (Linear)</strong> versus no <strong>Mapeamento Natural (Espacial 2x2)</strong>!
             </p>
 
+            <!-- Faixa de Missão e Cronômetro -->
+            <div class="mission-banner">
+              <div class="mission-text" id="stove-mission-text">
+                Clique em <strong>"Iniciar Desafio de Reação"</strong> para começar a primeira rodada sob pressão.
+              </div>
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <div class="reaction-timer-display" id="stove-reaction-timer">0ms</div>
+                <button class="btn btn-primary" id="stove-start-challenge-btn" style="padding:0.4rem 0.9rem; font-size:0.85rem;">
+                  Iniciar Desafio de Reação
+                </button>
+              </div>
+            </div>
+
             <div class="stovetop-grid">
-              <!-- Bocas do Fogão -->
+              <!-- Visualização das Bocas -->
               <div>
-                <div class="widget-label">Bocas do Fogão (Visualização Superior):</div>
+                <div class="widget-label">Bocas do Fogão (Disposição Espacial Real):</div>
                 <div class="stove-burners">
-                  <div class="burner" id="burner-tl">1</div>
-                  <div class="burner" id="burner-tr">2</div>
-                  <div class="burner" id="burner-bl">3</div>
-                  <div class="burner" id="burner-br">4</div>
+                  <div class="burner" id="game-burner-tl">Sup-Esq</div>
+                  <div class="burner" id="game-burner-tr">Sup-Dir</div>
+                  <div class="burner" id="game-burner-bl">Inf-Esq</div>
+                  <div class="burner" id="game-burner-br">Inf-Dir</div>
                 </div>
               </div>
 
-              <!-- Botões de Controle -->
+              <!-- Controles Físicos do Usuário -->
               <div>
-                <div class="widget-label">Botões de Controle (Clique para Acionar):</div>
-                <div style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
-                  <button class="btn btn-outline stove-knob" data-knob="0">Botão A</button>
-                  <button class="btn btn-outline stove-knob" data-knob="1">Botão B</button>
-                  <button class="btn btn-outline stove-knob" data-knob="2">Botão C</button>
-                  <button class="btn btn-outline stove-knob" data-knob="3">Botão D</button>
+                <div class="widget-label">Painel de Controles (Clique no Botão que Desliga a Boca em Chamas):</div>
+                <div id="game-knobs-container" style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
+                  <button class="btn btn-outline game-stove-knob" data-knob="0">Controle 1</button>
+                  <button class="btn btn-outline game-stove-knob" data-knob="1">Controle 2</button>
+                  <button class="btn btn-outline game-stove-knob" data-knob="2">Controle 3</button>
+                  <button class="btn btn-outline game-stove-knob" data-knob="3">Controle 4</button>
                 </div>
 
-                <div id="stove-feedback-log" style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:0.85rem; font-size:0.88rem;">
-                  Clique em um dos botões acima para testar o acendimento.
+                <div style="font-size:0.8rem; color:var(--text-muted);">
+                  <em>Dica:</em> No modo arbitrário (padrão de fábrica ruim), o Controle 1 aciona a boca Inferior-Direita! Observe o tempo gasto para calcular mentalmente a correspondência.
                 </div>
               </div>
             </div>
 
-            <!-- Simulador de Porta de Norman -->
-            <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px dashed var(--border-color);">
-              <h4 style="font-size:1rem; margin-bottom:0.5rem; color:var(--text-primary);">O Fenômeno das "Portas de Norman" (Norman Doors)</h4>
-              <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">
-                Uma <em>Porta de Norman</em> é aquela cuja maçaneta indica que você deve puxar, mas a porta só abre empurrando (violando signifiers e modelo mental). Teste abaixo:
-              </p>
-              <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
-                <select id="norman-door-type" class="widget-select" style="max-width:320px;">
-                  <option value="bad-handle">Maçaneta de Puxar em Porta de Empurrar (Signifier Falso)</option>
-                  <option value="good-flat">Placa Plana / Barra Antipânico (Signifier Correto)</option>
-                </select>
-                <button class="btn btn-primary" id="norman-door-test-btn">Tentar Abrir a Porta</button>
+            <!-- Relatório Comparativo de Carga Cognitiva -->
+            <div id="stove-game-report" style="margin-top:1.25rem;"></div>
+          </div>
+        </div>
+
+        <!-- ESTAÇÃO 2: O PARADOXO DO TERMOSTATO -->
+        <div class="interactive-sandbox" id="estacao-termostato">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Estação 02 &bull; Modelo Conceitual</span>
+              <h3 class="sandbox-title">O Paradoxo do Termostato de Norman: A Ilusão do Acelerador</h3>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <label for="thermostat-mode-select" style="font-size:0.8rem; font-weight:600;">Design do Controle:</label>
+              <select id="thermostat-mode-select" class="widget-select" style="padding:0.25rem 0.5rem; font-size:0.8rem;">
+                <option value="bad">Design A: Escala Arbitrária de 1 a 10 (Falho)</option>
+                <option value="good">Design B: Temperatura Alvo em °C (Redesign de IHC)</option>
+              </select>
+            </div>
+          </div>
+          <div class="sandbox-body">
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1rem;">
+              <strong>O Mito Cognitivo:</strong> Quando uma sala ou geladeira está quente, a maioria das pessoas gira o termostato para o nível máximo ("10"), acreditando que a máquina vai resfriar <em>mais depressa</em>. Interaja com os controles abaixo e observe o status real do compressor mecânico:
+            </p>
+
+            <div class="thermostat-dual-grid">
+              <!-- Painel do Usuário -->
+              <div class="thermostat-control-box">
+                <h4 style="margin:0 0 0.75rem; font-size:1rem; color:var(--text-primary);">Controle do Usuário</h4>
+
+                <!-- Controles do Design A (Falho) -->
+                <div id="thermostat-bad-controls">
+                  <label class="widget-label" for="thermostat-dial-slider">
+                    Seletor de Potência: Nível <span id="thermostat-dial-display" style="font-weight:800; color:var(--primary);">5</span> / 10
+                  </label>
+                  <input type="range" id="thermostat-dial-slider" min="1" max="10" value="5" style="width:100%; cursor:pointer;">
+                  <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                    <span>1 (Mínimo)</span>
+                    <span>5 (Médio)</span>
+                    <span>10 (Máximo)</span>
+                  </div>
+                </div>
+
+                <!-- Controles do Design B (Redesign) -->
+                <div id="thermostat-good-controls" style="display:none;">
+                  <label class="widget-label" for="thermostat-celsius-input">Temperatura Desejada Exata (°C):</label>
+                  <input type="number" id="thermostat-celsius-input" class="widget-input" value="4" min="-5" max="18" step="1">
+                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">
+                    O sistema ajusta o tempo de acionamento necessário para atingir o valor definido.
+                  </div>
+                </div>
+
+                <!-- Quadro de Diagnóstico do Modelo Mental -->
+                <div id="thermostat-mental-model-explanation" style="margin-top:1.25rem; padding:0.85rem; background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.88rem;"></div>
               </div>
-              <div id="norman-door-result" style="margin-top:0.75rem;"></div>
+
+              <!-- Estado Real da Máquina -->
+              <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <h4 style="margin:0 0 0.5rem; font-size:1rem; color:var(--text-primary);">Estado Físico da Máquina (Termodinâmica Real)</h4>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">Temperatura Atual:</span>
+                    <span id="thermostat-current-temp" style="font-family:'JetBrains Mono', monospace; font-size:1.5rem; font-weight:800; color:var(--accent-rose);">24.0°C</span>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                    <span style="font-size:0.85rem; color:var(--text-muted);">Meta de Desligamento:</span>
+                    <span id="thermostat-target-temp" style="font-family:'JetBrains Mono', monospace; font-size:1.1rem; font-weight:700; color:var(--primary);">4.0°C</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="widget-label">Status Mecânico do Compressor:</div>
+                  <div id="thermostat-compressor-pill" class="compressor-status-pill compressor-on">
+                    ⚡ Compressor LIGADO (Potência fixa constante: 100%)
+                  </div>
+                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">
+                    <em>Fato da Engenharia:</em> Não existe "velocidade 10". A máquina resfria exatamente 0.5°C por minuto em qualquer nível.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESTAÇÃO 3: ESTÚDIO DE AUDITORIA & REDESIGN DOS ABISMOS -->
+        <div class="interactive-sandbox" id="estacao-auditoria">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Estação 03 &bull; Desafio de Consultoria</span>
+              <h3 class="sandbox-title">Auditoria dos Abismos de Norman & Redesign Interativo</h3>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="font-size:0.85rem; font-weight:600;">Índice de Usabilidade de Norman:</span>
+              <span id="audit-score-percent" style="font-family:'JetBrains Mono', monospace; font-weight:800; color:var(--accent-emerald);">0%</span>
+            </div>
+          </div>
+          <div class="sandbox-body">
+            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>Sua Missão como Especialista em IHC:</strong> Abaixo está o protótipo de uma central de comando de automação com falhas graves em várias dimensões e princípios cognitivos. Selecione as falhas detectadas, analise qual abismo foi provocado e aplique a correção de redesign para atingir 100% de usabilidade!
+            </p>
+
+            <div class="audit-score-bar-wrap">
+              <div id="audit-score-bar-fill" class="audit-score-bar-fill" style="width: 0%;"></div>
+            </div>
+
+            <div class="audit-workspace-grid">
+              <!-- Coluna 1: Lista de Falhas & Painel de Detalhes -->
+              <div>
+                <div class="widget-label">Falhas Identificadas na Interface (Clique para Inspecionar):</div>
+                <div id="audit-flaws-list"></div>
+
+                <div id="audit-flaw-details" style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:1rem; margin-top:1rem;"></div>
+
+                <div style="margin-top:1rem;">
+                  <button class="btn btn-primary" id="audit-apply-fix-btn" style="width:100%;">
+                    Aplicar Redesign de IHC nesta Falha
+                  </button>
+                </div>
+              </div>
+
+              <!-- Coluna 2: A Tela Interativa Sob Teste -->
+              <div>
+                <div class="widget-label">Interface Sob Teste (Visualização Dinâmica em Tempo Real):</div>
+                <div id="audit-preview-screen" style="background:var(--bg-surface); border:2px solid var(--border-color); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); min-height:340px;"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -660,9 +784,11 @@
       <aside class="sidebar-toc">
         <div class="toc-title">Neste Módulo</div>
         <ul class="toc-nav">
-          <li><a href="#1-as-5-dimensoes-do-interaction-design-ixd" class="toc-link">1. As 5 Dimensões</a></li>
-          <li><a href="#2-os-principios-fundamentais-de-donald-norman" class="toc-link">2. Princípios de Norman</a></li>
-          <li><a href="#3-laboratorios-praticos-interativos" class="toc-link">3. Labs & Simuladores</a></li>
+          <li><a href="#1-as-5-dimensoes-do-interaction-design-ixd" class="toc-link">1. As 5 Dimensões de IxD</a></li>
+          <li><a href="#2-os-principios-fundamentais-de-donald-norman" class="toc-link">2. Princípios de Norman & Abismos</a></li>
+          <li><a href="#estacao-fogao" class="toc-link">3.1 Desafio: Fogão & Reação</a></li>
+          <li><a href="#estacao-termostato" class="toc-link">3.2 Desafio: Paradoxo do Termostato</a></li>
+          <li><a href="#estacao-auditoria" class="toc-link">3.3 Desafio: Auditoria & Redesign</a></li>
         </ul>
       </aside>
     </div>

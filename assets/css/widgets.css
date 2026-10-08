@@ -688,6 +688,140 @@
   margin-top: 0.75rem;
 }
 
+/* ===================================================================
+   ESTAÇÕES DO LABORATÓRIO AVANÇADO DE IXD E PRINCÍPIOS DE NORMAN
+   =================================================================== */
+
+/* Desafio de Reação do Fogão */
+.reaction-arena {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.mission-banner {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(245, 158, 11, 0.1));
+  border: 2px dashed var(--accent-rose);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.mission-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.reaction-timer-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--bg-surface);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* Simulador do Termostato de Norman */
+.thermostat-dual-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .thermostat-dual-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.thermostat-control-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.compressor-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.compressor-on {
+  background: var(--accent-emerald-light);
+  color: var(--accent-emerald);
+}
+
+.compressor-off {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+/* Estação de Redesign e Auditoria dos Abismos */
+.audit-workspace-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 850px) {
+  .audit-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.audit-score-bar-wrap {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-full);
+  height: 12px;
+  overflow: hidden;
+  margin: 0.5rem 0 1rem;
+}
+
+.audit-score-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-emerald));
+  transition: width 0.4s ease;
+}
+
+.flaw-interactive-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flaw-interactive-card:hover, .flaw-interactive-card.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.flaw-interactive-card.resolved {
+  border-color: var(--accent-emerald);
+  background: var(--accent-emerald-light);
+}
+
 /* Keyframes */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
