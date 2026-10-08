@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11. Interfaces de Média Fidelidade (Wireframes) | IHC</title>
+  <meta name="description" content="Estruturação de wireframes de média fidelidade em IHC: arquitetura da informação, hierarquia visual, grid de 8pt e transição do papel para o design digital.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/widgets.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Material Didático</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="10-jornada-do-usuario.html" class="nav-link">&larr; 10. Jornada</a></li>
+          <li><a href="../index.html" class="nav-link">Home &uarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Início</a>
+      <span>/</span>
+      <span class="current">11. Interfaces de Média Fidelidade</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="badge category-prototipo">Módulo 11 &bull; Prototipação</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 25 min</span>
+      </div>
+      <h1 class="page-title">Interfaces de Média Fidelidade (Wireframes Digitais)</h1>
+      <p class="page-subtitle">
+        A ponte vital entre os esboços rápidos no papel e a codificação final: arquitetura da informação visual, hierarquia tipográfica e grids métricos sem o ruído das cores cosméticas.
+      </p>
+    </header>
+
+    <div class="content-grid">
+      <article class="article-content">
+        <h2>1. O que é uma Interface de Média Fidelidade?</h2>
+        <p>
+          Após explorar dezenas de ideias divergentes em esboços de papel (baixa fidelidade), a equipe de IHC precisa formalizar a estrutura espacial da tela antes de investir tempo em paletas de cores refinadas, fotografia e estilização CSS complexa. É nesse momento que surge o <strong>Wireframe de Média Fidelidade</strong> (Garrett, 2011; Saffer, 2009).
+        </p>
+
+        <p>
+          Em essência, um wireframe de média fidelidade atua como a <strong>planta arquitetônica</strong> de um edifício: ele define a distribuição de cômodos, colunas de sustentação e encanamentos, sem se preocupar ainda com a cor da tinta das paredes.
+        </p>
+
+        <div class="callout callout-theory">
+          <div class="callout-title">Por que Manter a Média Fidelidade Monocromática (Em Tons de Cinza)?</div>
+          <p>
+            O uso intencional de tons de cinza (escala monocromática) é uma das decisões mais importantes de IHC:
+          </p>
+          <ul style="margin: 0.5rem 0 0 1.25rem;">
+            <li><strong>A cor sequestra a atenção do cérebro:</strong> Se você apresentar uma tela colorida para clientes ou desenvolvedores, 80% da reunião será gasta discutindo se <em>"aquele tom de azul combina com a marca"</em>, em vez de avaliar se o fluxo de compra faz sentido ou se os botões de ação estão legíveis.</li>
+            <li><strong>Garantia de Hierarquia por Luminância:</strong> Se a interface funciona bem e tem legibilidade clara em preto e branco, ela funcionará de maneira espetacular quando as cores finais forem introduzidas.</li>
+          </ul>
+        </div>
+
+        <h2>2. Os Quatro Pilares do Wireframing Profissional</h2>
+        <ol>
+          <li><strong>Grid System e Ritmo Espacial (Sistema de 8pt):</strong> Todos os espaçamentos, margens e alturas de componentes são múltiplos de 8 pixels (8, 16, 24, 32, 48px). Isso elimina arbitrariedades e facilita enormemente o trabalho da equipe de desenvolvimento front-end.</li>
+          <li><strong>Hierarquia Tipográfica:</strong> Uso explícito de tamanhos e pesos de fonte para guiar o olho humano através da Lei de Gutenberg e dos padrões de varredura visual em Z e em F (Nielsen, 2006).</li>
+          <li><strong>Espaços Reservados (Placeholders) Estruturais:</strong> Caixas cinzas com diagonais ou caixas com texto sintético (<em>Lorem Ipsum</em> balanceado) demarcam onde fotos e dados dinâmicos aparecerão sem poluir a cognição.</li>
+          <li><strong>Anotações Funcionais:</strong> Especificações claras ao lado dos elementos indicando comportamentos de estados (hover, active, disabled, mensagens de validação).</li>
+        </ol>
+
+        <!-- WIDGET 11: Comparador Interativo e Inspetor de Wireframe -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Inspetor de Layout</span>
+              <h3 class="sandbox-title">Laboratório: Esboço Rápido vs Wireframe Estruturado</h3>
+            </div>
+            <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+              <label style="font-size:0.8rem; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:0.35rem;">
+                <input type="checkbox" id="wireframe-toggle-grid"> Exibir Grid de 8 Colunas
+              </label>
+              <label style="font-size:0.8rem; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:0.35rem;">
+                <input type="checkbox" id="wireframe-toggle-annotations" checked> Exibir Decisões de Design
+              </label>
+            </div>
+          </div>
+          <div class="sandbox-body">
+            <div class="wireframe-comparison-container">
+              <!-- Lado 1: Esboço no Papel (Baixa Fidelidade) -->
+              <div class="wireframe-box lo-fi">
+                <div style="font-weight:bold; font-size:0.85rem; border-bottom:1px dashed #64748b; padding-bottom:0.35rem; margin-bottom:0.75rem;">
+                  ✏️ Esboço Rápido (Papel / Baixa Fidelidade)
+                </div>
+                <div style="border:2px solid #334155; padding:0.5rem; margin-bottom:0.75rem; text-align:center;">
+                  [ LOGO ] &nbsp;&nbsp; [ Menu ] [ Login ]
+                </div>
+                <div style="border:2px dashed #64748b; height:70px; display:flex; align-items:center; justify-content:center; margin-bottom:0.75rem;">
+                  [ Foto Grande + Frase de Impacto ]
+                </div>
+                <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+                  <div style="border:1px solid #334155; flex:1; padding:0.35rem; font-size:0.75rem;">Card 1: Planos</div>
+                  <div style="border:1px solid #334155; flex:1; padding:0.35rem; font-size:0.75rem;">Card 2: Depoimentos</div>
+                </div>
+                <div style="border:2px solid #334155; padding:0.4rem; text-align:center; font-size:0.8rem;">
+                  [ Botão: Começar Agora ]
+                </div>
+              </div>
+
+              <!-- Lado 2: Wireframe Digital Estruturado (Média Fidelidade) -->
+              <div class="wireframe-box" id="mid-fidelity-screen" style="position:relative; overflow:hidden;">
+                <!-- Camada de Grid Overlay -->
+                <div id="wireframe-grid-overlay" style="position:absolute; inset:0; display:none; pointer-events:none; z-index:10; opacity:0.12; gap:8px; padding:1.25rem;">
+                  <div style="flex:1; background:#ef4444;"></div>
+                  <div style="flex:1; background:#ef4444;"></div>
+                  <div style="flex:1; background:#ef4444;"></div>
+                  <div style="flex:1; background:#ef4444;"></div>
+                  <div style="flex:1; background:#ef4444;"></div>
+                  <div style="flex:1; background:#ef4444;"></div>
+                  <div style="flex:1; background:#ef4444;"></div>
+                  <div style="flex:1; background:#ef4444;"></div>
+                </div>
+
+                <div style="font-weight:bold; font-size:0.85rem; border-bottom:1px solid var(--border-color); padding-bottom:0.35rem; margin-bottom:0.75rem; display:flex; justify-content:space-between;">
+                  <span>📐 Wireframe Digital (Média Fidelidade)</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">Clique nos blocos para inspecionar</span>
+                </div>
+
+                <!-- Navbar Wireframe -->
+                <div class="wireframe-inspectable" data-role="Barra Superior de Navegação" data-justification="Altura fixa em 56px (múltiplo de 8). Alinhamento horizontal com logo à esquerda e CTAs à direita para respeitar o padrão mental F-shape." style="border:1px solid var(--border-color); background:var(--bg-subtle); padding:0.5rem 0.75rem; border-radius:4px; display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; cursor:pointer;">
+                  <div style="width:50px; height:16px; background:#94a3b8; border-radius:2px;"></div>
+                  <div style="display:flex; gap:0.5rem;">
+                    <div style="width:35px; height:12px; background:#cbd5e1; border-radius:2px;"></div>
+                    <div style="width:45px; height:16px; background:#64748b; border-radius:2px;"></div>
+                  </div>
+                </div>
+
+                <!-- Hero Section Wireframe -->
+                <div class="wireframe-inspectable" data-role="Bloco Hero com Proposta de Valor" data-justification="Uso de H1 de 24px com contraste deliberado de espessura e botão de ação primária destacado em cinza escuro (#334155) para criar affordance clara sem uso de cor." style="border:1px dashed var(--border-color); padding:0.75rem; border-radius:4px; margin-bottom:0.75rem; text-align:center; cursor:pointer;">
+                  <div style="width:70%; height:16px; background:#475569; margin:0 auto 0.4rem; border-radius:2px;"></div>
+                  <div style="width:90%; height:10px; background:#cbd5e1; margin:0 auto 0.75rem; border-radius:2px;"></div>
+                  <div style="width:100px; height:24px; background:#334155; margin:0 auto; border-radius:4px;"></div>
+                </div>
+
+                <!-- Grid de Cards Wireframe -->
+                <div class="wireframe-inspectable" data-role="Grade de 2 Colunas com Cartões Informativos" data-justification="Divisão simétrica com espaçamento gutter de 16px. Agrupamento visual baseado na Lei de Proximidade da Gestalt." style="display:flex; gap:0.75rem; cursor:pointer;">
+                  <div style="flex:1; border:1px solid var(--border-color); padding:0.5rem; border-radius:4px; background:var(--bg-subtle);">
+                    <div style="width:40%; height:10px; background:#64748b; margin-bottom:0.35rem; border-radius:2px;"></div>
+                    <div style="width:100%; height:8px; background:#e2e8f0; border-radius:2px;"></div>
+                  </div>
+                  <div style="flex:1; border:1px solid var(--border-color); padding:0.5rem; border-radius:4px; background:var(--bg-subtle);">
+                    <div style="width:40%; height:10px; background:#64748b; margin-bottom:0.35rem; border-radius:2px;"></div>
+                    <div style="width:100%; height:8px; background:#e2e8f0; border-radius:2px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Painel de Inspeção Dinâmico -->
+            <div id="wireframe-annotations-layer" style="margin-top:1.25rem;">
+              <div class="widget-label">Anotações Arquiteturais de Design (Clique nos blocos do wireframe acima):</div>
+              <div id="wireframe-inspect-log" style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:0.85rem; font-size:0.88rem;">
+                Selecione um componente do wireframe acima para visualizar as justificativas de IHC e engenharia front-end.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="references-section">
+          <h3>Referências Formais Deste Módulo</h3>
+          <ul class="references-list">
+            <li class="ref-item">
+              <span class="ref-badge">BROWN 2010</span>
+              <strong>BROWN, Dan M.</strong> <em>Communicating Design: Developing Web Site Documentation for Design and Planning</em>. 2. ed. Berkeley: New Riders, 2010.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">GARRETT 2011</span>
+              <strong>GARRETT, Jesse James.</strong> <em>The Elements of User Experience: Patient-Centered Design for the Web and Beyond</em>. 2. ed. Berkeley: New Riders, 2011.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">NIELSEN 2006</span>
+              <strong>NIELSEN, Jakob.</strong> F-Shaped Pattern For Reading Web Content (original study). <em>Nielsen Norman Group Articles</em>, 2006. Disponível em: <a href="https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/" target="_blank" rel="noopener">nngroup.com</a>.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">SAFFER 2009</span>
+              <strong>SAFFER, Dan.</strong> <em>Designing for Interaction: Creating Innovative Applications and Devices</em>. 2. ed. Berkeley: New Riders, 2009.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">WROBLEWSKI 2008</span>
+              <strong>WROBLEWSKI, Luke.</strong> <em>Web Form Design: Filling in the Blanks</em>. Brooklyn: Rosenfeld Media, 2008.
+            </li>
+          </ul>
+        </section>
+
+        <div class="page-nav-controls">
+          <a href="10-jornada-do-usuario.html" class="nav-page-btn">
+            <span class="nav-page-sub">&larr; Anterior</span>
+            <span class="nav-page-title">10. Jornada do Usuário</span>
+          </a>
+          <a href="../index.html" class="nav-page-btn next">
+            <span class="nav-page-sub">Conclusão &rarr;</span>
+            <span class="nav-page-title">Voltar para a Home</span>
+          </a>
+        </div>
+      </article>
+
+      <aside class="sidebar-toc">
+        <div class="toc-title">Neste Módulo</div>
+        <ul class="toc-nav">
+          <li><a href="#1-o-que-e-uma-interface-de-media-fidelidade" class="toc-link">1. Média Fidelidade</a></li>
+          <li><a href="#por-que-manter-a-media-fidelidade-monocromatica-em-tons-de-cinza" class="toc-link">2. Escala Monocromática</a></li>
+          <li><a href="#2-os-quatro-pilares-do-wireframing-profissional" class="toc-link">3. Pilares do Wireframe</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 11</div>
+      <a href="../index.html">Voltar para o Índice Geral</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/widgets/11-wireframe-mid.js"></script>
+</body>
+</html>

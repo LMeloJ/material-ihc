@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03. Personas & Mapas de Empatia | IHC</title>
+  <meta name="description" content="Design Direcionado a Metas (Goal-Directed Design) por Alan Cooper e Mapas de Empatia por Dave Gray: ferramentas essenciais para modelar o usuário em IHC.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/widgets.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Material Didático</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="02-heuristicas-nielsen.html" class="nav-link">&larr; 02. Heurísticas</a></li>
+          <li><a href="04-pov-how-might-we.html" class="nav-link">04. PoV & HMW &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Início</a>
+      <span>/</span>
+      <span class="current">03. Personas & Mapas de Empatia</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="badge category-empatia">Módulo 03 &bull; Empatia & Pesquisa</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 25 min</span>
+      </div>
+      <h1 class="page-title">Personas & Mapas de Empatia</h1>
+      <p class="page-subtitle">
+        Como projetar para pessoas reais sem cair na armadilha do "usuário elástico": a teoria do Goal-Directed Design de Alan Cooper e a cartografia empática de Dave Gray.
+      </p>
+    </header>
+
+    <div class="content-grid">
+      <article class="article-content">
+        <h2>1. O Problema do "Usuário Elástico" e a Criação de Personas</h2>
+        <p>
+          Em equipes de desenvolvimento sem metodologia de IHC, é comum a equipe referir-se genericamente ao "usuário". Alan Cooper (1999) denominou esse fenômeno de <strong>"Usuário Elástico" (Elastic User)</strong>: quando o programador quer uma solução rápida, ele imagina que o usuário é um expert técnico; quando o designer quer simplificar, imagina que o usuário é preguiçoso; quando o marketing quer vender, imagina que o usuário quer infinitas funcionalidades.
+        </p>
+
+        <div class="callout callout-theory">
+          <div class="callout-title">O Conceito Formal de Persona (Cooper, 1999)</div>
+          <p>
+            Uma <strong>Persona</strong> é um arquétipo concreto e detalhado de um usuário real, construído com base em pesquisas qualitativas (entrevistas, observação etnográfica e análise de padrões de comportamento), e não em estereótipos ou imaginações da equipe.
+          </p>
+          <p style="margin-top:0.5rem; margin-bottom:0;">
+            <em>"Se você projetar para todo mundo, você não atende ninguém perfeitamente. Ao projetar com precisão cirúrgica para uma persona primária bem definida, você encanta a ampla maioria."</em> (Alan Cooper)
+          </p>
+        </div>
+
+        <h2>2. Tipos de Metas no Goal-Directed Design</h2>
+        <p>
+          No método de Cooper et al. (2014), personas são orientadas a <strong>metas</strong>, divididas em três níveis:
+        </p>
+        <ul>
+          <li><strong>Metas de Experiência (Experience Goals):</strong> Como o usuário quer se sentir ao usar a tecnologia (ex: sentir-se no controle, confiante, sem estresse ou sem sensação de incompetência).</li>
+          <li><strong>Metas Finais / De Tarefa (End Goals):</strong> O que ele precisa realizar concretamente (ex: emitir um relatório fiscal em 2 minutos, conferir o extrato bancário).</li>
+          <li><strong>Metas de Vida (Life Goals):</strong> As aspirações profundas de longo prazo (ex: ser promovido na carreira, ser um pai presente, ter tranquilidade financeira).</li>
+        </ul>
+
+        <h2>3. O Mapa de Empatia (Dave Gray / XPLANE)</h2>
+        <p>
+          Criado por Dave Gray (2010), o <strong>Mapa de Empatia</strong> é uma ferramenta colaborativa visual que ajuda equipes multidisciplinares a sintetizarem observações de campo e se colocarem nos sapatos do usuário, compreendendo o seu ecossistema mental e sensorial:
+        </p>
+        <ul>
+          <li><strong>O que Pensa e Sente:</strong> As preocupações íntimas, ansiedades, sonhos e crenças que nem sempre são ditas abertamente.</li>
+          <li><strong>O que Escuta:</strong> A influência de amigos, familiares, chefia, colegas e meios de comunicação.</li>
+          <li><strong>O que Vê:</strong> O ambiente físico, as interfaces concorrentes que ele utiliza diariamente e o comportamento dos seus pares.</li>
+          <li><strong>O que Fala e Faz:</strong> A sua atitude observável em público, sua rotina e como ele expressa suas opiniões.</li>
+          <li><strong>Dores (Pains):</strong> Obstáculos, medos, fricções, riscos percebidos e frustrações com ferramentas atuais.</li>
+          <li><strong>Ganhos (Gains):</strong> Desejos, métricas de sucesso e o que tornaria sua vida significativamente melhor.</li>
+        </ul>
+
+        <!-- WIDGET 03: Construtor Dinâmico de Persona e Mapa de Empatia -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Laboratório Prático</span>
+              <h3 class="sandbox-title">Painel de Personas & Canvas de Empatia Interativo</h3>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <label for="persona-preset-select" style="font-size:0.8rem; font-weight:600;">Persona:</label>
+              <select id="persona-preset-select" class="widget-select" style="padding:0.25rem 0.5rem; font-size:0.8rem;">
+                <option value="mariana">Mariana Costa (Jovem Universitária / TDAH)</option>
+                <option value="roberto">Roberto Mendes (Diretor Comercial Sênior)</option>
+              </select>
+            </div>
+          </div>
+          <div class="sandbox-body">
+            <!-- Cartão Resumo da Persona -->
+            <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+              <div>
+                <h3 id="persona-display-name" style="margin:0; font-size:1.2rem; color:var(--primary);">Mariana Costa</h3>
+                <div id="persona-display-meta" style="font-size:0.85rem; color:var(--text-muted); font-weight:600; margin:0.2rem 0 0.5rem;">23 anos • Estudante de Engenharia</div>
+                <p id="persona-display-bio" style="font-size:0.9rem; margin:0; max-width:650px;">Nativa digital, hiperconectada, lida com sobrecarga de tarefas e prazos apertados.</p>
+              </div>
+              <span class="badge" style="background:var(--accent-emerald-light); color:var(--accent-emerald);">Persona Ativa</span>
+            </div>
+
+            <!-- Adicionar Post-it Interativo -->
+            <div style="background:var(--bg-surface); border:1px dashed var(--border-color); border-radius:var(--radius-md); padding:0.85rem; margin-bottom:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+              <input type="text" id="sticky-note-input" class="widget-input" placeholder="Digite uma nova percepção empática..." style="flex:2; min-width:200px;">
+              <select id="sticky-quadrant-select" class="widget-select" style="flex:1; min-width:160px;">
+                <option value="pensa-sente">Pensa & Sente</option>
+                <option value="escuta">Escuta</option>
+                <option value="ve">Vê</option>
+                <option value="fala-faz">Fala & Faz</option>
+                <option value="dores">Dores</option>
+                <option value="ganhos">Ganhos</option>
+              </select>
+              <button class="btn btn-primary" id="add-sticky-btn" style="padding:0.6rem 1rem;">Adicionar Post-it</button>
+            </div>
+
+            <!-- Canvas de Empatia Quadrantes -->
+            <div class="empathy-canvas">
+              <div class="empathy-quadrant">
+                <div class="quadrant-header" style="color:var(--primary);">🧠 O que Pensa e Sente?</div>
+                <div id="quadrant-pensa-sente"></div>
+              </div>
+              <div class="empathy-quadrant">
+                <div class="quadrant-header" style="color:var(--accent-sky);">👂 O que Escuta?</div>
+                <div id="quadrant-escuta"></div>
+              </div>
+              <div class="empathy-quadrant">
+                <div class="quadrant-header" style="color:var(--accent-purple);">👀 O que Vê?</div>
+                <div id="quadrant-ve"></div>
+              </div>
+              <div class="empathy-quadrant">
+                <div class="quadrant-header" style="color:var(--accent-amber);">💬 O que Fala e Faz?</div>
+                <div id="quadrant-fala-faz"></div>
+              </div>
+              <div class="empathy-quadrant" style="border-left:4px solid var(--accent-rose);">
+                <div class="quadrant-header" style="color:var(--accent-rose);">⚡ Dores (Frustrações & Obstáculos)</div>
+                <div id="quadrant-dores"></div>
+              </div>
+              <div class="empathy-quadrant" style="border-left:4px solid var(--accent-emerald);">
+                <div class="quadrant-header" style="color:var(--accent-emerald);">🎯 Ganhos (Desejos & Métricas de Sucesso)</div>
+                <div id="quadrant-ganhos"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="references-section">
+          <h3>Referências Formais Deste Módulo</h3>
+          <ul class="references-list">
+            <li class="ref-item">
+              <span class="ref-badge">COOPER 1999</span>
+              <strong>COOPER, Alan.</strong> <em>The Inmates Are Running the Asylum: Why High-Tech Products Drive Us Crazy and How to Restore the Sanity</em>. Indianapolis: Sams Publishing, 1999.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">COOPER ET AL. 2014</span>
+              <strong>COOPER, Alan et al.</strong> <em>About Face: The Essentials of Interaction Design</em>. 4. ed. Indianapolis: John Wiley & Sons, 2014.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">GRAY ET AL. 2010</span>
+              <strong>GRAY, Dave; BROWN, Sunni; MACANUFO, James.</strong> <em>Gamestorming: A Playbook for Innovators, Rulebreakers, and Changemakers</em>. Sebastopol: O'Reilly Media, 2010.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">PRUITT & ADLIN 2006</span>
+              <strong>PRUITT, John; ADLIN, Tamara.</strong> <em>The Persona Lifecycle: Keeping People in Mind Throughout Product Design</em>. San Francisco: Morgan Kaufmann, 2006.
+            </li>
+          </ul>
+        </section>
+
+        <div class="page-nav-controls">
+          <a href="02-heuristicas-nielsen.html" class="nav-page-btn">
+            <span class="nav-page-sub">&larr; Anterior</span>
+            <span class="nav-page-title">02. Heurísticas de Nielsen</span>
+          </a>
+          <a href="04-pov-how-might-we.html" class="nav-page-btn next">
+            <span class="nav-page-sub">Próximo &rarr;</span>
+            <span class="nav-page-title">04. PoV & How Might We</span>
+          </a>
+        </div>
+      </article>
+
+      <aside class="sidebar-toc">
+        <div class="toc-title">Neste Módulo</div>
+        <ul class="toc-nav">
+          <li><a href="#1-o-problema-do-usuario-elastico-e-a-criacao-de-personas" class="toc-link">1. Usuário Elástico</a></li>
+          <li><a href="#2-tipos-de-metas-no-goal-directed-design" class="toc-link">2. Níveis de Metas</a></li>
+          <li><a href="#3-o-mapa-de-empatia-dave-gray-xplane" class="toc-link">3. Mapa de Empatia</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 03</div>
+      <a href="../index.html">Voltar para o Índice Geral</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/widgets/03-persona-map.js"></script>
+</body>
+</html>

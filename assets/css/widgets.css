@@ -1,0 +1,700 @@
+/* ===================================================================
+   MATERIAL IHC - WIDGETS INTERATIVOS E DIDÁTICOS
+   Estilos específicos para laboratórios e simuladores práticos
+   =================================================================== */
+
+.interactive-sandbox {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin: 2.5rem 0;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.interactive-sandbox:focus-within,
+.interactive-sandbox:hover {
+  border-color: var(--primary);
+}
+
+.sandbox-header {
+  background: var(--bg-subtle);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sandbox-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sandbox-badge {
+  background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.sandbox-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sandbox-instructions {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.sandbox-body {
+  padding: 1.5rem;
+}
+
+/* Formulários e Controles nos Widgets */
+.widget-form-group {
+  margin-bottom: 1rem;
+}
+
+.widget-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.widget-input, .widget-select, .widget-textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.widget-input:focus, .widget-select:focus, .widget-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* ===================================================================
+   WIDGET 01: Linha do Tempo e Lei de Fitts
+   =================================================================== */
+.timeline-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeline-points {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 1.5rem 0 2rem;
+}
+
+.timeline-points::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--border-color);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-node {
+  position: relative;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 3px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timeline-node.active, .timeline-node:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  transform: scale(1.15);
+}
+
+.timeline-details-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.fitts-arena {
+  position: relative;
+  height: 220px;
+  background: var(--bg-subtle);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fitts-target {
+  position: absolute;
+  background: var(--accent-rose);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 0.1s;
+  user-select: none;
+}
+
+.fitts-target:active {
+  transform: scale(0.95);
+}
+
+/* ===================================================================
+   WIDGET 02: Auditor de Heurísticas de Nielsen
+   =================================================================== */
+.auditor-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .auditor-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mockup-window {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.mockup-bar {
+  background: var(--bg-subtle);
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mockup-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mockup-content {
+  padding: 1.25rem;
+  position: relative;
+}
+
+.flaw-spot {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px dashed var(--accent-rose);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem;
+  transition: all 0.2s;
+}
+
+.flaw-spot:hover, .flaw-spot.selected {
+  background: rgba(244, 63, 94, 0.15);
+  border-color: var(--accent-rose);
+}
+
+.heuristic-badge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.heuristic-card-mini {
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-subtle);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.heuristic-card-mini:hover, .heuristic-card-mini.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* ===================================================================
+   WIDGET 03: Mapa de Empatia & Construtor de Personas
+   =================================================================== */
+.empathy-canvas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+}
+
+.empathy-quadrant {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  min-height: 140px;
+}
+
+.quadrant-header {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sticky-note {
+  background: #fef08a;
+  color: #713f12;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[data-theme="dark"] .sticky-note {
+  background: #ca8a04;
+  color: #fef08a;
+}
+
+/* ===================================================================
+   WIDGET 04: Construtor de PoV e How Might We
+   =================================================================== */
+.formula-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formula-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.formula-part {
+  flex: 1;
+  min-width: 180px;
+}
+
+.formula-operator {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.25rem;
+}
+
+.result-card-preview {
+  background: var(--bg-subtle);
+  border: 2px dashed var(--primary);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  font-size: 1.05rem;
+}
+
+/* ===================================================================
+   WIDGET 05: Ideação Criativa (SCAMPER & Worst Ideas)
+   =================================================================== */
+.scamper-wheel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.scamper-letter-btn {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.scamper-letter-btn.active, .scamper-letter-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.scamper-letter-big {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+/* ===================================================================
+   WIDGET 06: Teleprompter & Cronômetro de Pitch
+   =================================================================== */
+.pitch-teleprompter-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.pitch-timer-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.pitch-timer-display.danger {
+  color: var(--accent-rose);
+  animation: pulse 1s infinite;
+}
+
+/* ===================================================================
+   WIDGET 07: Simulador Mágico de Oz
+   =================================================================== */
+.wizard-dual-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .wizard-dual-view {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chat-bubble {
+  padding: 0.65rem 0.95rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  max-width: 80%;
+}
+
+.chat-bubble.user {
+  background: var(--primary);
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 2px;
+}
+
+.chat-bubble.wizard {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-bottom-left-radius: 2px;
+}
+
+/* ===================================================================
+   WIDGET 08: Princípios de Norman (Mapeamento & Feedback)
+   =================================================================== */
+.stovetop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.stove-burners {
+  display: grid;
+  grid-template-columns: repeat(2, 80px);
+  gap: 1.5rem;
+  background: #334155;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  justify-content: center;
+}
+
+.burner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.burner.hot {
+  border-color: #ef4444;
+  background: radial-gradient(circle, #f87171, #ef4444);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+}
+
+/* ===================================================================
+   WIDGET 09: Laboratório WCAG (Contraste e Daltonismo)
+   =================================================================== */
+.contrast-preview-box {
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+
+.contrast-score-pills {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.score-pill {
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.score-pass {
+  background: var(--accent-emerald-light);
+  color: var(--accent-emerald);
+}
+
+.score-fail {
+  background: var(--accent-rose-light);
+  color: var(--accent-rose);
+}
+
+/* ===================================================================
+   WIDGET 10: Mapa da Jornada do Usuário
+   =================================================================== */
+.journey-track {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.journey-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+.journey-table th, .journey-table td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.journey-table th {
+  background: var(--bg-subtle);
+}
+
+.journey-curve-svg {
+  width: 100%;
+  height: 90px;
+}
+
+/* ===================================================================
+   WIDGET 11: Média Fidelidade vs Baixa Fidelidade
+   =================================================================== */
+.wireframe-comparison-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .wireframe-comparison-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wireframe-box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  background: var(--bg-surface);
+}
+
+.wireframe-box.lo-fi {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+  border: 2px dashed #94a3b8;
+  background: #fdfdfc;
+  color: #334155;
+}
+
+/* ===================================================================
+   COMPONENTES DE ABAS DIDÁTICAS E CARDS COMPARATIVOS (BOM vs RUIM)
+   =================================================================== */
+.tabbed-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin: 2rem 0;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.tabbed-nav {
+  display: flex;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tab-nav-btn {
+  padding: 0.85rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.tab-nav-btn:hover {
+  color: var(--primary);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.tab-nav-btn.active {
+  color: var(--primary);
+  background: var(--bg-surface);
+  border-bottom-color: var(--primary);
+}
+
+.tabbed-content {
+  padding: 1.75rem;
+}
+
+.tab-pane {
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-card {
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  font-size: 0.92rem;
+  border: 1px solid;
+}
+
+.comparison-card.bad {
+  background: var(--accent-rose-light);
+  border-color: rgba(244, 63, 94, 0.3);
+  color: var(--text-primary);
+}
+
+.comparison-card.good {
+  background: var(--accent-emerald-light);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--text-primary);
+}
+
+.comparison-card-title {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.comparison-card.bad .comparison-card-title {
+  color: var(--accent-rose);
+}
+
+.comparison-card.good .comparison-card-title {
+  color: var(--accent-emerald);
+}
+
+.interactive-mini-preview {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

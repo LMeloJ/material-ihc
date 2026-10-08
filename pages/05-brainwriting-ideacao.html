@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05. Brainwriting, SCAMPER & Piores Ideias | IHC</title>
+  <meta name="description" content="Técnicas avançadas de ideação para IHC: Brainwriting 6-3-5 de Rohrbach, SCAMPER de Eberle, Worst Possible Ideas e Inversão de premissas.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/widgets.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Material Didático</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="04-pov-how-might-we.html" class="nav-link">&larr; 04. PoV & HMW</a></li>
+          <li><a href="06-pitches-curtos.html" class="nav-link">06. Pitches &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Início</a>
+      <span>/</span>
+      <span class="current">05. Brainwriting & Ideação Criativa</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="badge category-ideacao">Módulo 05 &bull; Definição & Ideação</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 25 min</span>
+      </div>
+      <h1 class="page-title">Brainwriting, SCAMPER, Worst Ideas & Inversão</h1>
+      <p class="page-subtitle">
+        Por que o brainstorming falado tradicional falha em equipes de tecnologia e como destravar o pensamento divergente com métodos estruturados, silenciosos e contra-intuitivos.
+      </p>
+    </header>
+
+    <div class="content-grid">
+      <article class="article-content">
+        <h2>1. Por que o Brainstorming Falado Falha? A Evidência Científica</h2>
+        <p>
+          Embora criado por Alex Osborn em 1953 com grande entusiasmo empresarial, estudos psicológicos rigorosos (Diehl & Stroebe, 1987) demonstraram que grupos em sessões de brainstorming falado produzem <strong>menos ideias e de menor originalidade</strong> do que indivíduos pensando separadamente. As razões cognitivas incluem:
+        </p>
+        <ul>
+          <li><strong>Bloqueio de Produção (Production Blocking):</strong> Enquanto uma pessoa extrovertida fala, os outros precisam aguardar e acabam esquecendo ou reprimindo suas próprias ideias.</li>
+          <li><strong>Apreensão de Avaliação (Evaluation Apprehension):</strong> Medo inconsciente do julgamento de colegas seniores ou chefes.</li>
+          <li><strong>Preguiça Social e Ancoragem:</strong> A primeira ideia lançada na sala contamina e ancora todo o debate subsequente.</li>
+        </ul>
+
+        <h2>2. O Método Brainwriting 6-3-5 (Bernd Rohrbach, 1969)</h2>
+        <p>
+          Para eliminar o ruído social, Rohrbach criou o <strong>Brainwriting 6-3-5</strong>:
+        </p>
+        <div class="callout callout-theory">
+          <div class="callout-title">A Regra do 6-3-5</div>
+          <p>
+            <strong>6 Participantes</strong> sentam-se ao redor de uma mesa. Cada um recebe uma folha com 3 colunas e 6 linhas.<br>
+            Em cada rodada de <strong>5 Minutos</strong>, cada participante escreve <strong>3 Ideias</strong> silenciosamente.<br>
+            Ao final de 5 minutos, a folha é passada para a pessoa à direita, que deve ler as ideias anteriores e construir sobre elas (<em>piggybacking</em>).<br>
+            <strong>Resultado:</strong> Em apenas 30 minutos de concentração silenciosa e sem interrupções, o grupo gera rigorosamente <strong>108 ideias qualificadas</strong> ($6 \times 3 \times 6$).
+          </p>
+        </div>
+
+        <h2>3. O Operador Criativo SCAMPER (Bob Eberle, 1971)</h2>
+        <p>
+          O método <strong>SCAMPER</strong> atua como um conjunto de lentes provocativas para questionar qualquer solução existente:
+        </p>
+
+        <!-- WIDGET 05A: Painel Interativo SCAMPER -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Ferramenta Interativa</span>
+              <h3 class="sandbox-title">Painel Operacional SCAMPER</h3>
+            </div>
+            <span class="sandbox-instructions">Clique nas letras para revelar gatilhos mentais e exemplos</span>
+          </div>
+          <div class="sandbox-body">
+            <div class="scamper-wheel-grid">
+              <button class="scamper-letter-btn active" data-letter="S">
+                <div class="scamper-letter-big">S</div>
+                <div style="font-size:0.75rem;">Substituir</div>
+              </button>
+              <button class="scamper-letter-btn" data-letter="C">
+                <div class="scamper-letter-big">C</div>
+                <div style="font-size:0.75rem;">Combinar</div>
+              </button>
+              <button class="scamper-letter-btn" data-letter="A">
+                <div class="scamper-letter-big">A</div>
+                <div style="font-size:0.75rem;">Adaptar</div>
+              </button>
+              <button class="scamper-letter-btn" data-letter="M">
+                <div class="scamper-letter-big">M</div>
+                <div style="font-size:0.75rem;">Modificar</div>
+              </button>
+              <button class="scamper-letter-btn" data-letter="P">
+                <div class="scamper-letter-big">P</div>
+                <div style="font-size:0.75rem;">Outro Uso</div>
+              </button>
+              <button class="scamper-letter-btn" data-letter="E">
+                <div class="scamper-letter-big">E</div>
+                <div style="font-size:0.75rem;">Eliminar</div>
+              </button>
+              <button class="scamper-letter-btn" data-letter="R">
+                <div class="scamper-letter-big">R</div>
+                <div style="font-size:0.75rem;">Reverter</div>
+              </button>
+            </div>
+
+            <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem; margin-top:1.25rem;">
+              <h4 id="scamper-detail-title" style="margin-bottom:0.5rem; color:var(--primary);">S - Substituir (Substitute)</h4>
+              <p id="scamper-detail-question" style="font-size:0.95rem; font-weight:500; margin-bottom:0.5rem; color:var(--text-primary);">O que podemos substituir na interface, fluxo ou processo?</p>
+              <div id="scamper-detail-example" style="font-size:0.85rem; color:var(--text-secondary); font-style:italic;">Exemplo prático: Substituir senhas alfanuméricas complexas por biometria rápida ou Magic Link via e-mail.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>4. Worst Possible Ideas (Piores Ideias) & Inversão Sistemática</h2>
+        <p>
+          Quando a equipe diz <em>"estou sem ideias geniais"</em>, o motivo é o excesso de autocensura e medo do erro. A técnica das <strong>Piores Ideias Possíveis</strong> inverte o desafio deliberadamente: pede-se que todos criem <em>a pior, mais horrível e antiética solução concebível</em>.
+        </p>
+        <p>
+          Ao eliminar a pressão de "ser brilhante", risadas surgem e a criatividade explode. Em seguida, aplica-se a <strong>Inversão (Reverse Thinking)</strong>: o grupo pega a pior ideia e pergunta: <em>"Se invertermos essa loucura exatamente 180 graus, qual princípio revolucionário de IHC surge?"</em>
+        </p>
+
+        <!-- WIDGET 05B: Gerador de Inversão de Piores Ideias -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Laboratório de Inversão</span>
+              <h3 class="sandbox-title">Simulador: Da Pior Ideia ao Princípio de Design</h3>
+            </div>
+            <button class="btn btn-outline" id="generate-worst-idea-btn" style="padding:0.25rem 0.6rem; font-size:0.8rem;">
+              Gerar Nova Ideia Terrível
+            </button>
+          </div>
+          <div class="sandbox-body">
+            <div style="margin-bottom:1rem;">
+              <div class="widget-label">A Pior Ideia Possível Gerada:</div>
+              <div id="worst-idea-display" style="padding:1rem; background:var(--accent-rose-light); border:1px solid var(--accent-rose); border-radius:var(--radius-sm); font-size:1rem; color:var(--text-primary);">
+                <em>"Esconder o botão de fechar anúncios e fazê-lo se mover pela tela quando o cursor do mouse se aproxima."</em>
+              </div>
+            </div>
+
+            <div>
+              <div class="widget-label">Resultado da Inversão Sistemática:</div>
+              <div id="inversion-display" style="padding:1rem; background:var(--accent-emerald-light); border:1px solid var(--accent-emerald); border-radius:var(--radius-sm); font-size:0.95rem; color:var(--text-primary);">
+                <strong>Inversão Positiva:</strong> Projetar saídas de emergência e controles de cancelamento totalmente estáticos, visíveis e instantâneos (Princípio do Controle e Liberdade do Usuário de Nielsen).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="references-section">
+          <h3>Referências Formais Deste Módulo</h3>
+          <ul class="references-list">
+            <li class="ref-item">
+              <span class="ref-badge">DIEHL & STROEBE 1987</span>
+              <strong>DIEHL, Michael; STROEBE, Wolfgang.</strong> Productivity loss in brainstorming groups: Toward the solution of a riddle. <em>Journal of Personality and Social Psychology</em>, v. 53, n. 3, p. 497-509, 1987.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">EBERLE 1971</span>
+              <strong>EBERLE, Bob.</strong> <em>SCAMPER: Games for Imagination Development</em>. Buffalo: D.O.K. Publishers, 1971.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">ROHRBACH 1969</span>
+              <strong>ROHRBACH, Bernd.</strong> Kreativ nach Noten: Das 6-3-5 Verfahren, eine Methode zur systematischen Ideenfindung. <em>Absatzwirtschaft</em>, v. 12, p. 73-75, 1969.
+            </li>
+          </ul>
+        </section>
+
+        <div class="page-nav-controls">
+          <a href="04-pov-how-might-we.html" class="nav-page-btn">
+            <span class="nav-page-sub">&larr; Anterior</span>
+            <span class="nav-page-title">04. PoV & How Might We</span>
+          </a>
+          <a href="06-pitches-curtos.html" class="nav-page-btn next">
+            <span class="nav-page-sub">Próximo &rarr;</span>
+            <span class="nav-page-title">06. Pitches Curtos Iniciais</span>
+          </a>
+        </div>
+      </article>
+
+      <aside class="sidebar-toc">
+        <div class="toc-title">Neste Módulo</div>
+        <ul class="toc-nav">
+          <li><a href="#1-por-que-o-brainstorming-falado-falha-a-evidencia-cientifica" class="toc-link">1. Limites do Brainstorming</a></li>
+          <li><a href="#2-o-metodo-brainwriting-6-3-5-bernd-rohrbach-1969" class="toc-link">2. Brainwriting 6-3-5</a></li>
+          <li><a href="#3-o-operador-criativo-scamper-bob-eberle-1971" class="toc-link">3. Operador SCAMPER</a></li>
+          <li><a href="#4-worst-possible-ideas-piores-ideias-inversao-sistematica" class="toc-link">4. Piores Ideias & Inversão</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 05</div>
+      <a href="../index.html">Voltar para o Índice Geral</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/widgets/05-ideation-tools.js"></script>
+</body>
+</html>

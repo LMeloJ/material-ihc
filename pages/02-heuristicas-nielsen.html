@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02. Avaliação de Interfaces & Heurísticas de Nielsen | IHC</title>
+  <meta name="description" content="Avaliação heurística de usabilidade segundo Jakob Nielsen: como identificar problemas de interface, aplicar as 10 heurísticas e classificar gravidade de defeitos.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/widgets.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Material Didático</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="01-introducao-ihc.html" class="nav-link">&larr; 01. Introdução</a></li>
+          <li><a href="03-personas-mapas-empatia.html" class="nav-link">03. Personas &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Início</a>
+      <span>/</span>
+      <span class="current">02. Avaliação de Interfaces & Heurísticas de Nielsen</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="badge category-avaliacao">Módulo 02 &bull; Avaliação</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 25 min</span>
+      </div>
+      <h1 class="page-title">Avaliação de Interfaces & Heurísticas de Nielsen</h1>
+      <p class="page-subtitle">
+        Como determinar cientificamente se uma interface é usável ou não: métodos de inspeção por especialistas, engenharia de usabilidade de desconto e as 10 regras de ouro de Jakob Nielsen.
+      </p>
+    </header>
+
+    <div class="content-grid">
+      <article class="article-content">
+        <h2>1. Como Definir se uma Interface é Boa?</h2>
+        <p>
+          No senso comum, costuma-se avaliar interfaces por critérios puramente estéticos e subjetivos ("ficou bonito", "gostei das cores"). Em Engenharia de IHC, contudo, a qualidade de uso é determinada pela <strong>capacidade da interface de apoiar a cognição humana</strong> na realização de tarefas com o mínimo de fricção, erros e carga mental.
+        </p>
+
+        <p>
+          Existem duas grandes famílias de métodos de avaliação:
+        </p>
+        <ul>
+          <li><strong>Métodos Empíricos (com Usuários):</strong> Observação direta de usuários reais executando tarefas (testes de usabilidade em laboratório, medição de tempo e taxa de sucesso). Embora sejam o padrão-ouro, costumam ser mais caros e demorados.</li>
+          <li><strong>Métodos de Inspeção (por Especialistas):</strong> Avaliadores examinam a interface sistematicamente usando princípios estabelecidos, sem necessariamente recrutar usuários finais em cada iteração. Destacam-se o <em>Percurso Cognitivo</em> e a <em>Avaliação Heurística</em>.</li>
+        </ul>
+
+        <div class="callout callout-theory">
+          <div class="callout-title">A Engenharia de Usabilidade de Desconto (Discount Usability)</div>
+          <p>
+            Jakob Nielsen (1994) propôs a "Engenharia de Usabilidade de Desconto" para combater a desculpa de que testes de usabilidade são inviáveis por falta de orçamento. A Avaliação Heurística é rápida, barata e, com apenas <strong>3 a 5 avaliadores independentes</strong>, é capaz de descobrir entre <strong>75% e 85% de todos os problemas de usabilidade</strong> de um sistema.
+          </p>
+        </div>
+
+        <h2>2. As 10 Heurísticas de Usabilidade de Nielsen (1994)</h2>
+        <p>
+          Refinadas após a análise de milhares de problemas reais de usabilidade, as 10 heurísticas constituem regras práticas de design reconhecidas internacionalmente:
+        </p>
+
+        <ol>
+          <li><strong>Visibilidade do status do sistema:</strong> O sistema deve sempre manter os usuários informados sobre o que está acontecendo, por meio de feedback adequado e em tempo hábil (ex: barras de carregamento, spinners, confirmações visuais).</li>
+          <li><strong>Correspondência entre o sistema e o mundo real:</strong> O sistema deve falar a linguagem do usuário, com palavras, frases e conceitos familiares a ele, em vez de termos técnicos internos do desenvolvedor.</li>
+          <li><strong>Controle e liberdade do usuário:</strong> Usuários frequentemente escolhem funções por engano. Devem existir "saídas de emergência" claramente marcadas para abandonar o estado indesejado (ex: Desfazer/Undo, Refazer, Cancelar).</li>
+          <li><strong>Consistência e padrões:</strong> Os usuários não devem ter que adivinhar se palavras, situações ou ações diferentes significam a mesma coisa. Siga as convenções da plataforma e padrões de mercado.</li>
+          <li><strong>Prevenção de erros:</strong> Melhor do que boas mensagens de erro é um design cuidadoso que previne o erro antes que ele ocorra (ex: confirmações antes de exclusões irreversíveis, campos com máscaras e validação em tempo real).</li>
+          <li><strong>Reconhecimento em vez de memorização:</strong> Torne elementos, ações e opções visíveis. O usuário não deve ser forçado a lembrar de informações de uma tela ao avançar para outra.</li>
+          <li><strong>Flexibilidade e eficiência de uso:</strong> Aceleradores invisíveis aos novatos (como atalhos de teclado, comandos rápidos e personalização) tornam a interface ágil e poderosa para usuários frequentes.</li>
+          <li><strong>Design estético e minimalista:</strong> Interfaces não devem conter informações supérfluas ou raramente necessárias. Cada unidade extra de informação visual compete com os dados relevantes e reduz sua visibilidade.</li>
+          <li><strong>Ajudar os usuários a reconhecer, diagnosticar e recuperar-se de erros:</strong> Mensagens de erro devem ser expressas em linguagem clara (sem códigos indecifráveis), indicar o problema exato e sugerir uma solução construtiva imediata.</li>
+          <li><strong>Ajuda e documentação:</strong> Mesmo que um sistema intuitivo deva dispensar manuais, pode ser necessário disponibilizar documentação de fácil busca, focada na tarefa concreta do usuário.</li>
+        </ol>
+
+        <h2>3. Escala de Gravidade de Problemas de Usabilidade</h2>
+        <p>
+          Ao identificar uma violação heurística, o avaliador deve atribuir uma classificação de gravidade (Nielsen, 1995) para orientar a equipe de engenharia sobre a prioridade de correção:
+        </p>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; margin:1.5rem 0;">
+          <div style="padding:0.75rem; border-radius:var(--radius-sm); background:var(--bg-subtle); border-left:4px solid #94a3b8;">
+            <strong>Grau 0: Sem Problema</strong>
+            <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Não afeta a interação.</p>
+          </div>
+          <div style="padding:0.75rem; border-radius:var(--radius-sm); background:var(--bg-subtle); border-left:4px solid var(--accent-sky);">
+            <strong>Grau 1: Cosmético</strong>
+            <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Apenas visual. Corrigir se sobrar tempo.</p>
+          </div>
+          <div style="padding:0.75rem; border-radius:var(--radius-sm); background:var(--bg-subtle); border-left:4px solid var(--accent-amber);">
+            <strong>Grau 2: Menor (Minor)</strong>
+            <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Causa leve lentidão ou dúvida pontual.</p>
+          </div>
+          <div style="padding:0.75rem; border-radius:var(--radius-sm); background:var(--bg-subtle); border-left:4px solid #f97316;">
+            <strong>Grau 3: Maior (Major)</strong>
+            <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Dificulta seriamente a tarefa. Alta prioridade.</p>
+          </div>
+          <div style="padding:0.75rem; border-radius:var(--radius-sm); background:var(--bg-subtle); border-left:4px solid var(--accent-rose);">
+            <strong>Grau 4: Catastrófico</strong>
+            <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Impede a tarefa ou destrói dados irreversivelmente.</p>
+          </div>
+        </div>
+
+        <!-- WIDGET 02: Auditor de Heurísticas Interativo -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Laboratório de Auditoria</span>
+              <h3 class="sandbox-title">Prática: Encontre as Violações Heurísticas</h3>
+            </div>
+            <span class="sandbox-instructions">Clique nas áreas destacadas no mockup e classifique o problema</span>
+          </div>
+          <div class="sandbox-body">
+            <div class="auditor-container">
+              <!-- Mockup com Falhas Deliberadas -->
+              <div>
+                <div class="widget-label">Interface Sob Teste (Mockup Interativo):</div>
+                <div class="mockup-window">
+                  <div class="mockup-bar">
+                    <span class="mockup-dot" style="background:#ef4444;"></span>
+                    <span class="mockup-dot" style="background:#f59e0b;"></span>
+                    <span class="mockup-dot" style="background:#10b981;"></span>
+                    <span style="font-size:0.75rem; color:var(--text-muted); margin-left:0.5rem;">Sistema de Gestão Financeira v1.0</span>
+                  </div>
+                  <div class="mockup-content">
+                    <h4 style="font-size:1rem; margin-bottom:0.75rem;">Painel do Usuário</h4>
+                    
+                    <div style="margin-bottom:1rem;">
+                      <span class="flaw-spot" id="flaw-weird-jargon" title="Clique para auditar">
+                        <button class="btn btn-outline" style="font-size:0.8rem; padding:0.35rem 0.6rem;">
+                          Instanciar TransactionPayloadEntity
+                        </button>
+                      </span>
+                    </div>
+
+                    <div style="margin-bottom:1rem;">
+                      <span class="flaw-spot" id="flaw-loading-silent" title="Clique para auditar">
+                        <button class="btn btn-outline" style="font-size:0.8rem; padding:0.35rem 0.6rem;">
+                          Salvar Relatório (Sem indicador de progresso)
+                        </button>
+                      </span>
+                    </div>
+
+                    <div style="margin-bottom:1rem;">
+                      <span class="flaw-spot" id="flaw-cryptic-error" title="Clique para auditar">
+                        <div style="font-size:0.75rem; color:#dc2626; font-family:'JetBrains Mono', monospace; background:#fee2e2; padding:0.35rem; border-radius:4px;">
+                          [ERR_500: FATAL_EXCEPTION_NIL_POINTER]
+                        </div>
+                      </span>
+                    </div>
+
+                    <div style="margin-bottom:1rem;">
+                      <span class="flaw-spot" id="flaw-no-undo" title="Clique para auditar">
+                        <div style="font-size:0.8rem; color:var(--text-secondary); background:var(--bg-subtle); padding:0.4rem; border-radius:4px;">
+                          Item 'Fatura #102' arquivado permanentemente. (Nenhum botão de Desfazer disponível).
+                        </div>
+                      </span>
+                    </div>
+
+                    <div>
+                      <span class="flaw-spot" id="flaw-btn-delete" title="Clique para auditar">
+                        <button class="btn" style="background:var(--accent-rose); color:#fff; font-size:0.8rem; padding:0.35rem 0.6rem;">
+                          Excluir Conta Inteira Instantaneamente (1 Clique)
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Painel de Classificação Heurística -->
+              <div>
+                <div class="widget-label">1. Escolha a Heurística de Nielsen Violada:</div>
+                <div class="heuristic-badge-list" id="auditor-heuristics-list" style="max-height: 250px; overflow-y:auto; margin-bottom:1rem; border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:0.5rem;"></div>
+
+                <div class="widget-form-group">
+                  <label class="widget-label" for="auditor-severity">2. Classificação de Gravidade (Nielsen):</label>
+                  <select class="widget-select" id="auditor-severity">
+                    <option value="1">1 - Problema Cosmético</option>
+                    <option value="2">2 - Problema Menor</option>
+                    <option value="3" selected>3 - Problema Maior (Prejudica a tarefa)</option>
+                    <option value="4">4 - Catastrófico (Bloqueia o uso)</option>
+                  </select>
+                </div>
+
+                <button class="btn btn-primary" id="auditor-evaluate-btn" style="width:100%;">
+                  Verificar Avaliação
+                </button>
+
+                <div id="auditor-feedback-box" style="margin-top:1rem; font-size:0.88rem;">
+                  <div style="color:var(--text-muted); font-style:italic;">Clique em uma das áreas tracejadas no mockup à esquerda para iniciar a inspeção.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="references-section">
+          <h3>Referências Formais Deste Módulo</h3>
+          <ul class="references-list">
+            <li class="ref-item">
+              <span class="ref-badge">NIELSEN & MOLICH 1990</span>
+              <strong>NIELSEN, Jakob; MOLICH, Rolf.</strong> Heuristic evaluation of user interfaces. In: <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI '90)</em>. New York: ACM, 1990. p. 249-256.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">NIELSEN 1994</span>
+              <strong>NIELSEN, Jakob.</strong> <em>Usability Engineering</em>. San Francisco: Morgan Kaufmann, 1994.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">NIELSEN 1995</span>
+              <strong>NIELSEN, Jakob.</strong> Severity Ratings for Usability Problems. <em>Nielsen Norman Group Articles</em>, 1995. Disponível em: <a href="https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/" target="_blank" rel="noopener">nngroup.com</a>.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">WHARTON ET AL. 1994</span>
+              <strong>WHARTON, Cathleen et al.</strong> The cognitive walkthrough method: A practitioner's guide. In: <em>Usability Inspection Methods</em>. New York: John Wiley & Sons, 1994. p. 105-140.
+            </li>
+          </ul>
+        </section>
+
+        <div class="page-nav-controls">
+          <a href="01-introducao-ihc.html" class="nav-page-btn">
+            <span class="nav-page-sub">&larr; Anterior</span>
+            <span class="nav-page-title">01. Introdução à IHC</span>
+          </a>
+          <a href="03-personas-mapas-empatia.html" class="nav-page-btn next">
+            <span class="nav-page-sub">Próximo &rarr;</span>
+            <span class="nav-page-title">03. Personas & Empatia</span>
+          </a>
+        </div>
+      </article>
+
+      <aside class="sidebar-toc">
+        <div class="toc-title">Neste Módulo</div>
+        <ul class="toc-nav">
+          <li><a href="#1-como-definir-se-uma-interface-e-boa" class="toc-link">1. Critérios de Qualidade</a></li>
+          <li><a href="#2-as-10-heuristicas-de-usabilidade-de-nielsen-1994" class="toc-link">2. 10 Heurísticas</a></li>
+          <li><a href="#3-escala-de-gravidade-de-problemas-de-usabilidade" class="toc-link">3. Escala de Gravidade</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 02</div>
+      <a href="../index.html">Voltar para o Índice Geral</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/widgets/02-heuristics-evaluator.js"></script>
+</body>
+</html>

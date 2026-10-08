@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09. Acessibilidade Digital & Diretrizes WCAG | IHC</title>
+  <meta name="description" content="Diretrizes de Acessibilidade para Conteúdo Web (WCAG 2.1/2.2): princípios POUR, níveis A/AA/AAA, cálculo de contraste e inclusão de pessoas com deficiência.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/widgets.css">
+</head>
+<body>
+
+  <!-- Filtros SVG ocultos para simulação precisa de daltonismo -->
+  <svg style="display: none;">
+    <defs>
+      <!-- Protanopia (cegueira para vermelho) -->
+      <filter id="protanopia-filter">
+        <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0" />
+      </filter>
+      <!-- Deuteranopia (cegueira para verde) -->
+      <filter id="deuteranopia-filter">
+        <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0" />
+      </filter>
+      <!-- Tritanopia (cegueira para azul) -->
+      <filter id="tritanopia-filter">
+        <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0" />
+      </filter>
+    </defs>
+  </svg>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Material Didático</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="08-interaction-design.html" class="nav-link">&larr; 08. IxD</a></li>
+          <li><a href="10-jornada-do-usuario.html" class="nav-link">10. Jornada &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Início</a>
+      <span>/</span>
+      <span class="current">09. Acessibilidade Digital & WCAG</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="badge category-avaliacao">Módulo 09 &bull; Acessibilidade & Avaliação</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 30 min</span>
+      </div>
+      <h1 class="page-title">Acessibilidade Digital & As Diretrizes WCAG</h1>
+      <p class="page-subtitle">
+        Projetando interfaces universais: a fundamentação dos princípios POUR, os níveis de conformidade e o cálculo científico de contraste de cores para inclusão plena.
+      </p>
+    </header>
+
+    <div class="content-grid">
+      <article class="article-content">
+        <h2>1. O Imperativo Ético e Legal da Acessibilidade</h2>
+        <p>
+          A acessibilidade na web não é um "recurso bônus", mas sim a garantia de que pessoas com deficiências (visuais, motoras, auditivas, cognitivas ou temporárias) possam usufruir da sociedade digital com autonomia e dignidade (Horton & Quesenbery, 2014). No Brasil, a <strong>Lei Brasileira de Inclusão (Lei nº 13.146/2015, Art. 63)</strong> estabelece como obrigatória a acessibilidade nos sítios da internet mantidos por empresas com sede ou representação comercial no país e por órgãos públicos.
+        </p>
+
+        <h2>2. Os Quatro Princípios Fundamentais (POUR) da WCAG</h2>
+        <p>
+          As <strong>Web Content Accessibility Guidelines (WCAG)</strong>, mantidas pelo consórcio W3C/WAI, organizam-se em quatro pilares universais:
+        </p>
+
+        <div class="callout callout-theory">
+          <div class="callout-title">O Mnemônico POUR</div>
+          <ul style="margin: 0.5rem 0 0 1.25rem;">
+            <li><strong>P - Perceptível (Perceivable):</strong> A informação não pode ser invisível a todos os sentidos do usuário. Ex: imagens precisam de equivalentes textuais (atributo <code>alt</code>) para pessoas cegas com leitores de tela; áudios precisam de legendas.</li>
+            <li><strong>O - Operável (Operable):</strong> A interface não pode exigir ações que o usuário não consiga realizar. Ex: 100% dos botões, menus e formulários devem ser navegáveis exclusivamente via <strong>teclado</strong> (<kbd>Tab</kbd>, <kbd>Enter</kbd>, <kbd>Espaço</kbd>), sem depender de ponteiro de mouse.</li>
+            <li><strong>U - Compreensível (Understandable):</strong> A linguagem deve ser clara, e as operações devem ser previsíveis. Ex: formulários com mensagens de erro que explicam como corrigir e foco visual que não salta de maneira inesperada.</li>
+            <li><strong>R - Robusto (Robust):</strong> O código HTML deve ser semanticamente válido para que navegadores e tecnologias assistivas (leitores de tela NVDA, JAWS, VoiceOver) interpretem os elementos com precisão.</li>
+          </ul>
+        </div>
+
+        <h2>3. Níveis de Conformidade e Critérios de Contraste</h2>
+        <p>
+          As diretrizes da WCAG 2.1 e 2.2 são categorizadas em três níveis cumulativos:
+        </p>
+        <ul>
+          <li><strong>Nível A:</strong> Requisitos mínimos indispensáveis (sem os quais determinados grupos de usuários ficam completamente bloqueados).</li>
+          <li><strong>Nível AA:</strong> O padrão legal e corporativo global (exigido por leis de acessibilidade governamentais e corporativas).</li>
+          <li><strong>Nível AAA:</strong> O nível mais rigoroso de acessibilidade especializada (recomendado para serviços públicos de saúde, emergência e educação).</li>
+        </ul>
+
+        <div class="callout callout-key">
+          <div class="callout-title">Critério de Sucesso 1.4.3: Contraste Mínimo (Nível AA)</div>
+          <p>
+            O contraste visual entre o texto e seu plano de fundo deve respeitar a fórmula matemática de luminância relativa do W3C:
+          </p>
+          <ul style="margin: 0.5rem 0 0 1.25rem;">
+            <li><strong>Texto Normal (&lt; 18pt / 24px):</strong> Razão mínima de contraste de <strong>4.5 : 1</strong>.</li>
+            <li><strong>Texto Grande (&ge; 18pt ou &ge; 14pt em negrito):</strong> Razão mínima de contraste de <strong>3.0 : 1</strong>.</li>
+            <li><strong>Nível AAA (Máximo rigor):</strong> <strong>7.0 : 1</strong> para texto normal e <strong>4.5 : 1</strong> para texto grande.</li>
+          </ul>
+        </div>
+
+        <!-- WIDGET 09: Laboratório Interativo WCAG -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Laboratório de Testes</span>
+              <h3 class="sandbox-title">Avaliador de Contraste WCAG & Simulador de Daltonismo</h3>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <label for="wcag-daltonism-select" style="font-size:0.8rem; font-weight:600;">Simular Visão:</label>
+              <select id="wcag-daltonism-select" class="widget-select" style="padding:0.25rem 0.5rem; font-size:0.8rem;">
+                <option value="normal">Visão Típica (Tricromata)</option>
+                <option value="protanopia">Protanopia (Sem cones vermelhos)</option>
+                <option value="deuteranopia">Deuteranopia (Sem cones verdes)</option>
+                <option value="tritanopia">Tritanopia (Sem cones azuis)</option>
+                <option value="achromatopsia">Acromatopsia (Monocromático)</option>
+              </select>
+            </div>
+          </div>
+          <div class="sandbox-body">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-bottom:1.5rem;">
+              <div class="widget-form-group">
+                <label class="widget-label" for="wcag-fg-color">Cor do Texto (Primeiro Plano):</label>
+                <div style="display:flex; gap:0.5rem; align-items:center;">
+                  <input type="color" id="wcag-fg-color" value="#1e293b" style="width:50px; height:38px; border:1px solid var(--border-color); border-radius:var(--radius-sm); cursor:pointer;">
+                  <span style="font-size:0.85rem; font-family:'JetBrains Mono', monospace;">Selecione a cor</span>
+                </div>
+              </div>
+
+              <div class="widget-form-group">
+                <label class="widget-label" for="wcag-bg-color">Cor do Fundo:</label>
+                <div style="display:flex; gap:0.5rem; align-items:center;">
+                  <input type="color" id="wcag-bg-color" value="#f8fafc" style="width:50px; height:38px; border:1px solid var(--border-color); border-radius:var(--radius-sm); cursor:pointer;">
+                  <span style="font-size:0.85rem; font-family:'JetBrains Mono', monospace;">Selecione o fundo</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Caixa de Prévia com Filtro de Daltonismo Aplicado -->
+            <div id="wcag-preview-card" class="contrast-preview-box">
+              <h3 style="margin-bottom:0.5rem; font-size:1.5rem;">Texto de Demonstração em Tempo Real</h3>
+              <p style="font-size:1rem; margin:0;">
+                Este parágrafo simula a legibilidade real de um usuário navegando em sua página. Se o contraste for insuficiente, a leitura torna-se cansativa ou inviável para pessoas com baixa visão ou sob luz solar intensa.
+              </p>
+            </div>
+
+            <!-- Painel de Pontuação de Conformidade -->
+            <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+                <span style="font-weight:700;">Razão de Contraste Calculada:</span>
+                <span id="wcag-ratio-number" style="font-family:'JetBrains Mono', monospace; font-size:1.75rem; font-weight:800; color:var(--primary);">
+                  -- : 1
+                </span>
+              </div>
+
+              <div class="contrast-score-pills">
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AA (Normal):</span>
+                  <span id="badge-aa-normal" class="score-pill">Verificando...</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AA (Grande):</span>
+                  <span id="badge-aa-large" class="score-pill">Verificando...</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AAA (Normal):</span>
+                  <span id="badge-aaa-normal" class="score-pill">Verificando...</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AAA (Grande):</span>
+                  <span id="badge-aaa-large" class="score-pill">Verificando...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="references-section">
+          <h3>Referências Formais Deste Módulo</h3>
+          <ul class="references-list">
+            <li class="ref-item">
+              <span class="ref-badge">BRASIL 2015</span>
+              <strong>BRASIL.</strong> Lei nº 13.146, de 6 de julho de 2015. Institui a Lei Brasileira de Inclusão da Pessoa com Deficiência (Estatuto da Pessoa com Deficiência). <em>Diário Oficial da União</em>, Brasília, DF, 2015.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">HORTON & QUESENBERY 2014</span>
+              <strong>HORTON, Sarah; QUESENBERY, Whitney.</strong> <em>A Web for Everyone: Designing Accessible User Experiences</em>. Brooklyn: Rosenfeld Media, 2014.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">W3C 2018</span>
+              <strong>W3C.</strong> <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. W3C Recommendation, 2018. Disponível em: <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">w3.org/TR/WCAG21/</a>.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">W3C 2023</span>
+              <strong>W3C.</strong> <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. W3C Recommendation, 2023. Disponível em: <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">w3.org/TR/WCAG22/</a>.
+            </li>
+          </ul>
+        </section>
+
+        <div class="page-nav-controls">
+          <a href="08-interaction-design.html" class="nav-page-btn">
+            <span class="nav-page-sub">&larr; Anterior</span>
+            <span class="nav-page-title">08. Interaction Design & Norman</span>
+          </a>
+          <a href="10-jornada-do-usuario.html" class="nav-page-btn next">
+            <span class="nav-page-sub">Próximo &rarr;</span>
+            <span class="nav-page-title">10. Jornada do Usuário</span>
+          </a>
+        </div>
+      </article>
+
+      <aside class="sidebar-toc">
+        <div class="toc-title">Neste Módulo</div>
+        <ul class="toc-nav">
+          <li><a href="#1-o-imperativo-etico-e-legal-da-acessibilidade" class="toc-link">1. Imperativo Legal</a></li>
+          <li><a href="#2-os-quatro-principios-fundamentais-pour-da-wcag" class="toc-link">2. Princípios POUR</a></li>
+          <li><a href="#3-niveis-de-conformidade-e-criterios-de-contraste" class="toc-link">3. Níveis & Contraste</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 09</div>
+      <a href="../index.html">Voltar para o Índice Geral</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/widgets/09-wcag-lab.js"></script>
+</body>
+</html>

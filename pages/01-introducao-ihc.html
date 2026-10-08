@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01. Introdução à IHC | Histórico e Importância</title>
+  <meta name="description" content="Introdução à Interação Humano-Computador: histórico, evolução tecnológica, conceitos fundamentais de usabilidade, UX e a Lei de Fitts.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/widgets.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Material Didático</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">&larr; Voltar para a Home</a></li>
+          <li><a href="02-heuristicas-nielsen.html" class="nav-link">Próximo: Heurísticas &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Início</a>
+      <span>/</span>
+      <span class="current">01. Introdução à IHC</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="badge category-fundamentos">Módulo 01 &bull; Fundamentos</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 20 min</span>
+      </div>
+      <h1 class="page-title">Introdução à Interação Humano-Computador (IHC)</h1>
+      <p class="page-subtitle">
+        Compreenda a evolução histórica dos paradigmas de interação, o impacto sociotécnico da tecnologia e as métricas formais de usabilidade e experiência do usuário.
+      </p>
+    </header>
+
+    <div class="content-grid">
+      <article class="article-content">
+        <h2>1. O que é Interação Humano-Computador?</h2>
+        <p>
+          A <strong>Interação Humano-Computador (IHC)</strong> é uma disciplina multidisciplinar dedicada ao design, avaliação e implementação de sistemas computacionais interativos para uso humano, bem como ao estudo dos fenômenos circundantes (Hewett et al., 1992; Barbosa & Silva, 2010). Situada na intersecção entre Ciência da Computação, Psicologia Cognitiva, Ergonomia, Design e Semiótica, a IHC investiga como tornar os sistemas não apenas tecnicamente corretos, mas humanos, seguros, eficientes e prazerosos.
+        </p>
+
+        <div class="callout callout-theory">
+          <div class="callout-title">Definição Formal de Usabilidade (ISO 9241-11)</div>
+          <p>
+            Segundo a norma internacional <strong>ISO 9241-11</strong>, usabilidade é <em>"a medida na qual um produto pode ser usado por usuários específicos para alcançar objetivos específicos com eficácia, eficiência e satisfação em um contexto de uso específico"</em>.
+          </p>
+          <ul style="margin: 0.5rem 0 0 1.25rem;">
+            <li><strong>Eficácia:</strong> Acurácia e completude com que os usuários atingem seus objetivos.</li>
+            <li><strong>Eficiência:</strong> Recursos gastos (tempo, esforço cognitivo, cliques) em relação à precisão dos resultados.</li>
+            <li><strong>Satisfação:</strong> Conforto, ausência de frustração e atitudes positivas em relação ao uso do sistema.</li>
+          </ul>
+        </div>
+
+        <h2>2. Evolução Histórica dos Paradigmas de Interação</h2>
+        <p>
+          A história da computação é marcada pela transição gradual de interfaces centradas na máquina (painéis de cabos, cartões perfurados, linha de comando batch) para interfaces adaptadas aos modelos mentais humanos:
+        </p>
+
+        <!-- WIDGET 01A: Linha do Tempo Interativa -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Simulador Interativo</span>
+              <h3 class="sandbox-title">Marcos Históricos de IHC (Clique nos Pontos)</h3>
+            </div>
+            <span class="sandbox-instructions">Navegue pelas décadas para ver o impacto de cada inovação</span>
+          </div>
+          <div class="sandbox-body">
+            <div class="timeline-slider-wrap">
+              <div class="timeline-points" id="timeline-points-container"></div>
+              <div class="timeline-details-card" id="timeline-card-content"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2>3. Da Interface Gráfica (GUI) à Engenharia Semiótica</h2>
+        <p>
+          O advento do <strong>Xerox Alto (1973)</strong> e do <strong>Apple Macintosh (1984)</strong> consagrou a manipulação direta e as metáforas do mundo físico (pastas, lixeira, janelas). No Brasil, a Profa. Clarisse Sieckenius de Souza desenvolveu a <strong>Engenharia Semiótica</strong> (de Souza, 2005), que conceitua a interface como uma <em>meta-comunicação</em>: o designer envia uma mensagem ao usuário ("aqui está o que eu concebi que você precisa fazer e como usar").
+        </p>
+
+        <h2>4. A Lei de Fitts: O Modelo Matemático do Apontamento</h2>
+        <p>
+          Formulada por Paul Fitts em 1954 e introduzida em IHC por Stuart Card, Thomas Moran e Allen Newell (1983), a <strong>Lei de Fitts</strong> prevê o tempo necessário para mover o cursor até um alvo físico ou digital:
+        </p>
+
+        <div class="callout callout-key">
+          <div class="callout-title">Equação de Fitts</div>
+          <p>
+            $$MT = a + b \cdot \log_2\left(\frac{2D}{W}\right) = a + b \cdot ID$$
+          </p>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+            Onde <strong>MT</strong> é o tempo de movimento, <strong>D</strong> é a distância até o alvo, <strong>W</strong> é a largura do alvo, e <strong>ID</strong> é o Índice de Dificuldade (em bits). 
+            <strong>Lição de Design:</strong> Botões cruciais devem ser maiores ($W$ alto) e posicionados próximos ou nas bordas da tela (onde a borda física atua como alvo de largura infinita).
+          </p>
+        </div>
+
+        <!-- WIDGET 01B: Simulador da Lei de Fitts -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Experimento Prático</span>
+              <h3 class="sandbox-title">Laboratório da Lei de Fitts: Teste seu Tempo de Movimento</h3>
+            </div>
+            <button class="btn btn-outline" id="fitts-reset-btn" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;">Reiniciar Teste</button>
+          </div>
+          <div class="sandbox-body">
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+              Clique repetidamente no alvo vermelho que surge na arena. Observe como alvos menores demandam significativamente mais micro-ajustes motores e tempo de foco!
+            </p>
+            <div class="fitts-arena" id="fitts-arena">
+              <div class="fitts-target" id="fitts-target">CLIQUE</div>
+            </div>
+            <div id="fitts-stats" style="margin-top:1rem; font-size:0.9rem; font-family:'JetBrains Mono', monospace; color:var(--primary);">
+              Clique no alvo vermelho para iniciar o teste!
+            </div>
+          </div>
+        </div>
+
+        <!-- Referências da Página -->
+        <section class="references-section">
+          <h3>Referências Formais Deste Módulo</h3>
+          <ul class="references-list">
+            <li class="ref-item">
+              <span class="ref-badge">BARBOSA & SILVA 2010</span>
+              <strong>BARBOSA, Simone D. J.; SILVA, Bruno S. da.</strong> <em>Interação Humano-Computador</em>. Rio de Janeiro: Elsevier / Campus, 2010.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">BUSH 1945</span>
+              <strong>BUSH, Vannevar.</strong> As We May Think. <em>The Atlantic Monthly</em>, v. 176, n. 1, p. 101-108, 1945.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">CARD ET AL. 1983</span>
+              <strong>CARD, Stuart K.; MORAN, Thomas P.; NEWELL, Allen.</strong> <em>The Psychology of Human-Computer Interaction</em>. Hillsdale: L. Erlbaum Associates, 1983.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">DE SOUZA 2005</span>
+              <strong>DE SOUZA, Clarisse Sieckenius.</strong> <em>The Semiotic Engineering of Human-Computer Interaction</em>. Cambridge: MIT Press, 2005.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">FITTS 1954</span>
+              <strong>FITTS, Paul M.</strong> The information capacity of the human motor system in controlling the amplitude of movement. <em>Journal of Experimental Psychology</em>, v. 47, n. 6, p. 381-391, 1954.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">ISO 9241-11</span>
+              <strong>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.</strong> <em>ISO 9241-11: Ergonomics of human-system interaction - Part 11: Usability: Definitions and concepts</em>. Geneva: ISO, 2018.
+            </li>
+          </ul>
+        </section>
+
+        <!-- Navegação Anterior/Próximo -->
+        <div class="page-nav-controls">
+          <a href="../index.html" class="nav-page-btn">
+            <span class="nav-page-sub">&larr; Anterior</span>
+            <span class="nav-page-title">Home: Visão Geral</span>
+          </a>
+          <a href="02-heuristicas-nielsen.html" class="nav-page-btn next">
+            <span class="nav-page-sub">Próximo &rarr;</span>
+            <span class="nav-page-title">02. Heurísticas de Nielsen</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Sumário Lateral (TOC) -->
+      <aside class="sidebar-toc">
+        <div class="toc-title">Neste Módulo</div>
+        <ul class="toc-nav">
+          <li><a href="#1-o-que-e-interacao-humano-computador" class="toc-link">1. O que é IHC?</a></li>
+          <li><a href="#2-evolucao-historica-dos-paradigmas-de-interacao" class="toc-link">2. Marcos Históricos</a></li>
+          <li><a href="#3-da-interface-grafica-gui-a-engenharia-semiotica" class="toc-link">3. GUI & Semiótica</a></li>
+          <li><a href="#4-a-lei-de-fitts-o-modelo-matematico-do-apontamento" class="toc-link">4. Lei de Fitts</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 01</div>
+      <a href="../index.html">Voltar para o Índice Geral</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/widgets/01-timeline.js"></script>
+</body>
+</html>

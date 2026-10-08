@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material Didático de IHC | Interação Humano-Computador</title>
+  <meta name="description" content="Portal didático e interativo para ensino de conceitos fundamentais de Interação Humano-Computador (IHC), com fundamentação teórica rigorosa, autores clássicos e laboratórios interativos.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/widgets.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação Superior -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Interação Humano-Computador</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#trilha" class="nav-link active">Trilha Didática</a></li>
+          <li><a href="#modulos" class="nav-link">Módulos</a></li>
+          <li><a href="#bibliografia" class="nav-link">Bibliografia</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="main-wrapper">
+    <!-- Seção Hero -->
+    <section class="hero">
+      <div class="hero-tag">Guia Acadêmico & Laboratório Interativo</div>
+      <h1 class="hero-title">Engenharia e Design de <span>Interação Humano-Computador</span></h1>
+      <p class="hero-subtitle">
+        Uma plataforma didática moderna projetada para conectar os fundamentos teóricos clássicos da literatura acadêmica (Norman, Nielsen, Cooper, Preece) com simuladores visuais dinâmicos para experimentação prática de estudantes e desenvolvedores.
+      </p>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#modulos" class="btn btn-primary">Explorar os 11 Tópicos</a>
+        <a href="pages/01-introducao-ihc.html" class="btn btn-outline">Começar do Início (Tópico 1)</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">11</span>
+          <span class="stat-label">Módulos Completos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Com Exemplos Interativos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">ABNT</span>
+          <span class="stat-label">Referências Formais</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">Zero Setup</span>
+          <span class="stat-label">Pronto para GitHub Pages</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trilha Metodológica de IHC -->
+    <section id="trilha" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Trilha Metodológica no Ciclo de Vida de IHC</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        Os 11 módulos cobrem de ponta a ponta as etapas do duplo diamante e do ciclo de vida de usabilidade (Mayhew, 1999; Preece et al., 2015):
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-top:4px solid var(--primary); padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-weight:700; color:var(--primary); font-size:0.85rem; text-transform:uppercase;">Etapa 1</div>
+          <h3 style="font-size:1.05rem; margin:0.25rem 0 0.5rem;">Fundamentação</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Histórico, relevância e princípios de Interaction Design (IxD).</p>
+        </div>
+        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-top:4px solid var(--accent-emerald); padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-weight:700; color:var(--accent-emerald); font-size:0.85rem; text-transform:uppercase;">Etapa 2</div>
+          <h3 style="font-size:1.05rem; margin:0.25rem 0 0.5rem;">Empatia & Pesquisa</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Personas, Mapas de Empatia e Mapeamento da Jornada do Usuário.</p>
+        </div>
+        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-top:4px solid var(--accent-amber); padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-weight:700; color:var(--accent-amber); font-size:0.85rem; text-transform:uppercase;">Etapa 3</div>
+          <h3 style="font-size:1.05rem; margin:0.25rem 0 0.5rem;">Definição & Ideação</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">PoV, How Might We, Brainwriting 6-3-5, SCAMPER e Pitches Curtos.</p>
+        </div>
+        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-top:4px solid var(--accent-purple); padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-weight:700; color:var(--accent-purple); font-size:0.85rem; text-transform:uppercase;">Etapa 4</div>
+          <h3 style="font-size:1.05rem; margin:0.25rem 0 0.5rem;">Prototipação</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Baixa Fidelidade, Mágico de Oz e Interfaces de Média Fidelidade.</p>
+        </div>
+        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-top:4px solid var(--accent-rose); padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-weight:700; color:var(--accent-rose); font-size:0.85rem; text-transform:uppercase;">Etapa 5</div>
+          <h3 style="font-size:1.05rem; margin:0.25rem 0 0.5rem;">Avaliação & Acessibilidade</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">10 Heurísticas de Nielsen e Diretrizes de Acessibilidade Web (WCAG).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Módulos Didáticos -->
+    <section id="modulos" class="modules-section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Módulos Didáticos</h2>
+          <p class="section-desc">Selecione um tópico para estudar a teoria, bibliografia e experimentar os laboratórios interativos.</p>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">Todos (11)</button>
+          <button class="filter-btn" data-filter="fundamentos">Fundamentos</button>
+          <button class="filter-btn" data-filter="empatia">Empatia & Usuário</button>
+          <button class="filter-btn" data-filter="ideacao">Ideação & Pitch</button>
+          <button class="filter-btn" data-filter="prototipo">Prototipação</button>
+          <button class="filter-btn" data-filter="avaliacao">Avaliação & WCAG</button>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Card 01 -->
+        <article class="topic-card" data-category="fundamentos">
+          <span class="card-number">01</span>
+          <div class="card-category category-fundamentos">Fundamentos</div>
+          <h3 class="card-title"><a href="pages/01-introducao-ihc.html">1. Introdução à IHC</a></h3>
+          <p class="card-desc">Histórico evolutivo, relevância sociotécnica, conceitos primordiais de usabilidade (ISO 9241-11), comunicabilidade e experiência do usuário (UX).</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Linha do Tempo Interativa & Simulador da Lei de Fitts</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Bush (1945), Engelbart (1968), Fitts (1954)</span>
+            <a href="pages/01-introducao-ihc.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 02 -->
+        <article class="topic-card" data-category="avaliacao">
+          <span class="card-number">02</span>
+          <div class="card-category category-avaliacao">Avaliação</div>
+          <h3 class="card-title"><a href="pages/02-heuristicas-nielsen.html">2. Avaliação de Interfaces & Heurísticas de Nielsen</a></h3>
+          <p class="card-desc">Critérios de qualidade de uso, métodos de inspeção e as 10 Heurísticas de Nielsen explicadas com classificação de gravidade de problemas.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Laboratório Interativo de Auditoria Heurística</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Nielsen & Molich (1990), Nielsen (1994)</span>
+            <a href="pages/02-heuristicas-nielsen.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 03 -->
+        <article class="topic-card" data-category="empatia">
+          <span class="card-number">03</span>
+          <div class="card-category category-empatia">Empatia & Usuário</div>
+          <h3 class="card-title"><a href="pages/03-personas-mapas-empatia.html">3. Personas & Mapas de Empatia</a></h3>
+          <p class="card-desc">Modelagem de usuários-alvo baseada em metas (Goal-Directed Design) e cartografia de sentimentos, dores, influências e expectativas do usuário.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Construtor Dinâmico de Personas & Canvas de Empatia</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Alan Cooper (1999), Dave Gray (2010)</span>
+            <a href="pages/03-personas-mapas-empatia.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 04 -->
+        <article class="topic-card" data-category="ideacao">
+          <span class="card-number">04</span>
+          <div class="card-category category-ideacao">Ideação & Pitch</div>
+          <h3 class="card-title"><a href="pages/04-pov-how-might-we.html">4. Point of View (PoV) & How Might We</a></h3>
+          <p class="card-desc">Estruturação formal da declaração de problema centrada no humano e conversão em perguntas geradoras de oportunidades de design (HMW/HCW).</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Gerador e Validador de PoV com Detector de Antipatterns</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Stanford d.school, Basadur et al. (1982)</span>
+            <a href="pages/04-pov-how-might-we.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 05 -->
+        <article class="topic-card" data-category="ideacao">
+          <span class="card-number">05</span>
+          <div class="card-category category-ideacao">Ideação & Pitch</div>
+          <h3 class="card-title"><a href="pages/05-brainwriting-ideacao.html">5. Brainwriting, SCAMPER & Piores Ideias</a></h3>
+          <p class="card-desc">Técnicas criativas para desbloqueio cognitivo: Brainwriting 6-3-5 sem inibição social, Worst Possible Ideas com inversão sistemática e o operador SCAMPER.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Painel Interativo SCAMPER & Inversor de Piores Ideias</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Rohrbach (1969), Eberle (1971)</span>
+            <a href="pages/05-brainwriting-ideacao.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 06 -->
+        <article class="topic-card" data-category="ideacao">
+          <span class="card-number">06</span>
+          <div class="card-category category-ideacao">Ideação & Pitch</div>
+          <h3 class="card-title"><a href="pages/06-pitches-curtos.html">6. Pitches Curtos Iniciais (Sem Demonstração)</a></h3>
+          <p class="card-desc">Comunicação clara de proposta de valor e problema do usuário antes da codificação: métodos NABC do SRI, Elevator Pitch e High-Concept Pitch.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Teleprompter & Cronômetro de 60 Segundos com Ritmo Guiado</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Geoffrey Moore (1991), SRI NABC</span>
+            <a href="pages/06-pitches-curtos.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 07 -->
+        <article class="topic-card" data-category="prototipo">
+          <span class="card-number">07</span>
+          <div class="card-category category-prototipo">Prototipação</div>
+          <h3 class="card-title"><a href="pages/07-prototipacao-baixa-fidelidade.html">7. Prototipação de Baixa Fidelidade & Mágico de Oz</a></h3>
+          <p class="card-desc">Prototipação rápida em papel, sketches conceituais e a técnica do Mágico de Oz para testar usabilidade e inteligência simulada antes de codificar.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Simulador de Visão Dupla do Mágico de Oz (Usuário vs Bastidores)</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Kelley (1984), Snyder (2003), Buxton (2007)</span>
+            <a href="pages/07-prototipacao-baixa-fidelidade.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 08 -->
+        <article class="topic-card" data-category="fundamentos">
+          <span class="card-number">08</span>
+          <div class="card-category category-fundamentos">Fundamentos</div>
+          <h3 class="card-title"><a href="pages/08-interaction-design.html">8. Interaction Design (IxD) & Princípios de Norman</a></h3>
+          <p class="card-desc">Design de Interação estrutural: os 6 princípios de Donald Norman (Affordance, Signifiers, Constraints, Feedback, Mapping e Modelo Conceitual).</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Simulador de Mapeamento de Fogão & Portas de Norman</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Don Norman (2013), Preece, Rogers & Sharp (2015)</span>
+            <a href="pages/08-interaction-design.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 09 -->
+        <article class="topic-card" data-category="avaliacao">
+          <span class="card-number">09</span>
+          <div class="card-category category-avaliacao">Avaliação</div>
+          <h3 class="card-title"><a href="pages/09-acessibilidade-wcag.html">9. Acessibilidade Digital & Diretrizes WCAG</a></h3>
+          <p class="card-desc">Inclusão e acessibilidade universal: princípios POUR (Perceptível, Operável, Compreensível, Robusto), critérios de conformidade A, AA, AAA e legislação.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Calculador de Contraste WCAG em Tempo Real & Filtro de Daltonismo</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">W3C / WAI (WCAG 2.1 / 2.2)</span>
+            <a href="pages/09-acessibilidade-wcag.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 10 -->
+        <article class="topic-card" data-category="empatia">
+          <span class="card-number">10</span>
+          <div class="card-category category-empatia">Empatia & Usuário</div>
+          <h3 class="card-title"><a href="pages/10-jornada-do-usuario.html">10. Jornada do Usuário (Customer Journey)</a></h3>
+          <p class="card-desc">Mapeamento cronológico de experiências: estágios, pontos de contato (touchpoints), ações, curva emocional e identificação de oportunidades de melhoria.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Canvas de Jornada com Curva de Sentimento Dinâmica em SVG</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Jim Kalbach (2016), Stickdorn & Schneider (2011)</span>
+            <a href="pages/10-jornada-do-usuario.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Card 11 -->
+        <article class="topic-card" data-category="prototipo">
+          <span class="card-number">11</span>
+          <div class="card-category category-prototipo">Prototipação</div>
+          <h3 class="card-title"><a href="pages/11-interfaces-media-fidelidade.html">11. Interfaces de Média Fidelidade (Wireframes)</a></h3>
+          <p class="card-desc">Estruturação digital sem ruído visual: arquitetura da informação, hierarquia tipográfica, grid systems de 8pt, layout cinza e componentes reutilizáveis.</p>
+          <div class="card-interactive-preview">
+            <span>⚡ Comparador Interativo Esboço vs Wireframe com Camada de Grid</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-authors">Garrett (2011), Dan Saffer (2009)</span>
+            <a href="pages/11-interfaces-media-fidelidade.html" class="card-cta">Acessar &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Seção de Bibliografia Geral do Curso -->
+    <section id="bibliografia" class="references-section">
+      <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Principais Referências Bibliográficas</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        O material adota os livros-texto canônicos das ciências da computação, design e ergonomia:
+      </p>
+
+      <ul class="references-list">
+        <li class="ref-item">
+          <span class="ref-badge">NORMAN 2013</span>
+          <strong>NORMAN, Donald A.</strong> <em>The Design of Everyday Things: Revised and Expanded Edition</em>. New York: Basic Books, 2013.
+        </li>
+        <li class="ref-item">
+          <span class="ref-badge">NIELSEN 1994</span>
+          <strong>NIELSEN, Jakob.</strong> <em>Usability Engineering</em>. San Francisco: Morgan Kaufmann, 1994.
+        </li>
+        <li class="ref-item">
+          <span class="ref-badge">PREECE ET AL. 2015</span>
+          <strong>PREECE, Jennifer; ROGERS, Yvonne; SHARP, Helen.</strong> <em>Interaction Design: Beyond Human-Computer Interaction</em>. 4. ed. Chichester: John Wiley & Sons, 2015.
+        </li>
+        <li class="ref-item">
+          <span class="ref-badge">COOPER 2014</span>
+          <strong>COOPER, Alan; REIMANN, Robert; CRONIN, David; NOESSEL, Christopher.</strong> <em>About Face: The Essentials of Interaction Design</em>. 4. ed. Indianapolis: John Wiley & Sons, 2014.
+        </li>
+        <li class="ref-item">
+          <span class="ref-badge">ROCHA & SILVA 2010</span>
+          <strong>BARBOSA, Simone D. J.; SILVA, Bruno S. da.</strong> <em>Interação Humano-Computador</em>. Rio de Janeiro: Elsevier / Campus, 2010.
+        </li>
+        <li class="ref-item">
+          <span class="ref-badge">W3C 2023</span>
+          <strong>W3C (World Wide Web Consortium).</strong> <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. W3C Recommendation, 2023. Disponível em: <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">w3.org/TR/WCAG22/</a>.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Rodapé Global -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <strong>Material Didático de IHC</strong> &bull; Guia para Ensino de Interação Humano-Computador
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">
+          Publicado via GitHub Pages &bull; Conteúdo educacional aberto
+        </div>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#trilha">Trilha</a></li>
+        <li><a href="#modulos">Módulos</a></li>
+        <li><a href="#bibliografia">Bibliografia</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

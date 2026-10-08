@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10. Jornada do Usuário (Customer Journey) | IHC</title>
+  <meta name="description" content="Mapeamento da Jornada do Usuário em IHC: touchpoints, fases cronológicas, oscilações emocionais e identificação de momentos da verdade segundo Jim Kalbach.">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/widgets.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <span class="brand-badge">IHC</span>
+        <span>Material Didático</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="09-acessibilidade-wcag.html" class="nav-link">&larr; 09. WCAG</a></li>
+          <li><a href="11-interfaces-media-fidelidade.html" class="nav-link">11. Média Fidelidade &rarr;</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Início</a>
+      <span>/</span>
+      <span class="current">10. Jornada do Usuário</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="badge category-empatia">Módulo 10 &bull; Empatia & Pesquisa</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 25 min</span>
+      </div>
+      <h1 class="page-title">Mapeamento da Jornada do Usuário (User Journey)</h1>
+      <p class="page-subtitle">
+        Como visualizar a experiência humana como um filme contínuo: conectando ações cronológicas, pontos de contato (touchpoints) e a montanha-russa emocional do usuário.
+      </p>
+    </header>
+
+    <div class="content-grid">
+      <article class="article-content">
+        <h2>1. Fluxo de Tarefas vs. Jornada do Usuário: Qual a Diferença?</h2>
+        <p>
+          Em engenharia tradicional de software, costuma-se desenhar diagramas de fluxo de dados ou casos de uso funcionais (ex: <em>"o usuário clica em A, o sistema grava em B, depois exibe C"</em>). Esse modelo é estritamente mecânico e ignora a experiência subjetiva humana.
+        </p>
+
+        <p>
+          Um <strong>Mapa de Jornada do Usuário (User Journey Map)</strong>, por outro lado, documenta a experiência holística de ponta a ponta (Kalbach, 2016; Stickdorn & Schneider, 2011). Ele responde perguntas fundamentais de IHC:
+        </p>
+        <ul>
+          <li><em>O que o usuário estava tentando alcançar antes mesmo de abrir o nosso aplicativo?</em></li>
+          <li><em>Onde ocorreram quedas bruscas de confiança ou picos de frustração?</em></li>
+          <li><em>Quais canais ou dispositivos físicos e digitais alternaram-se ao longo da experiência?</em></li>
+        </ul>
+
+        <h2>2. A Anatomia Estrutural de um Journey Map</h2>
+        <p>
+          Segundo o <em>Nielsen Norman Group</em> (Gibbons, 2018), um mapa de jornada de excelência é composto por camadas horizontais correlacionadas no tempo:
+        </p>
+
+        <div class="callout callout-theory">
+          <div class="callout-title">Camadas do Mapa de Jornada</div>
+          <ol style="margin: 0.5rem 0 0 1.25rem;">
+            <li><strong>Fases da Jornada:</strong> Os grandes blocos cronológicos da experiência (ex: <em>Descoberta &rarr; Cadastro &rarr; Primeiro Uso &rarr; Execução &rarr; Pós-Venda</em>).</li>
+            <li><strong>Ações do Usuário:</strong> Os passos concretos dados pelo usuário para avançar.</li>
+            <li><strong>Pontos de Contato (Touchpoints):</strong> Onde e através de quê o usuário interage com o ecossistema (landing page, notificação push, e-mail, terminal físico).</li>
+            <li><strong>Dores e Fricções (Pain Points):</strong> Dúvidas, lentidão, quebras de expectativa e obstáculos cognitivos.</li>
+            <li><strong>Curva Emocional (Emotional Curve):</strong> O gráfico de sentimentos que oscila entre a euforia e a frustração intensa.</li>
+            <li><strong>Oportunidades de IHC:</strong> Ideias de design concretas para eliminar vales emocionais e transformar a experiência.</li>
+          </ol>
+        </div>
+
+        <h2>3. O Conceito de "Momentos da Verdade" (Moments of Truth)</h2>
+        <p>
+          Em design de serviços e IHC, um <em>Momento da Verdade</em> é aquele ponto exato de inflexão da jornada no qual uma fricção não resolvida faz com que o usuário abandone o software para sempre (churn), desinstale o app ou avalie o serviço com nota 1 estrela. O foco prioritário da equipe deve ser mapear e blindar esses momentos críticos.
+        </p>
+
+        <!-- WIDGET 10: Canvas Interativo de Jornada do Usuário -->
+        <div class="interactive-sandbox">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Estúdio de Mapeamento</span>
+              <h3 class="sandbox-title">Canvas de Jornada com Curva de Sentimento Dinâmica (SVG)</h3>
+            </div>
+            <span class="sandbox-instructions">Altere a avaliação emocional nas fases abaixo e veja o gráfico reagir</span>
+          </div>
+          <div class="sandbox-body">
+            <!-- Gráfico da Curva Emocional em SVG -->
+            <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; margin-bottom:1.5rem; text-align:center;">
+              <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted); margin-bottom:0.25rem; padding:0 30px;">
+                <span>😃 +2 Encantado</span>
+                <span>😐 0 Neutro</span>
+                <span>😡 -2 Frustrado</span>
+              </div>
+              <svg id="journey-curve-svg" class="journey-curve-svg" viewBox="0 0 600 90" preserveAspectRatio="none"></svg>
+            </div>
+
+            <!-- Tabela Interativa de Fases -->
+            <div class="journey-track">
+              <table class="journey-table">
+                <thead>
+                  <tr>
+                    <th>Fase Cronológica</th>
+                    <th>Ação do Usuário</th>
+                    <th>Touchpoint / Canal</th>
+                    <th>Dor Observada</th>
+                    <th style="min-width:130px;">Sentimento</th>
+                  </tr>
+                </thead>
+                <tbody id="journey-table-body">
+                  <!-- Inserido dinamicamente via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Destaque de Oportunidade de IHC -->
+            <div id="journey-opportunity-callout" class="callout callout-key" style="margin-top:1.5rem;">
+              Calculando oportunidade de maior retorno...
+            </div>
+          </div>
+        </div>
+
+        <section class="references-section">
+          <h3>Referências Formais Deste Módulo</h3>
+          <ul class="references-list">
+            <li class="ref-item">
+              <span class="ref-badge">GIBBONS 2018</span>
+              <strong>GIBBONS, Sarah.</strong> Journey Mapping 101. <em>Nielsen Norman Group Articles</em>, 2018. Disponível em: <a href="https://www.nngroup.com/articles/journey-mapping-101/" target="_blank" rel="noopener">nngroup.com</a>.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">KALBACH 2016</span>
+              <strong>KALBACH, Jim.</strong> <em>Mapping Experiences: A Complete Guide to Creating Value through Journeys, Blueprints, and Diagrams</em>. Sebastopol: O'Reilly Media, 2016.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">RISDON ET AL. 2018</span>
+              <strong>RISDON, Chris; PATRICK, Quattlebaum.</strong> <em>Orchestrating Experiences: Collaborative Design for Complexity</em>. Brooklyn: Rosenfeld Media, 2018.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">STICKDORN & SCHNEIDER 2011</span>
+              <strong>STICKDORN, Marc; SCHNEIDER, Jakob.</strong> <em>This is Service Design Thinking: Basics, Tools, Cases</em>. Amsterdam: BIS Publishers, 2011.
+            </li>
+          </ul>
+        </section>
+
+        <div class="page-nav-controls">
+          <a href="09-acessibilidade-wcag.html" class="nav-page-btn">
+            <span class="nav-page-sub">&larr; Anterior</span>
+            <span class="nav-page-title">09. Acessibilidade & WCAG</span>
+          </a>
+          <a href="11-interfaces-media-fidelidade.html" class="nav-page-btn next">
+            <span class="nav-page-sub">Próximo &rarr;</span>
+            <span class="nav-page-title">11. Média Fidelidade (Wireframes)</span>
+          </a>
+        </div>
+      </article>
+
+      <aside class="sidebar-toc">
+        <div class="toc-title">Neste Módulo</div>
+        <ul class="toc-nav">
+          <li><a href="#1-fluxo-de-tarefas-vs-jornada-do-usuario-qual-a-diferenca" class="toc-link">1. Fluxo vs Jornada</a></li>
+          <li><a href="#2-a-anatomia-estrutural-de-um-journey-map" class="toc-link">2. Camadas do Mapa</a></li>
+          <li><a href="#3-o-conceito-de-momentos-da-verdade-moments-of-truth" class="toc-link">3. Momentos da Verdade</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 10</div>
+      <a href="../index.html">Voltar para o Índice Geral</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/widgets/10-journey-map.js"></script>
+</body>
+</html>
