@@ -731,8 +731,8 @@
         <div class="interactive-sandbox" id="estacao-auditoria">
           <div class="sandbox-header">
             <div class="sandbox-title-wrap">
-              <span class="sandbox-badge">Estação 03 &bull; Desafio de Consultoria</span>
-              <h3 class="sandbox-title">Auditoria dos Abismos de Norman & Redesign Interativo</h3>
+              <span class="sandbox-badge">Estação 03 &bull; Desafio Capstone</span>
+              <h3 class="sandbox-title">Auditoria de Usabilidade & Redesign dos Abismos de Norman</h3>
             </div>
             <div style="display:flex; align-items:center; gap:0.5rem;">
               <span style="font-size:0.85rem; font-weight:600;">Índice de Usabilidade de Norman:</span>
@@ -740,34 +740,71 @@
             </div>
           </div>
           <div class="sandbox-body">
-            <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:0.5rem;">
-              <strong>Sua Missão como Especialista em IHC:</strong> Abaixo está o protótipo de uma central de comando de automação com falhas graves em várias dimensões e princípios cognitivos. Selecione as falhas detectadas, analise qual abismo foi provocado e aplique a correção de redesign para atingir 100% de usabilidade!
-            </p>
-
-            <div class="audit-score-bar-wrap">
-              <div id="audit-score-bar-fill" class="audit-score-bar-fill" style="width: 0%;"></div>
+            <!-- Contextualização e Explicação do Cenário -->
+            <div style="background:var(--bg-subtle); border-left:4px solid var(--primary); padding:1rem 1.25rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin-bottom:1.5rem;">
+              <h4 style="margin:0 0 0.4rem; color:var(--text-primary); font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <span>🏭</span> Contexto da Auditoria: Central de Comando Predial (Smart Facility v2.0)
+              </h4>
+              <p style="font-size:0.9rem; color:var(--text-secondary); margin:0; line-height:1.5;">
+                Você foi contratado como consultor sênior de IHC para auditar o terminal touchscreen de uma fábrica moderna. Operadores recém-admitidos relatam frustração extrema, lentidão operacional e incidentes críticos durante o turno. 
+                <strong>Observe a interface sob teste logo abaixo</strong> para ver como cada módulo reage às interações. Depois, examine os relatos empíricos da equipe na coluna à esquerda, identifique qual <em>Princípio de Norman</em> foi violado e selecione a <em>ação de redesign</em> adequada para curar a interface!
+              </p>
             </div>
 
-            <div class="audit-workspace-grid">
-              <!-- Coluna 1: Lista de Falhas & Painel de Detalhes -->
+            <!-- 1º: A INTERFACE SOB TESTE (Largura total, no topo) -->
+            <div class="widget-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+              <span><strong>1. Interface Sob Teste</strong> (Terminal Operacional em Tempo Real):</span>
+              <span style="font-size:0.8rem; color:var(--text-muted); font-weight:normal;">Interaja com os controles para inspecionar seu comportamento</span>
+            </div>
+            
+            <div id="audit-preview-screen" class="audit-preview-container">
+              <!-- Renderizado dinamicamente via JS -->
+            </div>
+
+            <!-- Barra de Progresso Geral de Usabilidade -->
+            <div style="margin-bottom:1.5rem;">
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.35rem; color:var(--text-secondary);">
+                <span>Conformidade com os Princípios Fundamentais de Norman</span>
+                <span id="audit-score-label">0 de 4 módulos otimizados</span>
+              </div>
+              <div class="audit-score-bar-wrap">
+                <div id="audit-score-bar-fill" class="audit-score-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- 2º: COLUNA DUPLA (Falhas à esquerda, Princípios & Ações à direita) -->
+            <div class="audit-dual-workbench">
+              <!-- Coluna Esquerda: Relatos das Falhas sem o Princípio Explícito -->
               <div>
-                <div class="widget-label">Falhas Identificadas na Interface (Clique para Inspecionar):</div>
-                <div id="audit-flaws-list"></div>
-
-                <div id="audit-flaw-details" style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:1rem; margin-top:1rem;"></div>
-
-                <div style="margin-top:1rem;">
-                  <button class="btn btn-primary" id="audit-apply-fix-btn" style="width:100%;">
-                    Aplicar Redesign de IHC nesta Falha
-                  </button>
+                <div class="widget-label" style="margin-bottom:0.6rem;">
+                  <strong>2. Relatos de Falhas dos Operadores</strong> (Selecione uma para diagnosticar):
+                </div>
+                <div id="audit-flaws-list">
+                  <!-- Renderizado dinamicamente via JS -->
                 </div>
               </div>
 
-              <!-- Coluna 2: A Tela Interativa Sob Teste -->
+              <!-- Coluna Direita: Painel de Diagnóstico do Aluno -->
               <div>
-                <div class="widget-label">Interface Sob Teste (Visualização Dinâmica em Tempo Real):</div>
-                <div id="audit-preview-screen" style="background:var(--bg-surface); border:2px solid var(--border-color); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); min-height:340px;"></div>
+                <div class="widget-label" style="margin-bottom:0.6rem;">
+                  <strong>3. Painel de Diagnóstico & Resolução</strong> (Relacione ao Princípio e Ação):
+                </div>
+                <div id="audit-solver-panel" class="audit-solver-panel">
+                  <!-- Renderizado dinamicamente via JS -->
+                </div>
               </div>
+            </div>
+
+            <!-- Box comemorativo quando atingir 100% -->
+            <div id="audit-completion-banner" style="display:none; margin-top:1.5rem; background:rgba(16,185,129,0.12); border:2px solid var(--accent-emerald); border-radius:var(--radius-md); padding:1.25rem; text-align:center;">
+              <div style="font-size:2rem; margin-bottom:0.5rem;">🎉</div>
+              <h4 style="margin:0 0 0.5rem; color:var(--accent-emerald); font-size:1.15rem;">Auditoria de IHC Concluída com Sucesso Absoluto! (100% Usabilidade)</h4>
+              <p style="font-size:0.9rem; color:var(--text-secondary); max-width:680px; margin:0 auto 1rem;">
+                Você eliminou todos os Abismos de Execução e Avaliação do terminal industrial aplicando coerentemente <em>Affordance/Signifiers</em>, <em>Mapeamento Natural</em>, <em>Feedback Imediato</em> e <em>Restrições Poka-Yoke</em>.
+              </p>
+              <button class="btn btn-outline" id="audit-reset-all-btn" style="border-color:var(--accent-emerald); color:var(--accent-emerald);">
+                🔄 Reiniciar Desafio de Consultoria
+              </button>
             </div>
           </div>
         </div>

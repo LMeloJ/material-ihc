@@ -789,25 +789,16 @@
   border: 1px solid var(--border-color);
 }
 
-/* Estação de Redesign e Auditoria dos Abismos */
-.audit-workspace-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 1.5rem;
-}
-
-@media (max-width: 850px) {
-  .audit-workspace-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* ===================================================================
+   CAPSTONE: AUDITORIA E REDESIGN DE USABILIDADE DE NORMAN
+   Layout: Interface no topo (full width) + Coluna dupla de resolução abaixo
+   =================================================================== */
 .audit-score-bar-wrap {
   background: var(--bg-subtle);
   border-radius: var(--radius-full);
   height: 12px;
   overflow: hidden;
-  margin: 0.5rem 0 1rem;
+  margin: 0.5rem 0 1.25rem;
 }
 
 .audit-score-bar-fill {
@@ -816,28 +807,168 @@
   transition: width 0.4s ease;
 }
 
-.flaw-interactive-card {
-  border: 1px solid var(--border-color);
+.audit-preview-container {
   background: var(--bg-surface);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.6rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.audit-preview-header {
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.flaw-interactive-card:hover, .flaw-interactive-card.active {
-  border-color: var(--primary);
-  background: var(--primary-light);
+.audit-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  padding: 1.25rem;
 }
 
-.flaw-interactive-card.resolved {
+.audit-module-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.audit-module-card.optimized {
   border-color: var(--accent-emerald);
-  background: var(--accent-emerald-light);
+  background: rgba(16, 185, 129, 0.05);
 }
+
+.audit-module-card.vulnerable {
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+.audit-module-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.5rem;
+}
+
+.audit-module-badge.vulnerable {
+  background: var(--accent-rose-light);
+  color: var(--accent-rose);
+}
+
+.audit-module-badge.optimized {
+  background: var(--accent-emerald-light);
+  color: var(--accent-emerald);
+}
+
+/* Coluna Dupla de Resolução: Falhas à Esquerda / Princípios & Ação à Direita */
+.audit-dual-workbench {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 860px) {
+  .audit-dual-workbench {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flaw-selector-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.flaw-selector-card:hover {
+  border-color: var(--primary);
+  background: var(--bg-subtle);
+}
+
+.flaw-selector-card.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+  background: var(--bg-subtle);
+}
+
+.flaw-selector-card.resolved {
+  border-color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.audit-solver-panel {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.audit-option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: all 0.15s ease;
+  margin-bottom: 0.4rem;
+}
+
+.audit-option-label:hover {
+  border-color: var(--primary);
+}
+
+.audit-option-label input[type="radio"] {
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
+
+.audit-eval-feedback {
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  animation: fadeIn 0.25s ease;
+}
+
+.audit-eval-feedback.success {
+  background: var(--accent-emerald-light);
+  border: 1px solid var(--accent-emerald);
+  color: #065f46;
+}
+
+.audit-eval-feedback.error {
+  background: var(--accent-rose-light);
+  border: 1px solid var(--accent-rose);
+  color: #9f1239;
+}
+
 
 /* Keyframes */
 @keyframes fadeIn {

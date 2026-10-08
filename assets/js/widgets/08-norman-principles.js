@@ -295,98 +295,467 @@ function initThermostatSimulation() {
 // ===================================================================
 // ESTAÇÃO 3: AUDITORIA DOS ABISMOS & ESTÚDIO DE REDESIGN INTERATIVO
 // ===================================================================
+const normanPrinciplesList = [
+  { id: 'signifier', label: 'Affordance & Signifiers', desc: 'Pistas perceptíveis visuais de onde e como interagir' },
+  { id: 'mapping', label: 'Mapeamento Natural (Mapping)', desc: 'Correspondência espacial direta entre comando físico e efeito real' },
+  { id: 'feedback', label: 'Feedback Imediato', desc: 'Retorno sensorial imediato sobre o estado e processamento da ação' },
+  { id: 'constraints', label: 'Restrições & Poka-Yoke (Constraints)', desc: 'Travas lógicas e físicas para prevenção de erros e acidentes' },
+  { id: 'mental_model', label: 'Modelo Mental & Consistência', desc: 'Conceitualização conceitual coerente com as expectativas do usuário' }
+];
+
 const auditFlawsData = [
   {
-    id: 'flaw-signifier',
-    title: '1. Botão Crítico Invisível (Sem Signifier)',
-    principle: 'Signifiers & Affordance',
-    gulf: 'Abismo de Execução (O usuário não sabe onde clicar)',
-    problem: 'O botão de ligar o sistema está disfarçado como um simples texto cinza plano, sem borda, sombra ou contraste.',
-    solution: 'Adicionamos relevo de botão com sombra tridimensional, ícone universal e estado de hover evidente.',
+    id: 'flaw-ventilation',
+    moduleKey: 'ventilation',
+    title: 'Incidente A: Dificuldade de Acionamento da Ventilação',
+    shortTitle: 'Incidente A &bull; Ventilação Oculta',
+    operatorReport: 'Operadores recém-chegados não conseguem ligar o exaustor de ventilação central. Afirmam que olham para o painel e acham que a função não foi implementada ou que a tela quebrou, pois não há nenhum botão visível na área de ventilação.',
+    quote: '«Fiquei 10 minutos procurando onde clicar... pensei que aquele texto cinza era só uma legenda estática!»',
+    correctPrinciple: 'signifier',
+    correctAction: 'action-signifier-button',
+    actionOptions: [
+      { id: 'action-signifier-button', text: 'Transformar o texto plano em um botão evidente com elevação 3D, ícone indicativo (🌀), cor de destaque e cursor pointer ao passar o mouse.' },
+      { id: 'action-signifier-text', text: 'Manter como texto cinza simples, mas trocar a frase por: "Por favor toque aqui para ligar o ar".' },
+      { id: 'action-signifier-manual', text: 'Inserir link para download de um manual de 40 páginas ensinando onde tocar na tela.' }
+    ],
+    principleExplanation: 'Sem um **Signifier (Significante)** perceptível ou affordance explícita, o usuário é jogado no Abismo de Execução — ele quer agir, mas não enxerga a pista visual de onde o toque produz efeito.',
     resolved: false
   },
   {
-    id: 'flaw-mapping',
-    title: '2. Persianas Invertidas (Mapeamento Ruim)',
-    principle: 'Mapeamento Natural (Mapping)',
-    gulf: 'Abismo de Execução (Ação do controle contradiz o efeito físico)',
-    problem: 'O botão com seta para CIMA está programado para fechar a cortina para BAIXO, contrariando o mapeamento natural.',
-    solution: 'Alinhamos a seta para CIMA com o recolhimento da persiana para CIMA.',
+    id: 'flaw-blinds',
+    moduleKey: 'blinds',
+    title: 'Incidente B: Comportamento Invertido das Persianas',
+    shortTitle: 'Incidente B &bull; Persianas Invertidas',
+    operatorReport: 'Um operador tentou abrir as persianas da sala de testes clicando na seta para cima [▲]. Em vez de subir, a persiana desceu bruscamente e atingiu instrumentos na bancada. O operador ficou desorientado com o controle.',
+    quote: '«Apertei a seta para cima [▲] achando que ia recolher a persiana, mas ela desceu com tudo e bateu nos frascos!»',
+    correctPrinciple: 'mapping',
+    correctAction: 'action-mapping-align',
+    actionOptions: [
+      { id: 'action-mapping-align', text: 'Readequar o Mapeamento Natural: seta para cima [▲] deve recolher a persiana (subir) e seta para baixo [▼] deve fechá-la (descer).' },
+      { id: 'action-mapping-invert-labels', text: 'Manter a lógica invertida e adicionar uma etiqueta em letras miúdas: "Atenção: botões operam no modo inverso".' },
+      { id: 'action-mapping-speed', text: 'Reduzir a velocidade do motor da persiana para que o operador tenha tempo de soltar o botão se errar.' }
+    ],
+    principleExplanation: 'O **Mapeamento Natural (Mapping)** aproveita analogias espaciais e culturais (cima = subir, baixo = descer). Inverter as coordenadas aumenta a carga cognitiva e induz a erros mecânicos inevitáveis.',
     resolved: false
   },
   {
-    id: 'flaw-feedback',
-    title: '3. Botão Mudo sem Confirmação (Sem Feedback)',
-    principle: 'Feedback Imediato',
-    gulf: 'Abismo de Avaliação (O usuário não sabe se o sistema operou)',
-    problem: 'Ao salvar preferências, a interface congela por 4 segundos sem nenhum aviso visual nem alteração de estado.',
-    solution: 'Adicionamos spinner de carregamento imediato no botão e toast de confirmação verde: "Preferências salvas com sucesso!".',
+    id: 'flaw-lighting',
+    moduleKey: 'lighting',
+    title: 'Incidente C: Salvamento Mudo e Inerte de Iluminação',
+    shortTitle: 'Incidente C &bull; Salvamento Mudo',
+    operatorReport: 'Ao ajustar a iluminação e clicar em "Salvar Preferências", a interface congela por 4 segundos sem nenhum som, animação ou mudança de cor. Usuários clicam repetidamente até travar a CPU do terminal.',
+    quote: '«Eu cliquei em salvar e a tela não fez nada. Achei que o clique não tinha pego e apertei cinco vezes seguidas!»',
+    correctPrinciple: 'feedback',
+    correctAction: 'action-feedback-toast',
+    actionOptions: [
+      { id: 'action-feedback-toast', text: 'Implementar Feedback Imediato (< 100ms): mostrar spinner de salvamento no próprio botão e exibir confirmação visual em toast verde com som suave.' },
+      { id: 'action-feedback-wait', text: 'Colocar um aviso estático na tela dizendo: "O servidor é lento mesmo, aguarde com calma sem clicar novamente".' },
+      { id: 'action-feedback-sound-only', text: 'Tocar um alarme estridente de sirene de 10 segundos para cada clique efetuado.' }
+    ],
+    principleExplanation: 'O **Feedback Imediato** fecha o Abismo de Avaliação. Don Norman pontua que o usuário precisa de confirmação perceptível instantânea de que sua ação foi registrada pelo sistema, evitando repetições compulsivas.',
     resolved: false
   },
   {
-    id: 'flaw-constraints',
-    title: '4. Reset de Fábrica Destrutivo sem Proteção (Sem Restrições)',
-    principle: 'Restrições (Constraints)',
-    gulf: 'Prevenção de Erros Catastróficos',
-    problem: 'O botão vermelho "Apagar Todos os Dados" está colado ao botão de "Ligar Luzes", sem pedir nenhuma confirmação prévia.',
-    solution: 'Isolamos a ação em uma gaveta de segurança com trava de confirmação por texto ("Digite CONFIRMAR para prosseguir").',
+    id: 'flaw-reset',
+    moduleKey: 'reset',
+    title: 'Incidente D: Desligamento Acidental da Linha de Produção',
+    shortTitle: 'Incidente D &bull; Queda Geral Inadvertida',
+    operatorReport: 'Durante uma ronda noturna, um operador foi acionar o botão de luz e encostou a manga do jaleco no botão vermelho vizinho de "Reset Geral da Planta", paralisando os reatores da fábrica inteira sem qualquer confirmação.',
+    quote: '«Foi um desastre... o botão de desligar a fábrica inteira ficava colado nas luzes, sem tampa, trava ou aviso!»',
+    correctPrinciple: 'constraints',
+    correctAction: 'action-constraints-pokayoke',
+    actionOptions: [
+      { id: 'action-constraints-pokayoke', text: 'Aplicar Restrições Poka-Yoke: segregar o comando crítico em área de segurança isolada com trava e exigir confirmação explícita em duas etapas.' },
+      { id: 'action-constraints-color', text: 'Apenas pintar o botão com um vermelho fluorescente e aumentar o tamanho da fonte no mesmo local.' },
+      { id: 'action-constraints-fine', text: 'Criar uma norma administrativa aplicando advertência disciplinar aos operadores que esbarrarem no botão.' }
+    ],
+    principleExplanation: 'As **Restrições (Constraints) e Poka-Yoke** protegem o usuário e o sistema contra deslizes (slips) e enganos (mistakes). Ações destrutivas nunca devem compartilhar a mesma proximidade gestual de ações rotineiras nem prescindir de confirmações seguras.',
     resolved: false
   }
 ];
 
 function initAuditRedesignStudio() {
-  const listContainer = document.getElementById('audit-flaws-list');
-  const detailsBox = document.getElementById('audit-flaw-details');
-  const applyFixBtn = document.getElementById('audit-apply-fix-btn');
-  const scorePercentEl = document.getElementById('audit-score-percent');
-  const scoreBarFill = document.getElementById('audit-score-bar-fill');
   const previewScreen = document.getElementById('audit-preview-screen');
+  const flawsListContainer = document.getElementById('audit-flaws-list');
+  const solverPanel = document.getElementById('audit-solver-panel');
+  const scorePercentEl = document.getElementById('audit-score-percent');
+  const scoreLabelEl = document.getElementById('audit-score-label');
+  const scoreBarFill = document.getElementById('audit-score-bar-fill');
+  const completionBanner = document.getElementById('audit-completion-banner');
+  const resetAllBtn = document.getElementById('audit-reset-all-btn');
 
-  if (!listContainer || !detailsBox) return;
+  if (!previewScreen || !flawsListContainer || !solverPanel) return;
 
   let activeFlawIndex = 0;
+  let lastDiagnosticFeedback = null;
 
-  function renderList() {
-    listContainer.innerHTML = auditFlawsData.map((flaw, idx) => `
-      <div class="flaw-interactive-card ${idx === activeFlawIndex ? 'active' : ''} ${flaw.resolved ? 'resolved' : ''}" data-idx="${idx}">
-        <div>
-          <strong>${flaw.title}</strong>
-          <div style="font-size:0.75rem; color:var(--text-muted);">${flaw.principle} &bull; ${flaw.gulf}</div>
+  // Renderiza a interface de teste em tempo real no topo
+  function renderPreviewScreen() {
+    const fVent = auditFlawsData[0].resolved;
+    const fBlinds = auditFlawsData[1].resolved;
+    const fLight = auditFlawsData[2].resolved;
+    const fReset = auditFlawsData[3].resolved;
+
+    const resolvedCount = auditFlawsData.filter(f => f.resolved).length;
+    const isAllClean = resolvedCount === auditFlawsData.length;
+
+    previewScreen.innerHTML = `
+      <div class="audit-preview-header">
+        <div style="display:flex; align-items:center; gap:0.6rem;">
+          <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'}; box-shadow:0 0 6px ${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'};"></span>
+          <span style="font-weight:700; font-size:0.85rem; color:var(--text-primary);">Terminal Touchscreen &bull; Central Predial Smart Facility v2.0</span>
         </div>
-        <span class="badge" style="${flaw.resolved ? 'background:var(--accent-emerald-light); color:var(--accent-emerald);' : 'background:var(--accent-rose-light); color:var(--accent-rose);'}">
-          ${flaw.resolved ? '✓ Corrigido' : '⚡ Falha Ativa'}
-        </span>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; font-weight:700; color:${isAllClean ? 'var(--accent-emerald)' : 'var(--accent-rose)'};">
+          ${isAllClean ? '🟢 SISTEMA 100% OTIMIZADO &bull; SEGURO' : `🔴 ${4 - resolvedCount} VULNERABILIDADE(S) ATIVA(S)`}
+        </div>
       </div>
-    `).join('');
 
-    renderDetails();
-    updateScore();
-  }
+      <div class="audit-modules-grid">
+        <!-- MÓDULO 1: Ventilação -->
+        <div class="audit-module-card ${fVent ? 'optimized' : 'vulnerable'}">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <span style="font-size:0.78rem; font-weight:700; color:var(--text-secondary);">Módulo 01: Climatização</span>
+              <span class="audit-module-badge ${fVent ? 'optimized' : 'vulnerable'}">
+                ${fVent ? '✓ Signifier Ativo' : '⚡ Sem Signifier'}
+              </span>
+            </div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Exaustor de Ventilação Central</div>
+          </div>
 
-  function renderDetails() {
-    const flaw = auditFlawsData[activeFlawIndex];
-    if (!flaw) return;
+          <div style="margin-top:0.5rem;" id="mock-vent-control-area">
+            ${fVent ? `
+              <button class="btn btn-primary" id="mock-btn-vent" style="padding:0.45rem 0.85rem; font-size:0.8rem; width:100%; display:flex; align-items:center; justify-content:center; gap:0.5rem; box-shadow:0 2px 4px rgba(0,0,0,0.15); cursor:pointer;">
+                <span>🌀</span> <span>Ventilação: <strong>LIGADA</strong> (1.200 RPM)</span>
+              </button>
+              <div style="font-size:0.7rem; color:var(--accent-emerald); margin-top:0.35rem; text-align:center;">
+                Affordance e significante explícitos e evidentes!
+              </div>
+            ` : `
+              <div id="mock-flat-text-vent" style="padding:0.45rem; background:rgba(148,163,184,0.08); border:1px dashed #cbd5e1; border-radius:var(--radius-sm); color:#64748b; font-size:0.78rem; text-align:center; cursor:pointer;" title="Clique para testar">
+                ligar ventilacao central (parece texto plano, sem botão!)
+              </div>
+              <div id="mock-vent-hint" style="font-size:0.7rem; color:var(--accent-rose); margin-top:0.35rem; text-align:center; display:none;">
+                ⚠️ Texto plano! Usuários não percebem que é clicável.
+              </div>
+            `}
+          </div>
+        </div>
 
-    detailsBox.innerHTML = `
-      <h4 style="margin:0 0 0.5rem; color:var(--primary); font-size:1.05rem;">${flaw.title}</h4>
-      <div style="font-size:0.85rem; margin-bottom:0.6rem;">
-        <strong>Princípio Envolvido:</strong> ${flaw.principle}<br>
-        <strong>Abismo Psicológico Afetado:</strong> <span style="color:var(--accent-rose); font-weight:700;">${flaw.gulf}</span>
-      </div>
-      <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:0.85rem; margin-bottom:0.75rem; font-size:0.85rem;">
-        <strong>Diagnóstico da Falha:</strong> ${flaw.problem}
-      </div>
-      <div style="background:var(--accent-emerald-light); border:1px solid rgba(16,185,129,0.3); border-radius:var(--radius-sm); padding:0.85rem; font-size:0.85rem; color:var(--text-primary);">
-        <strong>Solução de Redesign em IHC:</strong> ${flaw.solution}
+        <!-- MÓDULO 2: Persianas -->
+        <div class="audit-module-card ${fBlinds ? 'optimized' : 'vulnerable'}">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <span style="font-size:0.78rem; font-weight:700; color:var(--text-secondary);">Módulo 02: Aberturas</span>
+              <span class="audit-module-badge ${fBlinds ? 'optimized' : 'vulnerable'}">
+                ${fBlinds ? '✓ Mapeamento OK' : '⚡ Mapeamento Invertido'}
+              </span>
+            </div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Persianas Motorizadas</div>
+          </div>
+
+          <div style="margin-top:0.5rem;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.4rem;">
+              ${fBlinds ? `
+                <button class="btn btn-outline" id="mock-blind-up-btn" style="padding:0.35rem; font-size:0.75rem; border-color:var(--border-color);">
+                  ▲ Subir (Abre)
+                </button>
+                <button class="btn btn-outline" id="mock-blind-down-btn" style="padding:0.35rem; font-size:0.75rem; border-color:var(--border-color);">
+                  ▼ Descer (Fecha)
+                </button>
+              ` : `
+                <button class="btn btn-outline" id="mock-blind-up-btn" style="padding:0.35rem; font-size:0.75rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">
+                  ▲ (Desce persiana!)
+                </button>
+                <button class="btn btn-outline" id="mock-blind-down-btn" style="padding:0.35rem; font-size:0.75rem; color:var(--accent-rose); border-color:rgba(244,63,94,0.4);">
+                  ▼ (Sobe persiana!)
+                </button>
+              `}
+            </div>
+            <div id="mock-blind-status" style="font-size:0.7rem; color:${fBlinds ? 'var(--text-secondary)' : 'var(--accent-rose)'}; margin-top:0.35rem; text-align:center;">
+              ${fBlinds ? 'Posição atual: 75% Aberta (Mapeamento correto)' : 'Atenção: Ao clicar ▲, persiana fecha contra o piso!'}
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULO 3: Iluminação -->
+        <div class="audit-module-card ${fLight ? 'optimized' : 'vulnerable'}">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <span style="font-size:0.78rem; font-weight:700; color:var(--text-secondary);">Módulo 03: Iluminação</span>
+              <span class="audit-module-badge ${fLight ? 'optimized' : 'vulnerable'}">
+                ${fLight ? '✓ Feedback Imediato' : '⚡ Sem Feedback'}
+              </span>
+            </div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Salvar Nível de Luz (650 lux)</div>
+          </div>
+
+          <div style="margin-top:0.5rem;">
+            <button class="btn btn-outline" id="mock-light-save-btn" style="width:100%; padding:0.4rem; font-size:0.75rem; ${fLight ? 'border-color:var(--accent-emerald); color:var(--accent-emerald);' : ''}">
+              ${fLight ? '💾 Salvar Preferências' : 'Salvar Preferências (Mudo)'}
+            </button>
+            <div id="mock-light-feedback" style="font-size:0.7rem; color:${fLight ? 'var(--accent-emerald)' : 'var(--text-muted)'}; margin-top:0.35rem; text-align:center;">
+              ${fLight ? 'Feedback imediato ativo (< 50ms) com confirmação' : 'Clique para testar o congelamento sem feedback'}
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULO 4: Parada de Emergência / Reset -->
+        <div class="audit-module-card ${fReset ? 'optimized' : 'vulnerable'}">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <span style="font-size:0.78rem; font-weight:700; color:var(--text-secondary);">Módulo 04: Segurança</span>
+              <span class="audit-module-badge ${fReset ? 'optimized' : 'vulnerable'}">
+                ${fReset ? '✓ Restrição Poka-Yoke' : '⚡ Ação Desprotegida'}
+              </span>
+            </div>
+            <div style="font-size:0.82rem; font-weight:600; margin-bottom:0.6rem;">Reset da Planta Industrial</div>
+          </div>
+
+          <div style="margin-top:0.5rem;" id="mock-reset-container">
+            ${fReset ? `
+              <div style="background:rgba(16,185,129,0.08); border:1px solid var(--accent-emerald); border-radius:var(--radius-sm); padding:0.4rem 0.6rem; font-size:0.75rem; text-align:center; color:var(--text-primary);">
+                🔒 <strong>Trava Poka-Yoke Ativa:</strong> Ação destrutiva isolada e protegida com dupla confirmação.
+              </div>
+            ` : `
+              <button class="btn" id="mock-reset-danger-btn" style="width:100%; background:var(--accent-rose); color:#fff; padding:0.4rem; font-size:0.75rem; font-weight:700; border:none; border-radius:var(--radius-sm); cursor:pointer;">
+                💥 RESET GERAL DA FÁBRICA
+              </button>
+              <div style="font-size:0.7rem; color:var(--accent-rose); margin-top:0.35rem; text-align:center;">
+                Perigo: Colado a botões comuns e sem confirmação!
+              </div>
+            `}
+          </div>
+        </div>
       </div>
     `;
 
-    if (applyFixBtn) {
-      applyFixBtn.innerText = flaw.resolved ? "Reverter para Interface Quebrada" : "Aplicar Redesign de IHC";
-      applyFixBtn.className = flaw.resolved ? "btn btn-outline" : "btn btn-primary";
+    attachMockupEvents();
+  }
+
+  // Comportamentos interativos dentro da própria interface simulada sob teste
+  function attachMockupEvents() {
+    const flatVent = document.getElementById('mock-flat-text-vent');
+    const ventHint = document.getElementById('mock-vent-hint');
+    if (flatVent && ventHint) {
+      flatVent.addEventListener('click', () => {
+        ventHint.style.display = 'block';
+      });
     }
 
-    renderMockupScreen();
+    const blindUp = document.getElementById('mock-blind-up-btn');
+    const blindDown = document.getElementById('mock-blind-down-btn');
+    const blindStatus = document.getElementById('mock-blind-status');
+    const fBlinds = auditFlawsData[1].resolved;
+
+    if (blindUp && blindStatus) {
+      blindUp.addEventListener('click', () => {
+        if (!fBlinds) {
+          blindStatus.innerHTML = '<span style="color:var(--accent-rose); font-weight:700;">⚠️ Erro! Você apertou ▲ mas a persiana DESCEU e bateu na bancada!</span>';
+        } else {
+          blindStatus.innerHTML = '<span style="color:var(--accent-emerald);">▲ Persiana recolhida para CIMA (Abertura 100%).</span>';
+        }
+      });
+    }
+
+    if (blindDown && blindStatus) {
+      blindDown.addEventListener('click', () => {
+        if (!fBlinds) {
+          blindStatus.innerHTML = '<span style="color:var(--accent-rose); font-weight:700;">⚠️ Erro! Você apertou ▼ mas a persiana SUBIU! Mapeamento invertido!</span>';
+        } else {
+          blindStatus.innerHTML = '<span style="color:var(--accent-emerald);">▼ Persiana fechada para BAIXO (Abertura 0%).</span>';
+        }
+      });
+    }
+
+    const lightBtn = document.getElementById('mock-light-save-btn');
+    const lightFeedback = document.getElementById('mock-light-feedback');
+    const fLight = auditFlawsData[2].resolved;
+
+    if (lightBtn && lightFeedback) {
+      lightBtn.addEventListener('click', () => {
+        if (!fLight) {
+          lightBtn.disabled = true;
+          lightFeedback.innerHTML = '<span style="color:var(--accent-rose); font-weight:700;">⏳ Silêncio total... (4s sem resposta! Usuário acha que travou)</span>';
+          setTimeout(() => {
+            lightBtn.disabled = false;
+            lightFeedback.innerHTML = '<span style="color:var(--text-secondary);">Fim do congelamento. Nenhum aviso foi mostrado.</span>';
+          }, 3500);
+        } else {
+          lightBtn.innerHTML = '⏳ Salvando...';
+          setTimeout(() => {
+            lightBtn.innerHTML = '✓ Salvo!';
+            lightFeedback.innerHTML = '<span style="color:var(--accent-emerald); font-weight:700;">Toast exibido: "Preferências salvas com sucesso (200 OK)!"</span>';
+            setTimeout(() => {
+              lightBtn.innerHTML = '💾 Salvar Preferências';
+            }, 1800);
+          }, 250);
+        }
+      });
+    }
+
+    const dangerResetBtn = document.getElementById('mock-reset-danger-btn');
+    if (dangerResetBtn) {
+      dangerResetBtn.addEventListener('click', () => {
+        alert('🚨 INCIDENTE CRÍTICO! A fábrica inteira foi desligada acidentalmente sem pedir confirmação! Violação gravíssima de Restrições.');
+      });
+    }
+  }
+
+  // Renderiza a lista de relatos na coluna da esquerda
+  function renderFlawsList() {
+    flawsListContainer.innerHTML = auditFlawsData.map((flaw, idx) => `
+      <div class="flaw-selector-card ${idx === activeFlawIndex ? 'active' : ''} ${flaw.resolved ? 'resolved' : ''}" data-idx="${idx}">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem;">
+          <strong style="font-size:0.92rem; color:var(--text-primary);">${flaw.title}</strong>
+          <span class="badge" style="${flaw.resolved ? 'background:var(--accent-emerald-light); color:var(--accent-emerald);' : 'background:var(--accent-rose-light); color:var(--accent-rose);'} font-size:0.75rem;">
+            ${flaw.resolved ? '✓ Corrigido (+25%)' : '⚡ Falha Ativa'}
+          </span>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-secondary); margin:0 0 0.4rem; line-height:1.4;">
+          ${flaw.operatorReport}
+        </p>
+        <div style="font-size:0.78rem; font-style:italic; color:var(--text-muted); background:var(--bg-subtle); padding:0.35rem 0.5rem; border-radius:4px; border-left:2px solid var(--border-color);">
+          ${flaw.quote}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Renderiza o painel de diagnóstico na coluna da direita
+  function renderSolverPanel() {
+    const flaw = auditFlawsData[activeFlawIndex];
+    if (!flaw) return;
+
+    if (flaw.resolved) {
+      solverPanel.innerHTML = `
+        <div style="background:rgba(16,185,129,0.08); border:1px solid var(--accent-emerald); border-radius:var(--radius-sm); padding:1rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem;">
+            <span style="font-size:1.2rem;">✅</span>
+            <strong style="color:var(--accent-emerald); font-size:0.95rem;">Falha Diagnosticada e Redesign Aplicado!</strong>
+          </div>
+          <p style="font-size:0.86rem; color:var(--text-secondary); margin:0 0 0.6rem;">
+            <strong>Princípio de Norman:</strong> ${normanPrinciplesList.find(p => p.id === flaw.correctPrinciple)?.label}
+          </p>
+          <div style="font-size:0.84rem; color:var(--text-primary); background:var(--bg-surface); padding:0.75rem; border-radius:var(--radius-sm); margin-bottom:0.8rem; line-height:1.45;">
+            ${flaw.principleExplanation}
+          </div>
+          <button class="btn btn-outline" id="audit-revert-btn" style="font-size:0.82rem; padding:0.4rem 0.8rem;">
+            ↺ Desfazer Redesign desta Falha (Para Treinar Novamente)
+          </button>
+        </div>
+      `;
+
+      const revertBtn = document.getElementById('audit-revert-btn');
+      if (revertBtn) {
+        revertBtn.addEventListener('click', () => {
+          flaw.resolved = false;
+          lastDiagnosticFeedback = null;
+          updateEverything();
+        });
+      }
+      return;
+    }
+
+    // Formulário de diagnóstico interativo
+    solverPanel.innerHTML = `
+      <div>
+        <div style="font-size:0.82rem; font-weight:700; color:var(--primary); text-transform:uppercase; margin-bottom:0.25rem;">
+          Diagnóstico do ${flaw.shortTitle}
+        </div>
+        <h4 style="margin:0 0 0.8rem; font-size:1rem; color:var(--text-primary);">
+          Passo 1: Qual Princípio de Don Norman foi violado nesta falha?
+        </h4>
+        <div id="principle-radio-group">
+          ${normanPrinciplesList.map(p => `
+            <label class="audit-option-label" for="p-${p.id}">
+              <input type="radio" name="selected-principle" id="p-${p.id}" value="${p.id}">
+              <div>
+                <strong>${p.label}</strong>
+                <div style="font-size:0.76rem; color:var(--text-muted);">${p.desc}</div>
+              </div>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+
+      <div style="margin-top:0.5rem;">
+        <h4 style="margin:0 0 0.8rem; font-size:1rem; color:var(--text-primary);">
+          Passo 2: Qual a ação de redesign recomendada para solucionar o problema?
+        </h4>
+        <div id="action-radio-group">
+          ${flaw.actionOptions.map(act => `
+            <label class="audit-option-label" for="act-${act.id}">
+              <input type="radio" name="selected-action" id="act-${act.id}" value="${act.id}">
+              <div style="line-height:1.4;">${act.text}</div>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+
+      <div style="margin-top:0.5rem;">
+        <button class="btn btn-primary" id="audit-submit-diagnosis-btn" style="width:100%; padding:0.65rem 1rem; font-size:0.9rem;">
+          🚀 Validar Diagnóstico & Aplicar Redesign na Interface
+        </button>
+      </div>
+
+      <div id="audit-feedback-box">
+        ${lastDiagnosticFeedback ? `
+          <div class="audit-eval-feedback ${lastDiagnosticFeedback.type}">
+            ${lastDiagnosticFeedback.message}
+          </div>
+        ` : ''}
+      </div>
+    `;
+
+    const submitBtn = document.getElementById('audit-submit-diagnosis-btn');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', validateStudentDiagnosis);
+    }
+  }
+
+  function validateStudentDiagnosis() {
+    const flaw = auditFlawsData[activeFlawIndex];
+    if (!flaw) return;
+
+    const checkedPrinciple = document.querySelector('input[name="selected-principle"]:checked');
+    const checkedAction = document.querySelector('input[name="selected-action"]:checked');
+    const feedbackBox = document.getElementById('audit-feedback-box');
+
+    if (!checkedPrinciple || !checkedAction) {
+      feedbackBox.innerHTML = `
+        <div class="audit-eval-feedback error">
+          ⚠️ Por favor, selecione <strong>um Princípio de Norman (Passo 1)</strong> e <strong>uma Ação de Redesign (Passo 2)</strong> antes de validar.
+        </div>
+      `;
+      return;
+    }
+
+    const chosenPrinciple = checkedPrinciple.value;
+    const chosenAction = checkedAction.value;
+
+    const isPrincipleCorrect = chosenPrinciple === flaw.correctPrinciple;
+    const isActionCorrect = chosenAction === flaw.correctAction;
+
+    if (isPrincipleCorrect && isActionCorrect) {
+      flaw.resolved = true;
+      lastDiagnosticFeedback = null;
+      updateEverything();
+    } else if (!isPrincipleCorrect) {
+      const selectedPrincipleObj = normanPrinciplesList.find(p => p.id === chosenPrinciple);
+      feedbackBox.innerHTML = `
+        <div class="audit-eval-feedback error">
+          <strong>❌ Princípio Incorreto:</strong> Você selecionou <em>"${selectedPrincipleObj?.label}"</em>. 
+          Releia o relato do operador: o problema central não é ${selectedPrincipleObj?.desc.toLowerCase()}. O que realmente está faltando na interface para que o usuário consiga agir ou entender o estado?
+        </div>
+      `;
+    } else {
+      feedbackBox.innerHTML = `
+        <div class="audit-eval-feedback error">
+          <strong>⚠️ Princípio Correto, mas Ação Inadequada:</strong> Você acertou que a causa raiz é <em>"${normanPrinciplesList.find(p => p.id === chosenPrinciple)?.label}"</em>, mas a ação proposta não segue as boas práticas de IHC. Escolha uma intervenção que realmente resolva o abismo cognitivo na interface.
+        </div>
+      `;
+    }
   }
 
   function updateScore() {
@@ -395,96 +764,47 @@ function initAuditRedesignStudio() {
     const percentage = Math.round((resolvedCount / total) * 100);
 
     if (scorePercentEl) scorePercentEl.innerText = `${percentage}%`;
+    if (scoreLabelEl) scoreLabelEl.innerText = `${resolvedCount} de ${total} módulos otimizados`;
     if (scoreBarFill) scoreBarFill.style.width = `${percentage}%`;
+
+    if (completionBanner) {
+      if (percentage === 100) {
+        completionBanner.style.display = 'block';
+      } else {
+        completionBanner.style.display = 'none';
+      }
+    }
   }
 
-  function renderMockupScreen() {
-    if (!previewScreen) return;
-    const fSignifier = auditFlawsData[0].resolved;
-    const fMapping = auditFlawsData[1].resolved;
-    const fFeedback = auditFlawsData[2].resolved;
-    const fConstraints = auditFlawsData[3].resolved;
-
-    previewScreen.innerHTML = `
-      <div style="background:var(--bg-subtle); border-bottom:1px solid var(--border-color); padding:0.5rem 0.75rem; font-size:0.8rem; font-weight:700; display:flex; justify-content:space-between;">
-        <span>Painel de Controle Smart Facility v2.0</span>
-        <span style="font-family:'JetBrains Mono', monospace; color:var(--text-muted);">${fSignifier && fMapping && fFeedback && fConstraints ? '🟢 ESTÁVEL' : '🔴 VULNERÁVEL'}</span>
-      </div>
-      <div style="padding:1.25rem;">
-        <!-- Componente 1: Botão Master Ligar/Desligar -->
-        <div style="margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border-color);">
-          <div style="font-size:0.8rem; font-weight:600; margin-bottom:0.35rem;">Sistema de Ventilação Central:</div>
-          ${fSignifier 
-            ? `<button class="btn btn-primary" style="padding:0.4rem 0.8rem; font-size:0.8rem; display:flex; align-items:center; gap:0.4rem;">
-                <span>🔘</span> Ligar Ventilação Central (Signifier em Destaque)
-               </button>`
-            : `<span style="color:#94a3b8; font-size:0.8rem; text-decoration:none; cursor:pointer;" title="Clique secreto">
-                ligar ventilacao central (parece texto plano, sem botão!)
-               </span>`
-          }
-        </div>
-
-        <!-- Componente 2: Persianas -->
-        <div style="margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border-color);">
-          <div style="font-size:0.8rem; font-weight:600; margin-bottom:0.35rem;">Persiana Automatizada:</div>
-          <div style="display:flex; gap:0.5rem;">
-            ${fMapping
-              ? `<button class="btn btn-outline" style="padding:0.3rem 0.6rem; font-size:0.8rem;">▲ Subir Persiana (Mapeamento Correto)</button>
-                 <button class="btn btn-outline" style="padding:0.3rem 0.6rem; font-size:0.8rem;">▼ Descer Persiana</button>`
-              : `<button class="btn btn-outline" style="padding:0.3rem 0.6rem; font-size:0.8rem; color:var(--accent-rose);">▲ (Desce a persiana! Mapeamento Invertido)</button>
-                 <button class="btn btn-outline" style="padding:0.3rem 0.6rem; font-size:0.8rem; color:var(--accent-rose);">▼ (Sobe a persiana!)</button>`
-            }
-          </div>
-        </div>
-
-        <!-- Componente 3: Salvar com Feedback -->
-        <div style="margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border-color);">
-          <div style="font-size:0.8rem; font-weight:600; margin-bottom:0.35rem;">Preferências de Iluminação:</div>
-          <div style="display:flex; gap:0.5rem; align-items:center;">
-            ${fFeedback
-              ? `<button class="btn btn-outline" style="padding:0.3rem 0.6rem; font-size:0.8rem; border-color:var(--accent-emerald); color:var(--accent-emerald);">
-                  ✓ Salvo instantaneamente (Toast + Som de clique)
-                 </button>`
-              : `<button class="btn btn-outline" style="padding:0.3rem 0.6rem; font-size:0.8rem;">
-                  Salvar Preferências (Inerte por 4 segundos!)
-                 </button>`
-            }
-          </div>
-        </div>
-
-        <!-- Componente 4: Reset com Restrições -->
-        <div>
-          <div style="font-size:0.8rem; font-weight:600; margin-bottom:0.35rem;">Zona de Risco:</div>
-          ${fConstraints
-            ? `<div style="background:var(--bg-subtle); padding:0.6rem; border-radius:4px; font-size:0.8rem;">
-                🔒 <strong>Ação de Alto Risco Bloqueada:</strong> Exige confirmação explícita de senha antes de resetar.
-               </div>`
-            : `<button class="btn" style="background:var(--accent-rose); color:#fff; padding:0.3rem 0.6rem; font-size:0.8rem;">
-                💥 Resetar Toda a Planta Industrial (Sem confirmação, ao lado dos outros botões!)
-               </button>`
-          }
-        </div>
-      </div>
-    `;
+  function updateEverything() {
+    renderPreviewScreen();
+    renderFlawsList();
+    renderSolverPanel();
+    updateScore();
   }
 
-  listContainer.addEventListener('click', (e) => {
-    const card = e.target.closest('.flaw-interactive-card');
+  // Listener para seleção de falhas na coluna esquerda
+  flawsListContainer.addEventListener('click', (e) => {
+    const card = e.target.closest('.flaw-selector-card');
     if (!card) return;
     activeFlawIndex = parseInt(card.getAttribute('data-idx'), 10);
-    renderList();
+    lastDiagnosticFeedback = null;
+    renderFlawsList();
+    renderSolverPanel();
   });
 
-  if (applyFixBtn) {
-    applyFixBtn.addEventListener('click', () => {
-      const flaw = auditFlawsData[activeFlawIndex];
-      if (!flaw) return;
-      flaw.resolved = !flaw.resolved;
-      renderList();
+  // Botão de reset geral
+  if (resetAllBtn) {
+    resetAllBtn.addEventListener('click', () => {
+      auditFlawsData.forEach(f => f.resolved = false);
+      activeFlawIndex = 0;
+      lastDiagnosticFeedback = null;
+      updateEverything();
     });
   }
 
-  renderList();
+  // Inicialização
+  updateEverything();
 }
 
 // ===================================================================
