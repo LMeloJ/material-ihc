@@ -52,13 +52,39 @@
       <article class="article-content">
         <!-- SEÇÃO 1: 5 DIMENSÕES DO IXD -->
         <h2>1. As 5 Dimensões do Interaction Design (IxD)</h2>
+        
         <p>
-          Enquanto a Engenharia de Software foca na estrutura interna dos algoritmos, dados e confiabilidade de código, o <strong>Design de Interação (IxD)</strong> ocupa-se da criação de espaços dialógicos entre o ser humano e a tecnologia (Preece, Rogers & Sharp, 2015). Cunhado por Bill Moggridge e Bill Verplank no final da década de 1980, o conceito foi expandido por <strong>Gillian Crampton Smith</strong> e <strong>Kevin Silver</strong> em um modelo canônico de <strong>5 Dimensões da Interação</strong>.
+          Para quem inicia na área de tecnologia, é comum pensar que projetar uma interface resume-se a "desenhar telas bonitas" &mdash; isto é, escolher cores, fontes e posicionar botões em um grid gráfico. Em Interação Humano-Computador, no entanto, <strong>uma interface não é um quadro estático na parede; ela é uma conversa contínua entre um ser humano e um sistema computacional</strong> (Preece, Rogers & Sharp, 2015).
         </p>
 
         <p>
-          Explore cada uma das dimensões no cartão com abas abaixo, comparando a fundamentação teórica com exemplos práticos de violações e boas práticas:
+          Assim como uma conversa humana não depende apenas da voz, mas também dos gestos, do tom, da distância física e das regras sociais, a interação digital também é multifacetada. No final dos anos 1980 e início dos anos 2000, pesquisadores pioneiros de design &mdash; notadamente <strong>Gillian Crampton Smith</strong> e posteriormente <strong>Kevin Silver</strong> &mdash; propuseram que todo ato interativo digital desdobra-se em <strong>5 Dimensões Essenciais</strong>.
         </p>
+
+        <div class="callout callout-theory">
+          <div class="callout-title">Por que Chamamos de "Dimensões"? (Da Geometria à Interface Digital)</div>
+          <p>
+            Na física e na geometria, uma linha tem uma dimensão (1D), uma superfície plana tem duas (2D), um objeto corpóreo tem três (3D) e o movimento no tempo adiciona a quarta dimensão (4D). 
+            Em Design de Interação, a lógica é idêntica: <strong>uma interface nunca existe isolada no plano bidimensional da tela gráfica (2D)</strong>. Ela é composta por camadas cumulativas que se constroem umas sobre as outras:
+          </p>
+          <ul style="margin: 0.5rem 0 0 1.25rem;">
+            <li><strong>1D (Linguagem Verbal):</strong> A interação começa nos significados textuais que damos aos comandos (palavras e rótulos).</li>
+            <li><strong>2D (Linguagem Gráfica):</strong> O texto ganha corpo visual, contraste, tipografia e forma no espaço da tela.</li>
+            <li><strong>3D (Meio Material / Físico):</strong> A tela 2D está inserida em um hardware físico (celular, relógio, mouse, óculos de VR) operado por um corpo humano com limitações biomecânicas.</li>
+            <li><strong>4D (Fluxo Temporal):</strong> A interação dura segundos ou minutos; envolve ritmo, animação, tempo de espera e feedback sonoro.</li>
+            <li><strong>5D (Comportamento Lógico):</strong> A inteligência operacional: como o sistema responde às ações do usuário, lembra de estados anteriores e reage a erros.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout-key">
+          <div class="callout-title">Como Usar as 5 Dimensões para Avaliar e Criar Interfaces Melhores?</div>
+          <p>
+            Muitas interfaces falham de forma catastrófica mesmo tendo um visual espetacular. O motivo? <strong>A equipe de engenharia cuidou muito bem da dimensão 2D (visual), mas negligenciou as outras quatro dimensões.</strong>
+          </p>
+          <p style="margin-bottom:0;">
+            As 5 Dimensões servem como um <strong>framework de diagnóstico e auditoria de projeto</strong>. Antes de considerar uma tela ou fluxo finalizado, o projetista deve fazer as cinco perguntas-chave de avaliação apresentadas em cada aba a seguir:
+          </p>
+        </div>
 
         <!-- CARD COM ABAS: 5 DIMENSÕES -->
         <div class="tabbed-card">
@@ -73,152 +99,212 @@
           <div class="tabbed-content">
             <!-- ABA 1D -->
             <div class="tab-pane active" id="tab-dim-1d">
-              <h3 style="margin-top:0; color:var(--primary);">1D: Palavras (Words / Microcópia)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">1D: Palavras (Words / Microcópia & Rótulos)</h3>
+                <span class="badge" style="background:var(--primary-light); color:var(--primary);">Dimensão Verbal</span>
+              </div>
+              
               <p>
-                As palavras englobam textos, rótulos de botões, mensagens de erro, termos de navegação e microcópias. Devem ser simples, objetivas e carregar significado claro para o modelo mental do usuário, sem ambiguidade nem tecnicismos da engenharia interna.
+                <strong>O que governa:</strong> Todo o conteúdo textual que orienta a ação humana: rótulos de botões, cabeçalhos, títulos, mensagens de erro, termos de navegação e microcópias. Palavras definem o modelo de comunicação entre o designer e o usuário.
               </p>
+              
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--primary); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"As palavras utilizadas comunicam a ação com precisão cirúrgica e na linguagem do usuário, sem usar jargões técnicos da engenharia ou ambiguidades?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
                   <div class="comparison-card-title">✗ Violação da Boa Prática (Antipattern)</div>
-                  <p><strong>Diálogo ambíguo com botões "Sim / Não":</strong> A mensagem diz <em>"Deseja cancelar a interrupção do envio de dados?"</em> com opções <em>[Sim]</em> e <em>[Não]</em>. O usuário fica paralisado pela dupla negação e não sabe o que acontecerá ao clicar.</p>
+                  <p><strong>Dupla negação e botões genéricos:</strong> A caixa de diálogo pergunta <em>"Deseja cancelar o encerramento do envio?"</em> com botões <em>[Sim]</em> e <em>[Não]</em>. O usuário fica paralisado cognitivamente porque clicar em "Sim" pode significar tanto confirmar o envio quanto cancelá-lo.</p>
                   <div class="interactive-mini-preview">
-                    <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.4rem; color:var(--text-primary);">Deseja cancelar o encerramento da conta?</div>
+                    <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.4rem; color:var(--text-primary);">Deseja cancelar a interrupção da exclusão?</div>
                     <div style="display:flex; gap:0.5rem;">
                       <button class="btn btn-outline" style="padding:0.25rem 0.6rem; font-size:0.8rem;">Sim</button>
                       <button class="btn btn-outline" style="padding:0.25rem 0.6rem; font-size:0.8rem;">Não</button>
                     </div>
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;"><strong>Impacto:</strong> Aumento extremo de ansiedade e probabilidade de perda irreversível de dados por engano.</div>
                 </div>
 
                 <div class="comparison-card good">
                   <div class="comparison-card-title">✓ Seguindo as Boas Práticas (UX Writing)</div>
-                  <p><strong>Verbos de ação explícitos nos botões:</strong> O sistema formula uma pergunta direta e nomeia os botões com a ação que será executada (ex: <em>[Manter Minha Conta]</em> e <em>[Excluir Permanentemente]</em>), eliminando a incerteza cognitiva.</p>
+                  <p><strong>Verbos de ação autoexplicativos:</strong> A mensagem é direta e os botões expressam exatamente a consequência da ação através de verbos no infinitivo (ex: <em>[Continuar Editando]</em> e <em>[Excluir Arquivo]</em>), eliminando dúvidas instantaneamente.</p>
                   <div class="interactive-mini-preview">
-                    <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.4rem; color:var(--text-primary);">Tem certeza de que deseja encerrar a sua conta?</div>
+                    <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.4rem; color:var(--text-primary);">Você deseja descartar as alterações não salvas?</div>
                     <div style="display:flex; gap:0.5rem;">
-                      <button class="btn btn-outline" style="padding:0.25rem 0.6rem; font-size:0.8rem;">Manter Minha Conta</button>
-                      <button class="btn" style="background:var(--accent-rose); color:#fff; padding:0.25rem 0.6rem; font-size:0.8rem;">Excluir Permanentemente</button>
+                      <button class="btn btn-outline" style="padding:0.25rem 0.6rem; font-size:0.8rem;">Continuar Editando</button>
+                      <button class="btn" style="background:var(--accent-rose); color:#fff; padding:0.25rem 0.6rem; font-size:0.8rem;">Descartar Alterações</button>
                     </div>
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;"><strong>Impacto:</strong> Confiança imediata na tomada de decisão sem exigir re-leitura do diálogo.</div>
                 </div>
               </div>
             </div>
 
             <!-- ABA 2D -->
             <div class="tab-pane" id="tab-dim-2d">
-              <h3 style="margin-top:0; color:var(--primary);">2D: Representações Visuais (Elementos Gráficos)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">2D: Representações Visuais (Elementos Gráficos & Tipografia)</h3>
+                <span class="badge" style="background:var(--accent-purple-light); color:var(--accent-purple);">Dimensão Visual</span>
+              </div>
+
               <p>
-                Tudo o que o usuário enxerga além do texto: tipografia, ilustrações, diagramas, ícones, esquemas de cores e contraste. Complementam as palavras para transmitir informações de forma instantânea sem sobrecarregar a memória de trabalho.
+                <strong>O que governa:</strong> Tudo o que o olho humano enxerga na superfície da tela: ilustrações, ícones, esquemas de cores, contraste visual, tipografia (peso, tamanho e espaçamento) e diagramação visual.
               </p>
+
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-purple); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"Os elementos visuais reduzem a carga cognitiva do usuário e orientam seu olhar com clareza, ou competem entre si gerando poluição e incerteza?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
                   <div class="comparison-card-title">✗ Violação da Boa Prática (Antipattern)</div>
-                  <p><strong>Ícones misteriosos ("Mystery Meat Navigation"):</strong> Usar ícones abstratos sem rótulo textual em menus críticos. O usuário precisa adivinhar ou passar o mouse em cada um para saber se uma engrenagem significa "ferramentas", "configurações" ou "suporte".</p>
-                  <div class="interactive-mini-preview" style="display:flex; gap:1rem; font-size:1.2rem;">
+                  <p><strong>Navegação misteriosa por ícones abstratos ("Mystery Meat Navigation"):</strong> Usar ícones decorativos ou não padronizados sem rótulo textual em menus principais. O usuário precisa adivinhar ou passar o mouse em cada um para saber o que significam.</p>
+                  <div class="interactive-mini-preview" style="display:flex; gap:1.25rem; font-size:1.2rem; align-items:center;">
                     <span title="O que é isto?">⊛</span>
                     <span title="O que é isto?">⌘</span>
                     <span title="O que é isto?">◬</span>
-                    <span style="font-size:0.8rem; color:var(--text-muted); align-self:center;">(Ícones abstratos sem texto)</span>
+                    <span style="font-size:0.8rem; color:var(--text-muted);">(Ícones abstratos sem texto)</span>
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;"><strong>Impacto:</strong> Lentidão de navegação; usuário se sente intimidado a explorar a interface.</div>
                 </div>
 
                 <div class="comparison-card good">
                   <div class="comparison-card-title">✓ Seguindo as Boas Práticas</div>
-                  <p><strong>Ícones com rótulos e convenções universais:</strong> Ícones familiares acompanhados de texto explicativo imediato e hierarquia de cores condizente com a função (ex: salvar em destaque, excluir sinalizado).</p>
-                  <div class="interactive-mini-preview" style="display:flex; gap:1.25rem; font-size:0.85rem;">
-                    <div style="display:flex; align-items:center; gap:0.3rem; font-weight:600;">
+                  <p><strong>Ícones familiares com texto explicativo e hierarquia visual:</strong> Ícones universais acompanhados de rótulo claro e contraste cromático que diferencia ações primárias de ações secundárias.</p>
+                  <div class="interactive-mini-preview" style="display:flex; gap:1.5rem; font-size:0.85rem;">
+                    <div style="display:flex; align-items:center; gap:0.4rem; font-weight:600; color:var(--primary);">
                       <span>⚙️</span><span>Configurações</span>
                     </div>
-                    <div style="display:flex; align-items:center; gap:0.3rem; font-weight:600;">
+                    <div style="display:flex; align-items:center; gap:0.4rem; font-weight:600; color:var(--text-primary);">
                       <span>🔍</span><span>Pesquisar</span>
                     </div>
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;"><strong>Impacto:</strong> Reconhecimento visual instantâneo sem depender de esforço de memória.</div>
                 </div>
               </div>
             </div>
 
             <!-- ABA 3D -->
             <div class="tab-pane" id="tab-dim-3d">
-              <h3 style="margin-top:0; color:var(--primary);">3D: Espaço Físico ou Objetos (Hardware e Ergonomia)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">3D: Espaço Físico ou Objetos (Hardware & Biomecânica)</h3>
+                <span class="badge" style="background:var(--accent-sky-light); color:var(--accent-sky);">Dimensão Física</span>
+              </div>
+
               <p>
-                O contexto espacial e o hardware pelo qual a interação ocorre: tela de toque de smartphone, mouse em desktop de mesa, volante automotivo, controle de videogame ou óculos de realidade virtual. A interface precisa adaptar-se à biomecânica do usuário.
+                <strong>O que governa:</strong> O hardware físico e o ambiente material em que o sistema é operado: a tela de toque de um celular segurado com uma mão no ônibus, o mouse e teclado em uma mesa de escritório, o volante e o painel de um automóvel em movimento, ou óculos de realidade aumentada sob luz solar intensa.
               </p>
+
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-sky); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"A interface foi concebida respeitando os limites biomecânicos do corpo do usuário (dedos, mãos, visão em movimento) e as restrições físicas do dispositivo?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
                   <div class="comparison-card-title">✗ Violação da Boa Prática (Antipattern)</div>
-                  <p><strong>Botões minúsculos fora da zona do polegar:</strong> Colocar botões cruciais com apenas 14px de tamanho no canto superior esquerdo de um aplicativo móvel. O usuário precisa usar as duas mãos ou forçar o tendão para alcançar a área.</p>
+                  <p><strong>Botões minúsculos fora da zona do polegar (Anti-ergonomia):</strong> Botões vitais com apenas 16px de altura posicionados no canto superior esquerdo de um aplicativo móvel. O usuário precisa usar as duas mãos ou esticar o polegar arriscando derrubar o aparelho.</p>
                   <div class="interactive-mini-preview" style="height:70px; background:#e2e8f0; position:relative; border-radius:4px;">
                     <button style="position:absolute; top:4px; left:4px; font-size:9px; padding:2px;">[x]</button>
-                    <span style="position:absolute; bottom:6px; right:8px; font-size:0.75rem; color:#64748b;">Área do polegar vazia</span>
+                    <span style="position:absolute; bottom:6px; right:8px; font-size:0.75rem; color:#64748b;">Área de repouso do polegar vazia</span>
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;"><strong>Impacto:</strong> Toques errados involuntários (toques no botão vizinho) e fadiga muscular.</div>
                 </div>
 
                 <div class="comparison-card good">
                   <div class="comparison-card-title">✓ Seguindo as Boas Práticas</div>
-                  <p><strong>Design ergonômico ("Thumb Zone"):</strong> Alvos de toque com no mínimo 48x48px (conforme normas da Apple e Google) posicionados na metade inferior da tela, permitindo uso confortável com uma única mão em trânsito.</p>
+                  <p><strong>Ergonomia móvel ("Thumb Zone") e alvos generosos:</strong> Botões primários fixados na metade inferior da tela com alvos de toque de no mínimo 48x48px (padrão WCAG / Apple / Google Material), permitindo navegação fluida com um só polegar.</p>
                   <div class="interactive-mini-preview" style="height:70px; background:var(--bg-subtle); position:relative; border-radius:4px; display:flex; align-items:flex-end; padding:8px;">
-                    <button class="btn btn-primary" style="width:100%; height:44px; font-size:0.85rem;">Ação Primária ao Alcance do Polegar</button>
+                    <button class="btn btn-primary" style="width:100%; height:44px; font-size:0.85rem;">Ação Primária ao Alcance Natural do Polegar</button>
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;"><strong>Impacto:</strong> Operação rápida e segura mesmo em movimento com uma única mão.</div>
                 </div>
               </div>
             </div>
 
             <!-- ABA 4D -->
             <div class="tab-pane" id="tab-dim-4d">
-              <h3 style="margin-top:0; color:var(--primary);">4D: Tempo (Animação, Ritmo e Resposta Sonora)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">4D: Tempo (Animação, Ritmo e Feedback Temporal)</h3>
+                <span class="badge" style="background:var(--accent-amber-light); color:var(--accent-amber);">Dimensão Temporal</span>
+              </div>
+
               <p>
-                A dimensão temporal da experiência: velocidade de carregamento, duração de transições animadas, persistência visual e feedbacks acústicos. O tempo molda a percepção de agilidade, segurança ou lentidão do software.
+                <strong>O que governa:</strong> A passagem do tempo durante a interação: velocidade de carregamento, ritmo de transições animadas, persistência de mensagens na tela e sons de notificação. O tempo é o fator que dita se a interface parece ágil, engasgada ou quebrada.
               </p>
+
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-amber); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"O sistema responde imediatamente a cada comando (&lt; 100ms perceptível) e mantém o usuário informado sobre operações demoradas com transições de ritmo natural (200-300ms)?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
                   <div class="comparison-card-title">✗ Violação da Boa Prática (Antipattern)</div>
-                  <p><strong>Animações excessivas ou silêncio total:</strong> Telas que usam transições teatrais de 2,5 segundos que o usuário não pode pular, ou interfaces que processam pagamentos por 10 segundos em silêncio absoluto sem qualquer indicação de vida.</p>
+                  <p><strong>Silêncio temporal ou animações cinematográficas cansativas:</strong> Processar um pedido por 7 segundos com a tela totalmente inerte (fazendo o usuário achar que travou), ou forçar animações lentas de 2 segundos a cada mudança de aba.</p>
                   <div class="interactive-mini-preview" style="font-size:0.8rem; color:var(--text-muted);">
-                    Processando compra... [Tela congelada sem barra nem aviso por 8 segundos]
+                    Finalizando compra... [Tela totalmente estática por 7 segundos sem spinner]
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;"><strong>Impacto:</strong> Usuário clica repetidas vezes no botão gerando transações duplicadas.</div>
                 </div>
 
                 <div class="comparison-card good">
                   <div class="comparison-card-title">✓ Seguindo as Boas Práticas</div>
-                  <p><strong>Microinterações responsivas (200ms - 300ms):</strong> Feedback visual instantâneo (skeleton screens ou spinners sutis) e transições elásticas que explicam a causalidade espacial sem atrasar a produtividade do usuário experiente.</p>
+                  <p><strong>Microinterações ágeis e indicadores de estado imediato:</strong> No momento do clique (0ms), o botão desabilita e entra em estado de processamento visual. Para esperas maiores que 1 segundo, são exibidos esqueletos (skeleton screens) e barras estimadas.</p>
                   <div class="interactive-mini-preview" style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem;">
                     <span style="display:inline-block; width:14px; height:14px; border:2px solid var(--primary); border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></span>
                     <span style="font-weight:600; color:var(--text-primary);">Processando pagamento com segurança (250ms)...</span>
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;"><strong>Impacto:</strong> Sensação de controle, previsibilidade e alta performance perceptiva.</div>
                 </div>
               </div>
             </div>
 
             <!-- ABA 5D -->
             <div class="tab-pane" id="tab-dim-5d">
-              <h3 style="margin-top:0; color:var(--primary);">5D: Comportamento (Lógica e Resposta aos Estados)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">5D: Comportamento (Lógica, Memória de Estados & Reação)</h3>
+                <span class="badge" style="background:var(--accent-emerald-light); color:var(--accent-emerald);">Dimensão Comportamental</span>
+              </div>
+
               <p>
-                Adicionada por Kevin Silver, esta dimensão define como as quatro anteriores operam em conjunto dinamicamente. É a reação do sistema às ações humanas: lógica de validação de formulários, persistência de dados, desdobramentos de estados e capacidade de adaptação.
+                <strong>O que governa:</strong> Como as quatro dimensões anteriores funcionam em conjunto como um organismo vivo. É a reação dinâmica do sistema às ações humanas: como valida formulários, como se adapta ao contexto do usuário, como lida com falhas de conexão e se oferece mecanismos de desfazer (Undo).
               </p>
+
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-emerald); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"O sistema preserva o esforço investido pelo usuário e se comporta de forma tolerante a falhas, oferecendo saídas de emergência e recuperação sem atrito?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
                   <div class="comparison-card-title">✗ Violação da Boa Prática (Antipattern)</div>
-                  <p><strong>Perda destrutiva de contexto:</strong> O usuário preenche um formulário complexo de 15 campos; ao errar o formato do CEP, a página recarrega inteira e limpa todos os 15 campos, punindo o usuário por um erro pontual.</p>
+                  <p><strong>Comportamento punitivo e perda destrutiva de dados:</strong> O usuário preenche 12 campos de um cadastro. Ao errar um único caractere no telefone, a página recarrega inteira, apaga todos os 12 campos e o força a digitar tudo novamente.</p>
                   <div class="interactive-mini-preview" style="font-size:0.8rem; color:var(--accent-rose);">
-                    ✗ Erro de CEP. Todos os campos foram resetados. Digite tudo novamente.
+                    ✗ Erro no telefone. Todos os campos foram resetados. Digite tudo novamente.
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;"><strong>Impacto:</strong> Abandono imediato do produto por frustração e cansaço mental.</div>
                 </div>
 
                 <div class="comparison-card good">
                   <div class="comparison-card-title">✓ Seguindo as Boas Práticas</div>
-                  <p><strong>Preservação de estado e validação em linha:</strong> O sistema mantém intactos todos os dados já digitados, sinaliza gentilmente apenas o campo que requer correção com uma máscara explicativa e salva rascunhos em tempo real.</p>
+                  <p><strong>Comportamento resiliente e preservação de estado:</strong> O sistema mantém todos os dados válidos preenchidos no formulário, sinaliza em linha (inline) apenas o campo que precisa de ajuste, salva rascunhos em tempo real e oferece o botão "Desfazer" após ações críticas.</p>
                   <div class="interactive-mini-preview" style="font-size:0.8rem; color:var(--accent-emerald);">
-                    ✓ Rascunho salvo automaticamente. Apenas o CEP precisa de ajuste (formato: 00000-000).
+                    ✓ Rascunho salvo automaticamente. Apenas o telefone precisa de ajuste: (00) 00000-0000.
                   </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;"><strong>Impacto:</strong> Experiência segura, inteligente e acolhedora mesmo diante de erros.</div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="callout callout-theory" style="margin-top:2.5rem;">
+          <div class="callout-title">Ponte Conceitual: Das 5 Dimensões da Interface aos Princípios Cognitivos de Norman</div>
+          <p>
+            Até aqui, você aprendeu como a interface é constituída enquanto artefato interativo através das 5 Dimensões (Palavras, Visuais, Espaço, Tempo e Comportamento).
+          </p>
+          <p style="margin-bottom:0;">
+            Mas surge uma questão indispensável para todo engenheiro de IHC: <strong>como a mente humana percebe, decodifica e opera essas dimensões no mundo real?</strong> É exatamente para responder a essa pergunta e conectar a cognição humana ao artefato que Donald Norman propôs os seus princípios universais.
+          </p>
         </div>
 
         <!-- SEÇÃO 2: PRINCÍPIOS FUNDAMENTAIS DE DON NORMAN -->
@@ -262,13 +348,16 @@
           <div class="tabbed-content">
             <!-- ABA 1: AFFORDANCE -->
             <div class="tab-pane active" id="tab-norman-affordance">
-              <h3 style="margin-top:0; color:var(--primary);">1. Affordance (Capacidade Real de Interação)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">1. Affordance (Capacidade Real de Interação)</h3>
+                <span class="badge" style="background:var(--primary-light); color:var(--primary);">Abismo de Execução</span>
+              </div>
               <p>
-                Originado na psicologia ecológica por James J. Gibson (1979) e adaptado por Norman, <strong>Affordance</strong> refere-se à relação relacional entre as propriedades de um objeto e as capacidades físicas do agente humano. Uma cadeira física possui a affordance de <em>sentar</em>; uma bola possui a affordance de <em>rolar</em>.
+                Originado na psicologia ecológica por James J. Gibson (1979) e adaptado por Norman, <strong>Affordance</strong> refere-se à relação entre as propriedades físicas de um objeto e as capacidades motoras do agente humano. Uma cadeira física possui a affordance de <em>sentar</em>; uma bola possui a affordance de <em>rolar</em>.
               </p>
-              <p style="font-size:0.9rem; color:var(--text-muted);">
-                <strong>Papel no Abismo:</strong> Reduz o <em>Abismo de Execução</em> ao possibilitar que o corpo do usuário saiba intuitivamente que tipos de ações motoras são realizáveis.
-              </p>
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--primary); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"O usuário percebe intuitivamente que este elemento é interativo, ou o artefato aparenta ser inerte como texto estático?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
@@ -293,13 +382,16 @@
 
             <!-- ABA 2: SIGNIFIERS -->
             <div class="tab-pane" id="tab-norman-signifiers">
-              <h3 style="margin-top:0; color:var(--primary);">2. Signifiers (Significadores / Pistas Perceptíveis)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">2. Signifiers (Significadores / Pistas Perceptíveis)</h3>
+                <span class="badge" style="background:var(--accent-purple-light); color:var(--accent-purple);">Abismo de Execução</span>
+              </div>
               <p>
                 Em telas digitais, o vidro é plano e todas as propriedades físicas são idênticas. Por isso, Norman esclareceu a diferença em 2013: <strong>Signifiers</strong> são marcas, sinais sonoros ou indicadores visuais perceptíveis que comunicam <em>ONDE e COMO</em> a ação deve ser realizada.
               </p>
-              <p style="font-size:0.9rem; color:var(--text-muted);">
-                <strong>Papel no Abismo:</strong> É o principal instrumento para eliminar o <em>Abismo de Execução</em>, indicando exatamente onde posicionar o dedo ou o cursor.
-              </p>
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-purple); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"Há pistas gráficas inequívocas (sombras, setas, rótulos 'arraste aqui', foco) mostrando onde o usuário deve agir e qual gesto é exigido?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
@@ -322,13 +414,16 @@
 
             <!-- ABA 3: MAPEAMENTO -->
             <div class="tab-pane" id="tab-norman-mapping">
-              <h3 style="margin-top:0; color:var(--primary);">3. Mapeamento (Mapping Espacial e Lógico)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">3. Mapeamento (Mapping Espacial e Lógico)</h3>
+                <span class="badge" style="background:var(--accent-sky-light); color:var(--accent-sky);">Abismo de Execução</span>
+              </div>
               <p>
                 É a relação espacial, temporal ou analógica entre o arranjo dos controles e seus efeitos correspondentes no mundo real. Quando o mapeamento é <strong>natural</strong>, a geometria dos interruptores espelha diretamente a disposição física dos elementos controlados.
               </p>
-              <p style="font-size:0.9rem; color:var(--text-muted);">
-                <strong>Papel no Abismo:</strong> Fecha o <em>Abismo de Execução</em>, permitindo operar comandos sem esforço de memorização ou tentativa-e-erro.
-              </p>
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-sky); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"A disposição dos comandos reproduz espacialmente a localização dos elementos afetados, eliminando tentativa-e-erro?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
@@ -351,13 +446,16 @@
 
             <!-- ABA 4: FEEDBACK -->
             <div class="tab-pane" id="tab-norman-feedback">
-              <h3 style="margin-top:0; color:var(--primary);">4. Feedback (Retorno Imediato e Informativo)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">4. Feedback (Retorno Imediato e Informativo)</h3>
+                <span class="badge" style="background:var(--accent-amber-light); color:var(--accent-amber);">Abismo de Avaliação</span>
+              </div>
               <p>
                 Enviar de volta ao usuário informações inequívocas, perceptíveis e imediatas sobre o resultado da ação executada. O feedback deve ser oportuno: feedbacks atrasados geram ansiedade e cliques repetidos; feedbacks excessivos tornam-se ruído e são ignorados.
               </p>
-              <p style="font-size:0.9rem; color:var(--text-muted);">
-                <strong>Papel no Abismo:</strong> É o pilar exclusivo para fechar o <em>Abismo de Avaliação</em> (responder: <em>"minha ação foi aceita?"</em>).
-              </p>
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-amber); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"O usuário sabe instantaneamente (&lt; 100ms) se a ação foi recebida e processada com sucesso pelo sistema?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
@@ -380,13 +478,16 @@
 
             <!-- ABA 5: RESTRIÇÕES -->
             <div class="tab-pane" id="tab-norman-constraints">
-              <h3 style="margin-top:0; color:var(--primary);">5. Restrições (Constraints de Prevenção de Erros)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">5. Restrições (Constraints de Prevenção de Erros)</h3>
+                <span class="badge" style="background:var(--accent-rose-light); color:var(--accent-rose);">Prevenção de Falhas</span>
+              </div>
               <p>
                 Mecanismos que limitam o conjunto de ações possíveis, guiando o usuário suavemente apenas para os caminhos válidos. Podem ser <strong>físicas</strong> (o plug que só encaixa de um lado), <strong>lógicas</strong> (opções desabilitadas até que uma condição prévia seja satisfeita), <strong>semânticas</strong> ou <strong>culturais</strong>.
               </p>
-              <p style="font-size:0.9rem; color:var(--text-muted);">
-                <strong>Papel no Abismo:</strong> Previne a entrada no <em>Abismo de Execução</em>, impedindo ações destrutivas antes que aconteçam.
-              </p>
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-rose); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"A interface impede fisicamente ou logicamente que o usuário cometa entradas inválidas ou dispare ações prematuras?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
@@ -409,13 +510,16 @@
 
             <!-- ABA 6: MODELO CONCEITUAL -->
             <div class="tab-pane" id="tab-norman-conceptual">
-              <h3 style="margin-top:0; color:var(--primary);">6. Modelo Conceitual (Conceptual Model)</h3>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">6. Modelo Conceitual (Conceptual Model)</h3>
+                <span class="badge" style="background:var(--accent-emerald-light); color:var(--accent-emerald);">Modelo Mental</span>
+              </div>
               <p>
                 É a representação mental simplificada que o usuário constrói sobre <em>como algo funciona</em>. Se o design da interface projetar uma imagem de sistema coerente (metáfora de desktop, lixeira, pastas, carrinho de compras), o modelo mental do usuário casa perfeitamente com a lógica da engenharia.
               </p>
-              <p style="font-size:0.9rem; color:var(--text-muted);">
-                <strong>Papel no Abismo:</strong> Alinha a mente humana com a máquina em ambos os abismos (Execução e Avaliação).
-              </p>
+              <div style="background:var(--bg-subtle); border-left:3px solid var(--accent-emerald); padding:0.6rem 0.85rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.88rem; margin-bottom:1rem;">
+                <strong>Pergunta de Auditoria do Projetista:</strong> <em>"O sistema aproveita modelos mentais e metáforas pré-existentes do usuário para que ele deduza o funcionamento sem esforço?"</em>
+              </div>
 
               <div class="comparison-grid">
                 <div class="comparison-card bad">
