@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>09. Acessibilidade Digital & Diretrizes WCAG | IHC</title>
-  <meta name="description" content="Diretrizes de Acessibilidade para Conteúdo Web (WCAG 2.1/2.2): princípios POUR, níveis A/AA/AAA, cálculo de contraste e inclusão de pessoas com deficiência.">
+  <meta name="description"
+    content="Guia mestre de Acessibilidade Digital e Diretrizes WCAG (2.1 e 2.2): princípios POUR, níveis A/AA/AAA, anatomia técnica de critérios, árvore de acessibilidade e laboratórios práticos de contraste e daltonismo.">
   <link rel="stylesheet" href="../assets/css/main.css">
   <link rel="stylesheet" href="../assets/css/widgets.css">
 </head>
+
 <body>
 
-  <!-- Filtros SVG ocultos para simulação precisa de daltonismo -->
-  <svg style="display: none;">
+  <!-- Filtros SVG acessíveis para simulação precisa de daltonismo (cross-browser) -->
+  <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
     <defs>
-      <!-- Protanopia (cegueira para vermelho) -->
+      <!-- Protanopia (insensibilidade aos cones vermelhos L) -->
       <filter id="protanopia-filter">
-        <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0" />
+        <feColorMatrix type="matrix"
+          values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0" />
       </filter>
-      <!-- Deuteranopia (cegueira para verde) -->
+      <!-- Deuteranopia (insensibilidade aos cones verdes M) -->
       <filter id="deuteranopia-filter">
-        <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0" />
+        <feColorMatrix type="matrix"
+          values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0" />
       </filter>
-      <!-- Tritanopia (cegueira para azul) -->
+      <!-- Tritanopia (insensibilidade aos cones azuis S) -->
       <filter id="tritanopia-filter">
-        <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0" />
+        <feColorMatrix type="matrix"
+          values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0" />
       </filter>
     </defs>
   </svg>
+
+  <div class="reading-progress" aria-hidden="true"></div>
 
   <header class="navbar">
     <div class="nav-container">
@@ -35,21 +43,21 @@
         <span>Material Didático</span>
       </a>
 
-      <nav>
+      <nav aria-label="Navegação entre módulos">
         <ul class="nav-links">
-          <li><a href="08-interaction-design.html" class="nav-link">&larr; 08. IxD</a></li>
+          <li><a href="08-interaction-design.html" class="nav-link">&larr; 08. IxD & Norman</a></li>
           <li><a href="10-jornada-do-usuario.html" class="nav-link">10. Jornada &rarr;</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema"></button>
+        <button id="theme-toggle" class="btn-icon" aria-label="Alternar tema claro/escuro"></button>
       </div>
     </div>
   </header>
 
-  <main class="main-wrapper">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
+  <main class="main-wrapper" id="conteudo-principal">
+    <nav class="breadcrumbs" aria-label="Trilha de navegação (Breadcrumbs)">
       <a href="../index.html">Início</a>
       <span>/</span>
       <span class="current">09. Acessibilidade Digital & WCAG</span>
@@ -57,157 +65,1155 @@
 
     <header class="page-header">
       <div class="page-meta">
-        <span class="badge category-avaliacao">Módulo 09 &bull; Acessibilidade & Avaliação</span>
-        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado: 30 min</span>
+        <span class="badge category-avaliacao">Módulo 09 &bull; Acessibilidade & Inclusão</span>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Tempo estimado de estudo: 45 min</span>
       </div>
       <h1 class="page-title">Acessibilidade Digital & As Diretrizes WCAG</h1>
       <p class="page-subtitle">
-        Projetando interfaces universais: a fundamentação dos princípios POUR, os níveis de conformidade e o cálculo científico de contraste de cores para inclusão plena.
+        Projetando interfaces digitais verdadeiramente universais: da fundamentação técnica e jurídica dos padrões
+        W3C/WAI à arquitetura dos princípios POUR, níveis A/AA/AAA, árvore de acessibilidade, cálculo de contraste e
+        laboratórios interativos de auditoria prática.
       </p>
     </header>
 
     <div class="content-grid">
       <article class="article-content">
-        <h2>1. O Imperativo Ético e Legal da Acessibilidade</h2>
+
+        <!-- ============================================================== -->
+        <!-- SEÇÃO 1: O QUE É REALMENTE A WCAG E O ECOSSISTEMA GLOBAL W3C   -->
+        <!-- ============================================================== -->
+        <h2>1. O Que É Realmente a WCAG e Por Que Ela Existe?</h2>
+
         <p>
-          A acessibilidade na web não é um "recurso bônus", mas sim a garantia de que pessoas com deficiências (visuais, motoras, auditivas, cognitivas ou temporárias) possam usufruir da sociedade digital com autonomia e dignidade (Horton & Quesenbery, 2014). No Brasil, a <strong>Lei Brasileira de Inclusão (Lei nº 13.146/2015, Art. 63)</strong> estabelece como obrigatória a acessibilidade nos sítios da internet mantidos por empresas com sede ou representação comercial no país e por órgãos públicos.
+          No desenvolvimento de software e design de interfaces, é frequente encontrar uma concepção equivocada e
+          reducionista de que acessibilidade seria apenas <em>"colocar atributos <code>alt</code> em imagens"</em> ou
+          <em>"instalar um widget flutuante de terceiros com botões de contraste"</em>. Na realidade, <strong>a
+            acessibilidade digital é uma disciplina de engenharia de software e design universal</strong> que garante
+          que qualquer pessoa &mdash; independentemente de suas capacidades sensoriais, motoras, cognitivas, do
+          dispositivo que utiliza ou do contexto ambiental &mdash; possa perceber, compreender, navegar e interagir com
+          produtos digitais de forma autônoma e equivalente (Horton & Quesenbery, 2014; Kalbag, 2017).
         </p>
 
-        <h2>2. Os Quatro Princípios Fundamentais (POUR) da WCAG</h2>
         <p>
-          As <strong>Web Content Accessibility Guidelines (WCAG)</strong>, mantidas pelo consórcio W3C/WAI, organizam-se em quatro pilares universais:
+          Para unificar essas práticas em escala mundial, o <strong>World Wide Web Consortium (W3C)</strong> &mdash; o
+          principal consórcio internacional de padronização da internet &mdash; fundou a <strong>Web Accessibility
+            Initiative (WAI)</strong>. A WAI é a entidade responsável por desenvolver as <strong>Web Content
+            Accessibility Guidelines (WCAG)</strong>. A WCAG não é apenas uma recomendação acadêmica: ela é uma
+          <strong>norma técnica internacional formal, ratificada como padrão ISO/IEC 40500:2012</strong>.
         </p>
 
         <div class="callout callout-theory">
-          <div class="callout-title">O Mnemônico POUR</div>
+          <div class="callout-title">O Tripé Normativo da W3C / WAI (Não Existe Só a WCAG!)</div>
+          <p>
+            Para que uma pessoa com deficiência consiga usar a web com sucesso, o W3C estabeleceu que a responsabilidade
+            não reside unicamente no código HTML da página. A acessibilidade depende da integração harmônica de três
+            especificações complementares:
+          </p>
           <ul style="margin: 0.5rem 0 0 1.25rem;">
-            <li><strong>P - Perceptível (Perceivable):</strong> A informação não pode ser invisível a todos os sentidos do usuário. Ex: imagens precisam de equivalentes textuais (atributo <code>alt</code>) para pessoas cegas com leitores de tela; áudios precisam de legendas.</li>
-            <li><strong>O - Operável (Operable):</strong> A interface não pode exigir ações que o usuário não consiga realizar. Ex: 100% dos botões, menus e formulários devem ser navegáveis exclusivamente via <strong>teclado</strong> (<kbd>Tab</kbd>, <kbd>Enter</kbd>, <kbd>Espaço</kbd>), sem depender de ponteiro de mouse.</li>
-            <li><strong>U - Compreensível (Understandable):</strong> A linguagem deve ser clara, e as operações devem ser previsíveis. Ex: formulários com mensagens de erro que explicam como corrigir e foco visual que não salta de maneira inesperada.</li>
-            <li><strong>R - Robusto (Robust):</strong> O código HTML deve ser semanticamente válido para que navegadores e tecnologias assistivas (leitores de tela NVDA, JAWS, VoiceOver) interpretem os elementos com precisão.</li>
+            <li><strong>WCAG (Web Content Accessibility Guidelines):</strong> Destinada aos desenvolvedores, designers e
+              autores de conteúdo. Define como codificar sites, páginas, aplicativos, documentos, textos, vídeos, SVGs e
+              formulários para torná-los acessíveis.</li>
+            <li><strong>ATAG (Authoring Tool Accessibility Guidelines):</strong> Destinada às empresas que criam
+              ferramentas de autoria (editores de código, CMS como WordPress, editores visuais como Figma e Webflow).
+              Exige que essas ferramentas produzam código acessível por padrão e tenham interfaces acessíveis para
+              designers com deficiência.</li>
+            <li><strong>UAAG (User Agent Accessibility Guidelines):</strong> Destinada aos desenvolvedores de
+              navegadores (Chrome, Firefox, Safari, Edge) e reprodutores multimídia, assegurando compatibilidade nativa
+              com tecnologias assistivas e controles de zoom e legendas.</li>
           </ul>
         </div>
 
-        <h2>3. Níveis de Conformidade e Critérios de Contraste</h2>
+        <h3>A Evolução Histórica das Diretrizes WCAG</h3>
         <p>
-          As diretrizes da WCAG 2.1 e 2.2 são categorizadas em três níveis cumulativos:
+          A tecnologia da web transformou-se radicalmente nos últimos 25 anos, e a WCAG evoluiu continuamente para
+          acompanhar novos paradigmas de interação:
         </p>
+
         <ul>
-          <li><strong>Nível A:</strong> Requisitos mínimos indispensáveis (sem os quais determinados grupos de usuários ficam completamente bloqueados).</li>
-          <li><strong>Nível AA:</strong> O padrão legal e corporativo global (exigido por leis de acessibilidade governamentais e corporativas).</li>
-          <li><strong>Nível AAA:</strong> O nível mais rigoroso de acessibilidade especializada (recomendado para serviços públicos de saúde, emergência e educação).</li>
+          <li><strong>WCAG 1.0 (1999):</strong> Focada nas páginas estáticas em HTML puro dos primórdios da web
+            comercial. Era fortemente atrelada a elementos de marcação específicos e revelou-se insuficiente quando a
+            web tornou-se dinâmica.</li>
+          <li><strong>WCAG 2.0 (2008):</strong> Um marco histórico. Reformulou completamente a estrutura da norma,
+            tornando-a <em>agnóstica à tecnologia</em> através dos quatro princípios fundamentais (POUR) e critérios de
+            sucesso mensuráveis. Foi adotada como padrão global <strong>ISO/IEC 40500:2012</strong>.</li>
+          <li><strong>WCAG 2.1 (2018):</strong> Criada para sanar lacunas decorrentes da explosão dos smartphones e
+            telas sensíveis ao toque. Adicionou 17 novos critérios cobrindo acessibilidade móvel (gestos complexos,
+            orientação de tela retrato/paisagem), pessoas com baixa visão (reflow/zoom até 400%, contraste de elementos
+            não-textuais) e deficiências cognitivas.</li>
+          <li><strong>WCAG 2.2 (Outubro de 2023 &mdash; Recomendação Oficial Vigente):</strong> Refinou a norma com 9
+            novos critérios cruciais, protegendo usuários neurodivergentes contra quebra-cabeças cognitivos
+            (autenticação sem testes mentais forçados), garantindo alvos de toque mínimos de 24&times;24px no mobile,
+            exigindo foco de teclado sempre visível e não obstruído por elementos flutuantes, e formalizando a
+            obsolescência do critério 4.1.1 (Parsing).</li>
+          <li><strong>WCAG 3.0 ("W3C Silver" &mdash; Em Elaboração):</strong> O futuro da acessibilidade, projetado para
+            transcender a web tradicional (cobrindo Realidade Virtual/Aumentada, IoT e IA) e adotar modelos contínuos de
+            pontuação de experiência em vez de um sistema meramente binário de "passa ou falha".</li>
         </ul>
 
         <div class="callout callout-key">
-          <div class="callout-title">Critério de Sucesso 1.4.3: Contraste Mínimo (Nível AA)</div>
+          <div class="callout-title">O Marco Regulatório no Brasil e as Implicações Jurídicas</div>
           <p>
-            O contraste visual entre o texto e seu plano de fundo deve respeitar a fórmula matemática de luminância relativa do W3C:
+            No Brasil, a acessibilidade digital não é uma escolha de conveniência ou "funcionalidade secundária";
+            <strong>é uma obrigação legal formal com responsabilização civil e criminal</strong>:
           </p>
           <ul style="margin: 0.5rem 0 0 1.25rem;">
-            <li><strong>Texto Normal (&lt; 18pt / 24px):</strong> Razão mínima de contraste de <strong>4.5 : 1</strong>.</li>
-            <li><strong>Texto Grande (&ge; 18pt ou &ge; 14pt em negrito):</strong> Razão mínima de contraste de <strong>3.0 : 1</strong>.</li>
-            <li><strong>Nível AAA (Máximo rigor):</strong> <strong>7.0 : 1</strong> para texto normal e <strong>4.5 : 1</strong> para texto grande.</li>
+            <li><strong>Lei Brasileira de Inclusão da Pessoa com Deficiência (LBI &mdash; Lei Federal nº 13.146/2015,
+                Art. 63):</strong> Determina a obrigatoriedade da acessibilidade nos sítios da internet mantidos por
+              empresas com sede ou representação comercial no país e por órgãos da administração pública.</li>
+            <li><strong>e-MAG (Modelo de Acessibilidade em Governo Eletrônico):</strong> Padrão oficial de
+              desenvolvimento e auditoria de portais públicos do Governo Federal brasileiro, baseado diretamente na
+              WCAG.</li>
+            <li><strong>Sanções Jurídicas Reais:</strong> O descumprimento pode gerar autuações pelo Ministério Público
+              Federal e Estadual, instauração de Termos de Ajustamento de Conduta (TAC), imposição de multas financeiras
+              diárias e impedimento de participação em licitações públicas.</li>
+            <li><strong>Dimensão Econômica e Social:</strong> Conforme o Instituto Brasileiro de Geografia e Estatística
+              (IBGE), mais de 18,6 milhões de brasileiros possuem algum tipo de deficiência. Negligenciar a
+              acessibilidade significa excluir economicamente quase 10% da população ativa e uma parcela massiva de
+              pessoas idosas que vivenciam declínios sensoriais e motores naturais.</li>
           </ul>
         </div>
 
-        <!-- WIDGET 09: Laboratório Interativo WCAG -->
-        <div class="interactive-sandbox">
+        <!-- ============================================================== -->
+        <!-- SEÇÃO 2: A ARQUITETURA TÉCNICA EM 4 CAMADAS DA WCAG            -->
+        <!-- ============================================================== -->
+        <h2>2. A Arquitetura Técnica da WCAG: Como Decodificar a Norma</h2>
+        <p>
+          Muitos engenheiros e designers se sentem desorientados ao consultar o documento oficial da WCAG pela primeira
+          vez. Isso ocorre porque a norma possui uma <strong>hierarquia piramidal estrita em 4 camadas</strong>,
+          desenhada para separar o que é universal e permanente do que é código específico de implementação:
+        </p>
+
+        <div
+          style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem; margin:1.5rem 0;">
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <span class="badge"
+                style="background:var(--primary); color:#fff; min-width:90px; text-align:center;">Camada 1</span>
+              <div>
+                <strong style="color:var(--text-primary); font-size:1rem;">Princípios (Principles): O Alicerce
+                  Filosófico (4)</strong>
+                <p style="margin:0.25rem 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                  O topo da pirâmide: os quatro pilares do mnemônico <strong>POUR</strong> (Perceptível, Operável,
+                  Compreensível e Robusto). Se qualquer um dos quatro for negligenciado, usuários com determinadas
+                  deficiências sofrerão bloqueio intransponível.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <span class="badge"
+                style="background:var(--accent-purple); color:#fff; min-width:90px; text-align:center;">Camada 2</span>
+              <div>
+                <strong style="color:var(--text-primary); font-size:1rem;">Diretrizes (Guidelines): Os Objetivos
+                  Conceituais (13 na versão 2.2)</strong>
+                <p style="margin:0.25rem 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                  As diretrizes fornecem metas claras para tornar o conteúdo acessível (ex: <em>Diretriz 1.1: Fornecer
+                    alternativas textuais</em>, <em>Diretriz 2.1: Tornar todas as funcionalidades acessíveis via
+                    teclado</em>). Elas não são testáveis diretamente em código, funcionando como pontes entre os
+                  princípios e os critérios técnicos.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <span class="badge"
+                style="background:var(--accent-emerald); color:#fff; min-width:90px; text-align:center;">Camada 3</span>
+              <div>
+                <strong style="color:var(--text-primary); font-size:1rem;">Critérios de Sucesso (Success Criteria): As
+                  Regras Testáveis (86 na 2.2)</strong>
+                <p style="margin:0.25rem 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                  Aqui reside a essência técnica das auditorias. Cada critério é numerado de forma precisa (ex:
+                  <em>1.4.3 Contraste Mínimo</em>, <em>2.4.7 Foco Visível</em>) e é <strong>testável de maneira
+                    objetiva</strong> (com resultado binário: passou ou falhou). Cada critério pertence a um dos três
+                  <strong>Níveis de Conformidade: A, AA ou AAA</strong>.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:1rem; align-items:flex-start;">
+              <span class="badge"
+                style="background:var(--accent-sky); color:#fff; min-width:90px; text-align:center;">Camada 4</span>
+              <div>
+                <strong style="color:var(--text-primary); font-size:1rem;">Técnicas Suficientes, Recomendadas e Falhas
+                  Comuns (Techniques & Failures)</strong>
+                <p style="margin:0.25rem 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                  A camada dinâmica e prática atualizada pelo W3C. Ensina como codificar em HTML, CSS, JavaScript, PDF
+                  ou SVG para cumprir o critério (Técnicas Suficientes), apresenta melhorias adicionais (Técnicas
+                  Recomendadas) e cataloga erros graves consagrados pela indústria com identificadores formais de falha
+                  (ex: <em>Falha F65: Falha do Critério 1.1.1 devido à omissão do atributo alt em elemento img</em>).
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- SEÇÃO 3: OS QUATRO PRINCÍPIOS FUNDAMENTAIS (POUR) EM DETALHES -->
+        <!-- ============================================================== -->
+        <h2>3. Os Quatro Princípios Fundamentais (POUR) em Profundidade</h2>
+        <p>
+          O mnemônico <strong>POUR</strong> resume a cadeia de processamento humano e tecnológico necessária para que
+          uma interface digital seja usável. Navegue pelas abas abaixo para explorar os conceitos, critérios mais
+          críticos, armadilhas comuns e códigos contrastantes de cada princípio:
+        </p>
+
+        <!-- CARD COM ABAS: 4 PRINCÍPIOS POUR -->
+        <div class="tabbed-card">
+          <nav class="tabbed-nav" aria-label="Abas dos Princípios POUR da WCAG">
+            <button class="tab-nav-btn active" data-tab="tab-pour-p">1. P - Perceptível</button>
+            <button class="tab-nav-btn" data-tab="tab-pour-o">2. O - Operável</button>
+            <button class="tab-nav-btn" data-tab="tab-pour-u">3. U - Compreensível</button>
+            <button class="tab-nav-btn" data-tab="tab-pour-r">4. R - Robusto</button>
+          </nav>
+
+          <div class="tabbed-content">
+
+            <!-- ABA 1: PERCEPTÍVEL -->
+            <div class="tab-pane active" id="tab-pour-p">
+              <div
+                style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">P &mdash; Perceptível (Perceivable)</h3>
+                <span class="badge" style="background:var(--primary-light); color:var(--primary);">Informação aos
+                  Sentidos</span>
+              </div>
+              <p>
+                <strong>Regra Central:</strong> A informação e os componentes da interface não podem ser invisíveis a
+                todos os sentidos do usuário. Se uma pessoa não enxerga, a informação deve ser convertível em áudio
+                (leitores de tela) ou tato (linhas Braille atualizáveis). Se ela não ouve, deve haver equivalente visual
+                (legendas, texto).
+              </p>
+
+              <h4>Critérios de Sucesso Fundamentais:</h4>
+              <ul>
+                <li>
+                  <strong>1.1.1 Conteúdo Não Textual (Nível A):</strong> Todo elemento visual significativo deve ter uma
+                  alternativa textual.
+                  <ul style="font-size:0.9rem; margin-top:0.3rem;">
+                    <li><em>Imagens Informativas:</em> Devem ter <code>alt</code> conciso e descritivo (ex:
+                      <code>alt="Gráfico de pizza demonstrando 60% de aprovação"</code>).</li>
+                    <li><em>Imagens Puramente Decorativas:</em> Devem ter atributo <code>alt=""</code> vazio ou
+                      <code>aria-hidden="true"</code>, sinalizando ao leitor de tela que pode ignorar a imagem em
+                      silêncio. Se você omitir o atributo <code>alt</code> por completo, o leitor de tela lerá o nome do
+                      arquivo (ex: <code>"IMG_938472_final_v2.png"</code>), poluindo terrivelmente a experiência
+                      auditiva!</li>
+                    <li><em>Ícones Interativos:</em> Botões que contêm apenas ícones gráficos exigem rótulo acessível
+                      via <code>aria-label</code> ou texto oculto com classe <code>sr-only</code>.</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>1.3.1 Informações e Relações (Nível A):</strong> A estrutura visual deve refletir a estrutura
+                  do código. Não simule títulos com
+                  <code>&lt;span style="font-size: 24px; font-weight: bold;"&gt;</code> &mdash; use tags semânticas
+                  <code>&lt;h1&gt;</code> até <code>&lt;h6&gt;</code> em ordem hierárquica lógica. Use tags de marcos de
+                  página (Landmarks): <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
+                  <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>.
+                </li>
+                <li>
+                  <strong>1.4.1 Uso da Cor (Nível A):</strong> A cor jamais deve ser o <em>único</em> meio visual de
+                  transmitir informação, indicar uma ação ou identificar um erro. Se um campo tem erro, pintar a borda
+                  de vermelho é insuficiente para pessoas com daltonismo; é indispensável adicionar um ícone de
+                  exclamação e uma mensagem de texto explicativa.
+                </li>
+                <li>
+                  <strong>1.4.3 Contraste Mínimo (Nível AA):</strong> Razão matemática mínima entre a luminância do
+                  texto e a cor de fundo de <strong>4.5 : 1</strong> para texto normal e <strong>3.0 : 1</strong> para
+                  texto grande (&ge;24px ou &ge;18.66px em negrito).
+                </li>
+                <li>
+                  <strong>1.4.11 Contraste Não Textual (Nível AA &mdash; WCAG 2.1):</strong> Ícones essenciais de
+                  interface, componentes gráficos e as bordas de campos de formulário devem apresentar contraste de pelo
+                  menos <strong>3.0 : 1</strong> em relação às cores adjacentes.
+                </li>
+                <li>
+                  <strong>1.4.10 Reflow (Nível AA &mdash; WCAG 2.1):</strong> O layout deve permitir zoom de até
+                  <strong>400%</strong> sem forçar o usuário a realizar rolagem bidirecional (scroll horizontal e
+                  vertical simultâneos).
+                </li>
+              </ul>
+
+              <div class="comparison-grid">
+                <div class="comparison-card bad">
+                  <div class="comparison-card-title">✗ Violação Grave (Antipadrão)</div>
+                  <p><strong>Uso exclusivo de cor e texto alternativo ausente:</strong> Apenas a cor vermelha sinaliza o
+                    erro e a imagem não possui alternativa textual válida.</p>
+                  <div class="interactive-mini-preview">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='30' viewBox='0 0 100 30'%3E%3Crect width='100' height='30' fill='%23e2e8f0'/%3E%3Ctext x='50' y='18' text-anchor='middle' font-size='10' fill='%2364748b'%3ELogotipo%3C/text%3E%3C/svg%3E"
+                      style="display:block; margin-bottom:0.5rem;">
+                    <input type="text" value="joao.silva"
+                      style="border: 2px solid #ef4444; padding: 0.35rem; width:100%; border-radius:4px; font-size:0.85rem;"
+                      disabled>
+                    <small style="color: #ef4444; font-size: 0.75rem;">Atenção aos campos em vermelho acima!</small>
+                  </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;">
+                    <strong>Impacto:</strong> Usuários cegos não sabem que o logotipo existe ou ouvem o nome técnico do
+                    arquivo; daltônicos não distinguem qual campo falhou.
+                  </div>
+                </div>
+
+                <div class="comparison-card good">
+                  <div class="comparison-card-title">✓ Implementação Acessível (WCAG AA)</div>
+                  <p><strong>Multissensorialidade:</strong> Rótulo textual, ícone gráfico explícito, alto contraste e
+                    atributo <code>alt</code> descritivo.</p>
+                  <div class="interactive-mini-preview">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='30' viewBox='0 0 100 30'%3E%3Crect width='100' height='30' fill='%23e2e8f0'/%3E%3Ctext x='50' y='18' text-anchor='middle' font-size='10' fill='%2364748b'%3ELogotipo%3C/text%3E%3C/svg%3E"
+                      alt="Logotipo da Plataforma de Pagamentos IHC" style="display:block; margin-bottom:0.5rem;">
+                    <label style="font-size:0.8rem; font-weight:600; display:block; margin-bottom:0.2rem;">Endereço de
+                      E-mail:</label>
+                    <input type="text" value="joao.silva"
+                      style="border: 2px solid #b91c1c; padding: 0.35rem; width:100%; border-radius:4px; font-size:0.85rem;"
+                      disabled>
+                    <div
+                      style="color: #b91c1c; font-size: 0.75rem; margin-top:0.3rem; display:flex; align-items:center; gap:0.25rem;">
+                      <span aria-hidden="true">⚠</span> <strong>Erro:</strong> O e-mail precisa conter o símbolo @ e um
+                      domínio válido.
+                    </div>
+                  </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;">
+                    <strong>Impacto:</strong> Perceptível com total clareza por pessoas com deficiência visual,
+                    auditiva, daltônicos e usuários sob forte reflexo solar.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ABA 2: OPERÁVEL -->
+            <div class="tab-pane" id="tab-pour-o">
+              <div
+                style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">O &mdash; Operável (Operable)</h3>
+                <span class="badge" style="background:var(--accent-purple-light); color:var(--accent-purple);">Controle
+                  & Entrada</span>
+              </div>
+              <p>
+                <strong>Regra Central:</strong> A interface não pode exigir interações físicas que o usuário seja
+                incapaz de realizar. Se um usuário não tem precisão motora para manusear um mouse, ele deve conseguir
+                realizar 100% das tarefas utilizando unicamente o <strong>teclado físico</strong> ou um acionador
+                adaptado.
+              </p>
+
+              <h4>Critérios de Sucesso Fundamentais:</h4>
+              <ul>
+                <li>
+                  <strong>2.1.1 Acessível por Teclado (Nível A):</strong> Toda a navegação, ativação de botões, seleção
+                  de abas, abertura de dropdowns e preenchimento de formulários devem funcionar com as teclas
+                  <kbd>Tab</kbd>, <kbd>Shift+Tab</kbd>, <kbd>Enter</kbd>, <kbd>Espaço</kbd>, <kbd>Esc</kbd> e as
+                  <kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd> Setas.
+                </li>
+                <li>
+                  <strong>2.1.2 Sem Armadilha de Teclado (No Keyboard Trap &mdash; Nível A):</strong> O usuário nunca
+                  pode ficar preso em um elemento sem conseguir sair dele apenas com o teclado. Modais devem capturar o
+                  foco enquanto abertos, mas a tecla <kbd>Esc</kbd> deve obrigatoriamente fechá-los e devolver o foco ao
+                  botão que os abriu.
+                </li>
+                <li>
+                  <strong>2.4.1 Ignorar Blocos (Bypass Blocks / Skip Links &mdash; Nível A):</strong> Disponibilizar um
+                  link oculto no topo da página que se torna visível ao focar (<kbd>Tab</kbd>), permitindo pular
+                  diretamente o menu de cabeçalho para o conteúdo principal, poupando dezenas de toques repetitivos no
+                  teclado.
+                </li>
+                <li>
+                  <strong>2.4.7 Foco Visível (Focus Visible &mdash; Nível AA):</strong> É expressamente proibido
+                  desativar o anel de foco no CSS com <code>outline: none;</code> sem fornecer imediatamente um
+                  substituto estilizado de alto contraste. Se o usuário que navega por teclado não sabe onde está o
+                  cursor, a página está inutilizável.
+                </li>
+                <li>
+                  <strong>2.4.11 Foco Não Coberto (Focus Not Obscured &mdash; Nível AA &mdash; WCAG 2.2):</strong>
+                  Quando um elemento ganha foco via teclado, ele não pode ficar totalmente ocultado por rodapés
+                  flutuantes, barras de cookies ou cabeçalhos fixos <code>position: fixed</code>.
+                </li>
+                <li>
+                  <strong>2.5.8 Tamanho do Alvo Mínimo (Target Size Minimum &mdash; Nível AA &mdash; WCAG 2.2):</strong>
+                  Em telas móveis e interfaces gráficas, alvos de toque/clique devem ter uma área de pelo menos
+                  <strong>24&times;24 pixels</strong> ou espaçamento suficiente para evitar acionamentos acidentais por
+                  pessoas com tremores nas mãos ou dedos largos.
+                </li>
+              </ul>
+
+              <div class="comparison-grid">
+                <div class="comparison-card bad">
+                  <div class="comparison-card-title">✗ O Crime do "outline: none"</div>
+                  <p><strong>Foco Invisível e Div Clicável:</strong> O desenvolvedor usou uma <code>&lt;div&gt;</code>
+                    com evento <code>onclick</code> e apagou o foco visual com <code>outline: none</code> para "não
+                    estragar a estética".</p>
+                  <div class="interactive-mini-preview">
+                    <div
+                      style="background:#6366f1; color:#fff; padding:0.4rem 0.8rem; border-radius:4px; display:inline-block; font-size:0.85rem; cursor:pointer;"
+                      class="focus-hidden">
+                      Salvar Cadastro (Inatingível via Tab)
+                    </div>
+                  </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;">
+                    <strong>Impacto:</strong> Pessoas com paralisia motora, tetraplegia ou idosos não conseguem sequer
+                    focar no elemento com Tab, ficando permanentemente barradas.
+                  </div>
+                </div>
+
+                <div class="comparison-card good">
+                  <div class="comparison-card-title">✓ Foco Visível & Elemento Semântico</div>
+                  <p><strong>Botão Nativo com Anel de Alto Contraste:</strong> Utiliza a tag <code>&lt;button&gt;</code>
+                    nativa e estiliza a pseudo-classe <code>:focus-visible</code>.</p>
+                  <div class="interactive-mini-preview">
+                    <button type="button" class="btn btn-primary"
+                      style="outline: 3px solid #0f172a; outline-offset: 2px;">
+                      Salvar Cadastro (Foco Nítido)
+                    </button>
+                  </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;">
+                    <strong>Impacto:</strong> O usuário de teclado rastreia com precisão milimétrica a posição do foco a
+                    cada pressão da tecla Tab.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ABA 3: COMPREENSÍVEL -->
+            <div class="tab-pane" id="tab-pour-u">
+              <div
+                style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">U &mdash; Compreensível (Understandable)</h3>
+                <span class="badge" style="background:var(--accent-amber-light); color:var(--accent-amber);">Clareza
+                  Cognitiva</span>
+              </div>
+              <p>
+                <strong>Regra Central:</strong> A informação textual e a operação dos controles devem ser
+                compreensíveis, previsíveis e amigáveis ao raciocínio humano. A interface não pode surpreender o usuário
+                com comportamentos inesperados nem deixá-lo desamparado perante erros de preenchimento.
+              </p>
+
+              <h4>Critérios de Sucesso Fundamentais:</h4>
+              <ul>
+                <li>
+                  <strong>3.1.1 Idioma da Página (Nível A):</strong> Declarar no HTML o atributo de idioma correto (ex:
+                  <code>&lt;html lang="pt-BR"&gt;</code>). Se omitido ou incorreto, o sintetizador de voz do leitor de
+                  tela tentará ler palavras em português usando regras fonéticas em inglês, tornando a fala
+                  incompreensível!
+                </li>
+                <li>
+                  <strong>3.2.1 No Foco & 3.2.2 Na Entrada (Nível A):</strong> A simples ação de receber foco com o
+                  cursor ou selecionar uma opção em um <code>&lt;select&gt;</code> não pode disparar automaticamente
+                  envios de formulário, abertura de novas janelas pop-up ou saltos bruscos de tela.
+                </li>
+                <li>
+                  <strong>3.3.2 Rótulos ou Instruções (Nível A):</strong> Todos os campos interativos devem ter rótulos
+                  visíveis e associados programaticamente via <code>&lt;label for="campo-id"&gt;</code>. <strong>O
+                    placeholder nunca substitui a tag label!</strong> O texto de placeholder desaparece quando o usuário
+                  começa a digitar, sobrecarregando a memória de trabalho de pessoas com TDAH, idosos ou pessoas com
+                  declínio cognitivo.
+                </li>
+                <li>
+                  <strong>3.3.7 Entrada Redundante (Redundant Entry &mdash; Nível A &mdash; WCAG 2.2):</strong> A
+                  interface não deve exigir que o usuário redigite a mesma informação já informada no mesmo processo de
+                  compra ou cadastro (ex: fornecer checkbox "Endereço de cobrança igual ao de entrega").
+                </li>
+                <li>
+                  <strong>3.3.8 Autenticação Acessível (Accessible Authentication &mdash; Nível AA &mdash; WCAG
+                    2.2):</strong> Sistemas de login não podem forçar o usuário a resolver enigmas cognitivos, testes
+                  matemáticos mentais ou transcrição de caracteres distorcidos ilegíveis (CAPTCHAs cognitivos
+                  punitivos). Devem suportar gerenciadores de senha (permitindo copiar e colar senhas), autenticação
+                  biométrica (passkeys) ou login por link de e-mail.
+                </li>
+              </ul>
+
+              <div class="comparison-grid">
+                <div class="comparison-card bad">
+                  <div class="comparison-card-title">✗ Placeholder Como Único Rótulo</div>
+                  <p><strong>Sobrecarga de Memória:</strong> O formulário economiza espaço visual usando apenas
+                    placeholder cinza claro dentro do campo de texto.</p>
+                  <div class="interactive-mini-preview">
+                    <input type="text" placeholder="Nome Completo do Responsável"
+                      style="width:100%; padding:0.4rem; font-size:0.85rem; border:1px solid #cbd5e1; border-radius:4px;"
+                      disabled>
+                  </div>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;">
+                    <strong>Impacto:</strong> Ao digitar o primeiro caractere, o rótulo desaparece. Se o usuário for
+                    interrompido, ele não lembrará o que aquele campo solicitava.
+                  </div>
+                </div>
+
+                <div class="comparison-card good">
+                  <div class="comparison-card-title">✓ Label Explícito e Conexão Semântica</div>
+                  <p><strong>Associação For/Id e Instrução Persistente:</strong> Rótulo visível fixo acima do campo
+                    associado programaticamente ao input.</p>
+                  <div class="interactive-mini-preview">
+                    <label for="demo-label-good"
+                      style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:0.2rem;">Nome Completo do
+                      Responsável:</label>
+                    <input id="demo-label-good" type="text"
+                      style="width:100%; padding:0.4rem; font-size:0.85rem; border:1px solid #64748b; border-radius:4px;"
+                      value="Maria Silva Santos" disabled>
+                  </div>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;">
+                    <strong>Impacto:</strong> Aumenta a área de clique (clicar no label foca o input) e preserva a
+                    clareza para todos os perfis cognitivos.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ABA 4: ROBUSTO -->
+            <div class="tab-pane" id="tab-pour-r">
+              <div
+                style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+                <h3 style="margin:0; color:var(--primary);">R &mdash; Robusto (Robust)</h3>
+                <span class="badge"
+                  style="background:var(--accent-emerald-light); color:var(--accent-emerald);">Semântica &
+                  Interoperabilidade</span>
+              </div>
+              <p>
+                <strong>Regra Central:</strong> O código deve ser tecnicamente sólido e semanticamente correto para que
+                possa ser interpretado com confiabilidade por uma ampla gama de agentes de usuário (navegadores atuais e
+                futuros) e, especialmente, por <strong>Tecnologias Assistivas</strong> (leitores de tela como NVDA,
+                JAWS, VoiceOver e TalkBack).
+              </p>
+
+              <h4>Critérios e Princípios Técnicos:</h4>
+              <ul>
+                <li>
+                  <strong>4.1.2 Nome, Função e Valor (Name, Role, Value &mdash; Nível A):</strong> Todo elemento com o
+                  qual o usuário interage deve expor programaticamente três informações para a <strong>Árvore de
+                    Acessibilidade (Accessibility Tree)</strong> do sistema operacional:
+                  <ul style="font-size:0.9rem; margin-top:0.3rem;">
+                    <li><strong>Role (Função/Papel):</strong> O que é o elemento? (Ex: botão, caixa de seleção, link,
+                      aba).</li>
+                    <li><strong>Name (Nome Acessível):</strong> Qual é o rótulo identificador do elemento? (Ex: "Fechar
+                      modal de confirmação").</li>
+                    <li><strong>Value/State (Valor e Estado):</strong> Qual o estado atual? (Ex: expandido/recolhido
+                      <code>aria-expanded="true"</code>, marcado <code>aria-checked="true"</code>).</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>WAI-ARIA (Accessible Rich Internet Applications):</strong> Conjunto de atributos especiais que
+                  estendem o HTML para componentes dinâmicos complexos (carrosséis, árvores de navegação, modais).
+                </li>
+              </ul>
+
+              <div class="callout callout-warning">
+                <div class="callout-title">A Primeira Regra do Uso de ARIA (W3C WAI)</div>
+                <p>
+                  <em>"Se você puder usar um elemento ou atributo HTML nativo que já tenha a semântica e o comportamento
+                    de que você precisa incorporados, faça isso em vez de reinventar o elemento com ARIA!"</em>
+                </p>
+                <p style="margin-bottom:0;">
+                  O erro mais comum de desenvolvedores iniciantes é a chamada <strong>"Divite Aguda"</strong>: criar um
+                  botão escrevendo <code>&lt;div class="btn" onclick="salvar()"&gt;Salvar&lt;/div&gt;</code> e tentar
+                  consertá-lo enchendo de atributos ARIA. A solução correta, mais limpa e infalível é simplesmente usar
+                  <code>&lt;button type="button"&gt;Salvar&lt;/button&gt;</code>, que já traz nativamente suporte a
+                  teclado, acessibilidade e foco!
+                </p>
+              </div>
+
+              <div class="comparison-grid">
+                <div class="comparison-card bad">
+                  <div class="comparison-card-title">✗ Reinventando a Roda Mal Feita</div>
+                  <p><strong>Divite Aguda e Semântica Quebrada:</strong> O leitor de tela enxerga um elemento genérico
+                    sem nome nem função.</p>
+                  <pre
+                    style="background:#0f172a; color:#f87171; padding:0.6rem; border-radius:4px; font-size:0.75rem; overflow-x:auto;"><code>&lt;!-- Ruim: O leitor de tela não sabe o que é isso --&gt;
+&lt;div class="meu-botao" onclick="enviar()"&gt;
+  Confirmar Compra
+&lt;/div&gt;</code></pre>
+                  <div style="font-size:0.78rem; color:var(--accent-rose); margin-top:0.5rem;">
+                    <strong>Árvore de Acessibilidade:</strong> <code>Role: generic</code>,
+                    <code>Focusable: false</code>. A pessoa cega não é avisada de que o elemento dispara uma compra.
+                  </div>
+                </div>
+
+                <div class="comparison-card good">
+                  <div class="comparison-card-title">✓ HTML Semântico Nativo Perfeito</div>
+                  <p><strong>Contrato Semântico Automático:</strong> Navegadores e leitores de tela entendem o botão
+                    instantaneamente.</p>
+                  <pre
+                    style="background:#0f172a; color:#38bdf8; padding:0.6rem; border-radius:4px; font-size:0.75rem; overflow-x:auto;"><code>&lt;!-- Correto: 100% acessível por padrão --&gt;
+&lt;button type="button" class="btn btn-primary"&gt;
+  Confirmar Compra
+&lt;/button&gt;</code></pre>
+                  <div style="font-size:0.78rem; color:var(--accent-emerald); margin-top:0.5rem;">
+                    <strong>Árvore de Acessibilidade:</strong> <code>Role: button</code>,
+                    <code>Name: "Confirmar Compra"</code>, <code>Focusable: true</code>, atalhos <kbd>Enter</kbd> e
+                    <kbd>Espaço</kbd> nativos.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- SEÇÃO 4: NÍVEIS DE CONFORMIDADE A, AA E AAA                     -->
+        <!-- ============================================================== -->
+        <h2>4. Os Níveis de Conformidade: A, AA e AAA em Detalhes</h2>
+        <p>
+          Os critérios de sucesso da WCAG são classificados em três níveis de conformidade cumulativos. O cumprimento de
+          um nível superior exige obrigatoriamente a satisfação integral de todos os níveis inferiores:
+        </p>
+
+        <div style="overflow-x:auto; margin:1.5rem 0;">
+          <table class="journey-table" style="width:100%; min-width:650px;">
+            <thead>
+              <tr>
+                <th style="width:15%;">Nível</th>
+                <th style="width:35%;">Propósito & Impacto Humano</th>
+                <th style="width:30%;">Exemplos Típicos de Critérios</th>
+                <th style="width:20%;">Exigência Legal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--accent-amber); font-size:1.1rem;">Nível A</strong><br><small>Requisitos
+                    Básicos</small></td>
+                <td>
+                  <strong>O patamar mínimo indispensável.</strong> Sem ele, determinados grupos de pessoas com
+                  deficiência sofrem <em>bloqueio absoluto</em> de navegação (não conseguem acessar a informação de
+                  forma alguma).
+                </td>
+                <td>
+                  &bull; 1.1.1 Conteúdo não-textual (alt)<br>
+                  &bull; 2.1.1 Operável por teclado<br>
+                  &bull; 2.1.2 Sem armadilha de teclado<br>
+                  &bull; 3.1.1 Idioma da página (lang)<br>
+                  &bull; 4.1.2 Nome, função e valor
+                </td>
+                <td>
+                  <strong>Insuficiente isoladamente.</strong> Cumprir apenas o nível A deixa barreiras severas abertas.
+                </td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--primary); font-size:1.1rem;">Nível AA</strong><br><small>Padrão
+                    Internacional</small></td>
+                <td>
+                  <strong>O padrão global de mercado e da legislação.</strong> Remove as barreiras mais frequentes e
+                  garante que a ampla maioria da população com deficiência consiga navegar com conforto e independência.
+                </td>
+                <td>
+                  &bull; 1.4.3 Contraste de texto (4.5:1)<br>
+                  &bull; 1.4.11 Contraste não textual (3:1)<br>
+                  &bull; 1.4.10 Reflow e zoom 400%<br>
+                  &bull; 2.4.7 Foco visível<br>
+                  &bull; 3.3.8 Autenticação acessível
+                </td>
+                <td>
+                  <strong>Obrigatório por Lei.</strong> Exigido pela Lei Brasileira de Inclusão, Seção 508 dos EUA e
+                  norma europeia EN 301 549.
+                </td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--accent-purple); font-size:1.1rem;">Nível AAA</strong><br><small>Máximo
+                    Rigor</small></td>
+                <td>
+                  <strong>Acessibilidade especializada de alta precisão.</strong> Desenvolvido para aplicações em
+                  serviços públicos essenciais de saúde, emergência, votação e educação. O W3C observa que a
+                  conformidade AAA completa <em>não é recomendada para sites inteiros</em>, pois certas exigências
+                  restringem estilos visuais e mídias ricas.
+                </td>
+                <td>
+                  &bull; 1.4.6 Contraste ultra-alto (7:1)<br>
+                  &bull; 1.2.6 Língua de Sinais (Libras/ASL)<br>
+                  &bull; 2.2.3 Ausência de prazos de tempo<br>
+                  &bull; 3.1.5 Nível de leitura simplificado
+                </td>
+                <td>
+                  <strong>Desejável / Recomendado</strong> para fluxos de emergência, saúde pública e segurança crítica.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- SEÇÃO 5: CENTRAL DE LABORATÓRIOS PRÁTICOS E AUDITORIA          -->
+        <!-- ============================================================== -->
+        <h2>5. Central de Demonstrações & Laboratórios Práticos</h2>
+        <p>
+          Para solidificar a compreensão teórica, utilize os três laboratórios práticos e funcionais a seguir. Eles
+          simulam medições matemáticas de luminância, percepção de daltonismo, leitura assistiva de tela e auditoria de
+          código:
+        </p>
+
+        <!-- ESTAÇÃO 1: LABORATÓRIO DE CONTRASTE E DALTONISMO -->
+        <div class="interactive-sandbox" id="estacao-contraste">
           <div class="sandbox-header">
             <div class="sandbox-title-wrap">
-              <span class="sandbox-badge">Laboratório de Testes</span>
+              <span class="sandbox-badge">Estação 01 &bull; Laboratório Funcional</span>
               <h3 class="sandbox-title">Avaliador de Contraste WCAG & Simulador de Daltonismo</h3>
             </div>
             <div style="display:flex; align-items:center; gap:0.5rem;">
-              <label for="wcag-daltonism-select" style="font-size:0.8rem; font-weight:600;">Simular Visão:</label>
-              <select id="wcag-daltonism-select" class="widget-select" style="padding:0.25rem 0.5rem; font-size:0.8rem;">
+              <label for="wcag-daltonism-select" style="font-size:0.8rem; font-weight:700;">Simular Visão:</label>
+              <select id="wcag-daltonism-select" class="widget-select"
+                style="padding:0.35rem 0.6rem; font-size:0.82rem;">
                 <option value="normal">Visão Típica (Tricromata)</option>
-                <option value="protanopia">Protanopia (Sem cones vermelhos)</option>
-                <option value="deuteranopia">Deuteranopia (Sem cones verdes)</option>
-                <option value="tritanopia">Tritanopia (Sem cones azuis)</option>
-                <option value="achromatopsia">Acromatopsia (Monocromático)</option>
+                <option value="protanopia">Protanopia (Cegueira a cones vermelhos)</option>
+                <option value="deuteranopia">Deuteranopia (Cegueira a cones verdes)</option>
+                <option value="tritanopia">Tritanopia (Cegueira a cones azuis)</option>
+                <option value="achromatopsia">Acromatopsia (Monocromático / Escala de Cinza)</option>
+                <option value="low-vision">Baixa Acuidade Visual (Visão Embaçada / Catarata)</option>
               </select>
             </div>
           </div>
+
           <div class="sandbox-body">
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-bottom:1.5rem;">
-              <div class="widget-form-group">
+
+            <!-- Barra de Presets Rápidos Didáticos -->
+            <div class="wcag-presets-bar">
+              <span style="font-size:0.78rem; font-weight:700; color:var(--text-secondary);">Testes Rápidos
+                Pré-configurados:</span>
+              <button type="button" class="wcag-preset-btn" data-preset-fg="#94a3b8" data-preset-bg="#ffffff">
+                ✗ Cinza em Branco (Falha 2.3:1)
+              </button>
+              <button type="button" class="wcag-preset-btn" data-preset-fg="#facc15" data-preset-bg="#ffffff">
+                ✗ Amarelo em Branco (Crítico 1.3:1)
+              </button>
+              <button type="button" class="wcag-preset-btn" data-preset-fg="#dc2626" data-preset-bg="#000000">
+                ⚠ Vermelho em Preto (3.8:1)
+              </button>
+              <button type="button" class="wcag-preset-btn" data-preset-fg="#1d4ed8" data-preset-bg="#ffffff">
+                ✓ Azul Royal em Branco (AA 5.9:1)
+              </button>
+              <button type="button" class="wcag-preset-btn" data-preset-fg="#0f172a" data-preset-bg="#ffffff">
+                ✓ Escuro em Branco (AAA 16.1:1)
+              </button>
+              <button type="button" class="wcag-preset-btn" data-preset-fg="#f8fafc" data-preset-bg="#0f172a">
+                ✓ Dark Mode Acessível (AAA 16.1:1)
+              </button>
+            </div>
+
+            <!-- Seletores de Cores com Sincronização Hexadecimal e Botão de Inversão -->
+            <div
+              style="display:grid; grid-template-columns: 1fr auto 1fr; gap:1rem; align-items:center; margin-bottom:1.25rem;">
+
+              <div class="widget-form-group" style="margin-bottom:0;">
                 <label class="widget-label" for="wcag-fg-color">Cor do Texto (Primeiro Plano):</label>
-                <div style="display:flex; gap:0.5rem; align-items:center;">
-                  <input type="color" id="wcag-fg-color" value="#1e293b" style="width:50px; height:38px; border:1px solid var(--border-color); border-radius:var(--radius-sm); cursor:pointer;">
-                  <span style="font-size:0.85rem; font-family:'JetBrains Mono', monospace;">Selecione a cor</span>
+                <div class="wcag-color-input-group">
+                  <input type="color" id="wcag-fg-color" value="#0f172a" title="Clique para abrir a paleta de cores">
+                  <input type="text" id="wcag-fg-hex" class="wcag-hex-input" value="#0F172A" maxlength="7"
+                    aria-label="Código Hexadecimal da cor do texto">
                 </div>
               </div>
 
-              <div class="widget-form-group">
-                <label class="widget-label" for="wcag-bg-color">Cor do Fundo:</label>
-                <div style="display:flex; gap:0.5rem; align-items:center;">
-                  <input type="color" id="wcag-bg-color" value="#f8fafc" style="width:50px; height:38px; border:1px solid var(--border-color); border-radius:var(--radius-sm); cursor:pointer;">
-                  <span style="font-size:0.85rem; font-family:'JetBrains Mono', monospace;">Selecione o fundo</span>
+              <div style="text-align:center; padding-top:1.2rem;">
+                <button type="button" id="wcag-swap-colors" class="btn btn-outline"
+                  style="padding:0.4rem 0.75rem; font-size:0.85rem;" title="Inverter cor de texto e cor de fundo"
+                  aria-label="Inverter cores de texto e fundo">
+                  ⇄ Inverter
+                </button>
+              </div>
+
+              <div class="widget-form-group" style="margin-bottom:0;">
+                <label class="widget-label" for="wcag-bg-color">Cor de Fundo:</label>
+                <div class="wcag-color-input-group">
+                  <input type="color" id="wcag-bg-color" value="#ffffff" title="Clique para abrir a paleta de cores">
+                  <input type="text" id="wcag-bg-hex" class="wcag-hex-input" value="#FFFFFF" maxlength="7"
+                    aria-label="Código Hexadecimal da cor de fundo">
                 </div>
               </div>
+
             </div>
 
-            <!-- Caixa de Prévia com Filtro de Daltonismo Aplicado -->
+            <!-- Painel de Prévia Multi-Componente sob Teste -->
             <div id="wcag-preview-card" class="contrast-preview-box">
-              <h3 style="margin-bottom:0.5rem; font-size:1.5rem;">Texto de Demonstração em Tempo Real</h3>
-              <p style="font-size:1rem; margin:0;">
-                Este parágrafo simula a legibilidade real de um usuário navegando em sua página. Se o contraste for insuficiente, a leitura torna-se cansativa ou inviável para pessoas com baixa visão ou sob luz solar intensa.
+              <h3 style="margin-bottom:0.5rem; font-size:1.4rem; font-weight:800;">
+                Demonstração em Tempo Real de Legibilidade
+              </h3>
+              <p style="font-size:0.95rem; line-height:1.6; margin-bottom:1rem;">
+                Este texto simula o conforto visual e a clareza percebida por diferentes pessoas. Se o contraste for
+                insuficiente, o esforço cognitivo de decodificação se multiplica, causando fadiga severa ou exclusão
+                completa de usuários em ambientes com iluminação desafiadora.
               </p>
+
+              <!-- Grade de Amostras de UI -->
+              <div class="preview-sample-grid">
+                <div class="preview-sample-item">
+                  <div class="preview-sample-title">Texto Normal (16px)</div>
+                  <div style="font-size:1rem;">Texto de leitura padrão em parágrafos normais.</div>
+                </div>
+
+                <div class="preview-sample-item">
+                  <div class="preview-sample-title">Texto Grande / Destaque (&ge;18pt / 24px)</div>
+                  <div style="font-size:1.25rem; font-weight:700;">Subtítulos e Chamadas</div>
+                </div>
+
+                <div class="preview-sample-item">
+                  <div class="preview-sample-title">Elemento Não Textual (Botão / Borda)</div>
+                  <button type="button" class="preview-action-btn"
+                    style="background:transparent; border:2px solid; padding:0.35rem 0.85rem; border-radius:4px; font-weight:700; cursor:pointer;">
+                    Ação Interativa
+                  </button>
+                </div>
+
+                <div class="preview-sample-item">
+                  <div class="preview-sample-title">Símbolo Gráfico de Alerta</div>
+                  <div style="display:flex; align-items:center; gap:0.4rem; font-weight:600;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 10h2v4h-2zm0 6h2v2h-2z" />
+                    </svg>
+                    <span>Ícone Funcional</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Painel de Pontuação de Conformidade -->
-            <div style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
-                <span style="font-weight:700;">Razão de Contraste Calculada:</span>
-                <span id="wcag-ratio-number" style="font-family:'JetBrains Mono', monospace; font-size:1.75rem; font-weight:800; color:var(--primary);">
+            <!-- Painel de Métricas e Régua Visual -->
+            <div
+              style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+
+              <div
+                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+                <span style="font-weight:700; font-size:1rem;">Razão Matemática de Contraste Calculada:</span>
+                <span id="wcag-ratio-number"
+                  style="font-family:'JetBrains Mono', monospace; font-size:1.85rem; font-weight:800; color:var(--primary);">
                   -- : 1
                 </span>
               </div>
 
-              <div class="contrast-score-pills">
-                <div style="display:flex; flex-direction:column; gap:0.25rem;">
-                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AA (Normal):</span>
-                  <span id="badge-aa-normal" class="score-pill">Verificando...</span>
+              <!-- Régua Visual de Contraste (Contrast Meter) -->
+              <div class="contrast-meter-container">
+                <div class="contrast-meter-track">
+                  <div id="contrast-meter-needle" class="contrast-meter-needle" style="left: 0%;" role="slider"
+                    aria-valuemin="1" aria-valuemax="21" aria-valuenow="1" tabindex="0"></div>
                 </div>
-                <div style="display:flex; flex-direction:column; gap:0.25rem;">
-                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AA (Grande):</span>
-                  <span id="badge-aa-large" class="score-pill">Verificando...</span>
-                </div>
-                <div style="display:flex; flex-direction:column; gap:0.25rem;">
-                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AAA (Normal):</span>
-                  <span id="badge-aaa-normal" class="score-pill">Verificando...</span>
-                </div>
-                <div style="display:flex; flex-direction:column; gap:0.25rem;">
-                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AAA (Grande):</span>
-                  <span id="badge-aaa-large" class="score-pill">Verificando...</span>
+                <div class="contrast-meter-labels">
+                  <span>1:1 (Nenhum)</span>
+                  <span style="left:14%;">3:1 (Mínimo Grande)</span>
+                  <span style="left:21.5%;">4.5:1 (AA Normal)</span>
+                  <span style="left:33.3%;">7:1 (AAA)</span>
+                  <span>21:1 (Máximo P&B)</span>
                 </div>
               </div>
+
+              <!-- Badges de Conformidade WCAG 2.1 / 2.2 -->
+              <div class="contrast-score-pills">
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AA (Texto Normal &ge; 4.5:1):</span>
+                  <span id="badge-aa-normal" class="score-pill">Calculando...</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AA (Texto Grande &ge; 3.0:1):</span>
+                  <span id="badge-aa-large" class="score-pill">Calculando...</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AAA (Texto Normal &ge; 7.0:1):</span>
+                  <span id="badge-aaa-normal" class="score-pill">Calculando...</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">WCAG AAA (Texto Grande &ge; 4.5:1):</span>
+                  <span id="badge-aaa-large" class="score-pill">Calculando...</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                  <span style="font-size:0.75rem; color:var(--text-muted);">1.4.11 Elementos e UI (&ge; 3.0:1):</span>
+                  <span id="badge-non-text" class="score-pill">Calculando...</span>
+                </div>
+              </div>
+
+              <!-- Assistente Inteligente de Ajuste Acessível (Smart Fixer) -->
+              <div id="wcag-suggestion-box" class="contrast-suggest-box" style="display:none;">
+                <div id="wcag-suggestion-text" style="font-size:0.88rem; color:var(--text-primary);">
+                  Dica de Acessibilidade
+                </div>
+                <button type="button" id="wcag-apply-suggestion" class="btn btn-primary"
+                  style="padding:0.4rem 0.85rem; font-size:0.82rem; white-space:nowrap;">
+                  Aplicar Ajuste Sugerido &rarr;
+                </button>
+              </div>
+
             </div>
+
           </div>
         </div>
 
+        <!-- ESTAÇÃO 2: SIMULADOR DE LEITOR DE TELA & ÁRVORE DE ACESSIBILIDADE -->
+        <div class="interactive-sandbox" id="estacao-leitor-tela">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Estação 02 &bull; Demonstração Sonora</span>
+              <h3 class="sandbox-title">Simulador de Leitor de Tela & Árvore de Acessibilidade</h3>
+            </div>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Princípio 4 (Robusto) & WAI-ARIA</span>
+          </div>
+
+          <div class="sandbox-body">
+            <p style="font-size:0.92rem; color:var(--text-secondary); margin-top:0;">
+              Descubra na prática por que a "Divite Aguda" destrói a usabilidade para pessoas cegas. Clique nos botões
+              de reprodução para simular o que um leitor de tela (NVDA / TalkBack) vocaliza ao passar por cada
+              componente:
+            </p>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-bottom:1.5rem;">
+
+              <!-- Componente Ruim -->
+              <div
+                style="border:1px solid rgba(244, 63, 94, 0.3); background:var(--accent-rose-light); border-radius:var(--radius-md); padding:1.25rem;">
+                <h4 style="margin:0 0 0.5rem; color:var(--accent-rose); font-size:0.95rem;">
+                  ✗ Componente Ruim: &lt;div&gt; com OnClick
+                </h4>
+                <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:1rem;">
+                  Sem semântica nativa, sem papel de botão, inatingível via tecla Tab e sem feedback sonoro.
+                </p>
+                <div
+                  style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); text-align:center; margin-bottom:1rem;">
+                  <div
+                    style="background:#f43f5e; color:#fff; padding:0.5rem 1rem; border-radius:4px; font-weight:700; display:inline-block; cursor:pointer;">
+                    Finalizar pedido
+                  </div>
+                </div>
+                <button type="button" id="sr-play-bad" class="btn btn-outline"
+                  style="width:100%; border-color:var(--accent-rose); color:var(--accent-rose);">
+                  🔊 Ouvir Leitura do Componente Ruim
+                </button>
+              </div>
+
+              <!-- Componente Bom -->
+              <div
+                style="border:1px solid rgba(16, 185, 129, 0.3); background:var(--accent-emerald-light); border-radius:var(--radius-md); padding:1.25rem;">
+                <h4 style="margin:0 0 0.5rem; color:var(--accent-emerald); font-size:0.95rem;">
+                  ✓ Componente Acessível: &lt;button&gt; Semântico
+                </h4>
+                <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:1rem;">
+                  Elemento nativo com papel de botão reconhecido, nome acessível completo e suporte a teclado.
+                </p>
+                <div
+                  style="background:var(--bg-surface); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); text-align:center; margin-bottom:1rem;">
+                  <button type="button" class="btn btn-primary" aria-label="Finalizar pedido com pagamento seguro"
+                    style="background:#10b981; border-color:#059669; padding:0.5rem 1rem;">
+                    Finalizar pedido
+                  </button>
+                </div>
+                <button type="button" id="sr-play-good" class="btn btn-outline"
+                  style="width:100%; border-color:var(--accent-emerald); color:var(--accent-emerald);">
+                  🔊 Ouvir Leitura do Componente Acessível
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Console do Leitor de Tela -->
+            <div class="sr-speech-console">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div id="sr-speech-text" style="font-size:0.92rem; color:#f8fafc; line-height:1.5;">
+                  Aguardando teste... Clique em um dos botões acima para simular a fala do sintetizador de voz.
+                </div>
+                <div id="sr-wave-indicator" class="sr-wave-anim" style="display:none;" aria-hidden="true">
+                  <div class="sr-wave-bar"></div>
+                  <div class="sr-wave-bar"></div>
+                  <div class="sr-wave-bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inspecionador de Árvore de Acessibilidade -->
+            <div class="a11y-tree-box">
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.35rem;">Estrutura da
+                Accessibility Tree no Navegador:</strong>
+              <pre id="sr-a11y-tree-code"
+                style="margin:0; font-size:0.75rem; color:#64748b; overflow-x:auto;">&lt;!-- Selecione um dos componentes acima para inspecionar os atributos recebidos pela tecnologia assistiva --&gt;</pre>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ESTAÇÃO 3: DESAFIO CAPSTONE DE AUDITORIA WCAG -->
+        <div class="interactive-sandbox" id="estacao-auditoria">
+          <div class="sandbox-header">
+            <div class="sandbox-title-wrap">
+              <span class="sandbox-badge">Estação 03 &bull; Desafio Prático</span>
+              <h3 class="sandbox-title">Desafio Capstone: Auditoria & Correção WCAG 2.2 AA</h3>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="font-size:0.85rem; font-weight:700;">Conformidade:</span>
+              <span id="audit-score-text"
+                style="font-family:'JetBrains Mono', monospace; font-weight:800; color:var(--primary);">
+                0% (0/4 Critérios)
+              </span>
+            </div>
+          </div>
+
+          <div class="sandbox-body">
+
+            <p style="font-size:0.92rem; color:var(--text-secondary); margin-top:0;">
+              O formulário abaixo simula uma tela real de checkout de uma startup com quatro violações críticas de
+              acessibilidade que bloqueiam usuários. <strong>Interaja com os interruptores na coluna de
+                controle</strong> para aplicar cada correção técnica e observe a interface sob teste se transformando em
+              conformidade plena WCAG 2.2 AA:
+            </p>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem; margin-top:1.25rem;">
+
+              <!-- Coluna da Esquerda: A Interface Sob Auditoria -->
+              <div
+                style="background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.25rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                  <strong style="font-size:0.9rem; color:var(--text-primary);">Interface Sob Teste (Formulário)</strong>
+                  <span id="audit-status-badge" class="score-pill score-fail">Inacessível</span>
+                </div>
+
+                <form onsubmit="return false;" style="display:flex; flex-direction:column; gap:0.85rem;">
+                  <div>
+                    <label id="demo-email-label" for="demo-email-input"
+                      style="display:none; font-size:0.82rem; font-weight:700; margin-bottom:0.25rem;">
+                      Endereço de E-mail:
+                    </label>
+                    <input type="text" id="demo-email-input" class="demo-interactive-field focus-hidden"
+                      placeholder="Digite seu e-mail" value="cliente.invalido#email">
+                  </div>
+
+                  <div id="demo-error-msg" style="font-size:0.8rem; color:#f87171; transition:all 0.2s;">
+                    Preenchimento incorreto.
+                  </div>
+
+                  <button type="submit" id="demo-submit-btn" class="demo-interactive-btn focus-hidden"
+                    style="background:#e2e8f0; color:#94a3b8; border:1px solid #cbd5e1;">
+                    Avançar para Pagamento &rarr;
+                  </button>
+                </form>
+
+                <div
+                  style="margin-top:1rem; padding-top:0.75rem; border-top:1px dashed var(--border-color); font-size:0.75rem; color:var(--text-muted);">
+                  💡 Dica: Pressione a tecla <kbd>Tab</kbd> para navegar no campo e no botão e verificar a visibilidade
+                  do anel de foco.
+                </div>
+              </div>
+
+              <!-- Coluna da Direita: Checklist de Correções Técnicas -->
+              <div>
+                <strong style="display:block; margin-bottom:0.75rem; font-size:0.9rem;">Checklist de Remediação de
+                  Acessibilidade:</strong>
+
+                <!-- Item 1: Label -->
+                <div class="wcag-issue-row" id="row-issue-label">
+                  <div>
+                    <strong style="font-size:0.85rem; display:block;">1. Critério 3.3.2: Rótulo Visível
+                      (&lt;label&gt;)</strong>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Substituir placeholder volátil por tag
+                      label persistente associada via for/id.</span>
+                  </div>
+                  <label class="wcag-switch" title="Ativar label visível">
+                    <input type="checkbox" id="audit-fix-label">
+                    <span class="wcag-slider"></span>
+                  </label>
+                </div>
+
+                <!-- Item 2: Erro -->
+                <div class="wcag-issue-row" id="row-issue-error">
+                  <div>
+                    <strong style="font-size:0.85rem; display:block;">2. Critério 1.4.1 & 3.3.1: Identificação de
+                      Erro</strong>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Adicionar ícone gráfico de alerta e
+                      mensagem explicativa de como corrigir o e-mail.</span>
+                  </div>
+                  <label class="wcag-switch" title="Ativar mensagem de erro clara">
+                    <input type="checkbox" id="audit-fix-error">
+                    <span class="wcag-slider"></span>
+                  </label>
+                </div>
+
+                <!-- Item 3: Contraste do Botão -->
+                <div class="wcag-issue-row" id="row-issue-contrast">
+                  <div>
+                    <strong style="font-size:0.85rem; display:block;">3. Critério 1.4.3: Contraste Mínimo do
+                      Botão</strong>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Elevar a razão de contraste do texto do
+                      botão de 1.8:1 para 8.5:1 (Nível AA).</span>
+                  </div>
+                  <label class="wcag-switch" title="Ativar contraste adequado no botão">
+                    <input type="checkbox" id="audit-fix-contrast">
+                    <span class="wcag-slider"></span>
+                  </label>
+                </div>
+
+                <!-- Item 4: Foco Visível -->
+                <div class="wcag-issue-row" id="row-issue-focus">
+                  <div>
+                    <strong style="font-size:0.85rem; display:block;">4. Critério 2.4.7: Foco de Teclado
+                      Visível</strong>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">Eliminar outline:none e aplicar anel de
+                      foco visível de alto contraste (:focus-visible).</span>
+                  </div>
+                  <label class="wcag-switch" title="Ativar anel de foco de teclado visível">
+                    <input type="checkbox" id="audit-fix-focus">
+                    <span class="wcag-slider"></span>
+                  </label>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Barra de Progresso Global da Auditoria -->
+            <div
+              style="margin-top:1.5rem; background:var(--bg-subtle); height:12px; border-radius:var(--radius-full); overflow:hidden; border:1px solid var(--border-color);">
+              <div id="audit-progress-bar"
+                style="width:0%; height:100%; background:linear-gradient(to right, var(--primary), var(--accent-emerald)); transition:width 0.3s ease;">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- SEÇÃO 6: REFERÊNCIAS BIBLIOGRÁFICAS FORMAIS                    -->
+        <!-- ============================================================== -->
         <section class="references-section">
           <h3>Referências Formais Deste Módulo</h3>
           <ul class="references-list">
             <li class="ref-item">
+              <span class="ref-badge">BACCELLI 2020</span>
+              <strong>BACCELLI, Reinaldo.</strong> <em>Acessibilidade na Web: Boas Práticas para Construir Interfaces
+                Inclusivas</em>. São Paulo: Casa do Código, 2020.
+            </li>
+            <li class="ref-item">
               <span class="ref-badge">BRASIL 2015</span>
-              <strong>BRASIL.</strong> Lei nº 13.146, de 6 de julho de 2015. Institui a Lei Brasileira de Inclusão da Pessoa com Deficiência (Estatuto da Pessoa com Deficiência). <em>Diário Oficial da União</em>, Brasília, DF, 2015.
+              <strong>BRASIL.</strong> Lei nº 13.146, de 6 de julho de 2015. Institui a Lei Brasileira de Inclusão da
+              Pessoa com Deficiência (Estatuto da Pessoa com Deficiência). <em>Diário Oficial da União</em>, Brasília,
+              DF, 2015.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">GOVERNO DIGITAL 2022</span>
+              <strong>BRASIL. Secretaria de Governo Digital.</strong> <em>e-MAG: Modelo de Acessibilidade em Governo
+                Eletrônico</em>. Brasília: SGD/MGI, 2022. Disponível em: <a
+                href="https://www.gov.br/governodigital/pt-br/acessibilidade-e-usuario/e-mag" target="_blank"
+                rel="noopener">gov.br/governodigital</a>.
             </li>
             <li class="ref-item">
               <span class="ref-badge">HORTON & QUESENBERY 2014</span>
-              <strong>HORTON, Sarah; QUESENBERY, Whitney.</strong> <em>A Web for Everyone: Designing Accessible User Experiences</em>. Brooklyn: Rosenfeld Media, 2014.
+              <strong>HORTON, Sarah; QUESENBERY, Whitney.</strong> <em>A Web for Everyone: Designing Accessible User
+                Experiences</em>. Brooklyn: Rosenfeld Media, 2014.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">ISO/IEC 40500</span>
+              <strong>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION.</strong> <em>ISO/IEC 40500:2012: Information
+                technology &mdash; W3C Web Content Accessibility Guidelines (WCAG) 2.0</em>. Genebra: ISO, 2012.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">KALBAG 2017</span>
+              <strong>KALBAG, Laura.</strong> <em>Accessibility for Everyone</em>. New York: A Book Apart, 2017.
             </li>
             <li class="ref-item">
               <span class="ref-badge">W3C 2018</span>
-              <strong>W3C.</strong> <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. W3C Recommendation, 2018. Disponível em: <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">w3.org/TR/WCAG21/</a>.
+              <strong>W3C.</strong> <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. W3C Recommendation, 2018.
+              Disponível em: <a href="https://www.w3.org/TR/WCAG21/" target="_blank"
+                rel="noopener">w3.org/TR/WCAG21/</a>.
             </li>
             <li class="ref-item">
               <span class="ref-badge">W3C 2023</span>
-              <strong>W3C.</strong> <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. W3C Recommendation, 2023. Disponível em: <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">w3.org/TR/WCAG22/</a>.
+              <strong>W3C.</strong> <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. W3C Recommendation,
+              Outubro de 2023. Disponível em: <a href="https://www.w3.org/TR/WCAG22/" target="_blank"
+                rel="noopener">w3.org/TR/WCAG22/</a>.
+            </li>
+            <li class="ref-item">
+              <span class="ref-badge">W3C WAI 2023</span>
+              <strong>W3C.</strong> <em>Accessible Rich Internet Applications (WAI-ARIA) 1.2</em>. W3C Recommendation,
+              2023. Disponível em: <a href="https://www.w3.org/TR/wai-aria-1.2/" target="_blank"
+                rel="noopener">w3.org/TR/wai-aria-1.2/</a>.
             </li>
           </ul>
         </section>
 
+        <!-- Navegação entre módulos -->
         <div class="page-nav-controls">
           <a href="08-interaction-design.html" class="nav-page-btn">
             <span class="nav-page-sub">&larr; Anterior</span>
@@ -218,13 +1224,14 @@
             <span class="nav-page-title">10. Jornada do Usuário</span>
           </a>
         </div>
+
       </article>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="footer-container">
-      <div><strong>Material Didático de IHC</strong> &bull; Módulo 09</div>
+      <div><strong>Material Didático de IHC</strong> &bull; Módulo 09 &bull; Acessibilidade & WCAG</div>
       <a href="../index.html">Voltar para o Índice Geral</a>
     </div>
   </footer>
@@ -232,4 +1239,5 @@
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/widgets/09-wcag-lab.js"></script>
 </body>
+
 </html>
